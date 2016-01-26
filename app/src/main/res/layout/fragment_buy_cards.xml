@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:imagecontrol="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/login_top_item"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@mipmap/personalcenterbg"-->
+    <!--android:gravity="center"-->
+    <!--android:orientation="vertical"-->
+    <!--android:paddingBottom="30dp"-->
+    <!--android:paddingTop="30dp">-->
+
+    <!--<com.asosapp.phone.view.RoundImageView-->
+    <!--android:id="@+id/user_head"-->
+    <!--android:layout_width="100dp"-->
+    <!--android:layout_height="100dp"-->
+    <!--imagecontrol:border_inside_color="#bc0978"-->
+    <!--imagecontrol:border_outside_color="#ba3456"-->
+    <!--imagecontrol:border_thickness="1dp"-->
+    <!--android:src="@mipmap/personal_center_no_login" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/user_nickname"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:text="@string/no_login_hint"-->
+    <!--android:textColor="@color/white" />-->
+
+    <!--</LinearLayout>-->
+<include layout="@layout/activity_title"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="10dp"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:id="@+id/cardtobuy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/iv_card1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/cardtobuy" />
+
+                <TextView
+                    android:id="@+id/tv_card_name1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@+id/iv_card1"
+                    android:text="“好帮手”---暖心卡"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_card_name1"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toLeftOf="@+id/iv_card_next1"
+                    android:layout_toRightOf="@+id/iv_card1"
+                    android:text="365天，私人医生、私人律师、私人理赔师、私人助理暖心相随！
+价格：68元  （以总工会和新华报业的名义价格）"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@+id/iv_card_next1"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/next" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/iv_card2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/cardtobuy" />
+
+                <TextView
+                    android:id="@+id/tv_card_name2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@+id/iv_card2"
+                    android:text="好人平安 · 司机安心卡"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_card_name2"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toLeftOf="@+id/iv_card_next2"
+                    android:layout_toRightOf="@+id/iv_card2"
+                    android:text="配备专业医生和专业律师，在您遇到医疗问题、交通事故、房屋租赁与买卖、民间借贷、婚姻纠结和财产分割等多种问题的时候，替您主张权利和维护利益"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@+id/iv_card_next2"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/next" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

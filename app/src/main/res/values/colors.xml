@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFF</color>
+    <color name="black">#000</color>
+    <color name="red">#F00</color>
+    <color name="darkGreen">#006400</color>
+    <color name="bule">#0066CC</color>
+    <color name="hintblack">#99000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="user_detail_public_bg">#f3f3f3</color>
+    <color name="user_list_public_bg">#e5e6e7</color>
+    <color name="normal_text">#FF758493</color>
+    <color name="text_color_shenhui_677582">#677582</color>
+    <color name="text_color_qianhui_a3a4a4">#a3a4a4</color>
+    <color name="text_color_heise_504f4f">#504f4f</color>
+    <color name="text_color_baise_fffefe">#fffefe</color>
+    <color name="text_color_hongse_ff4318">#ff4318</color>
+    <color name="text_color_zhongheise_461bd4">#461bd4</color>
+    <color name="text_color_zhonghongse_461b04">#461b04</color>
+    <color name="text_color_huangse_ff8800">#ff8800</color>
+    <color name="text_color_shurukuang_aeb6bd">#aeb6bd</color>
+    <color name="btn_color_login">#E07474</color>
+    <color name="mess_title">#99E07474</color>
+    <color name="item_click_bg_color">#dddddd</color>
+    <color name="chat_detail_split_line_color">#d3d3d3</color>
+
+    <color name="hint_font_color">#999999</color>
+
+    <!-- 灰色字体，模仿输入框的hint -->
+    <color name="green">#00ff00</color>
+    <color name="main_color">#F4F4F4</color>
+    <color name="edittext_color">#427cfa</color>
+    <color name="text_color">#242424</color>
+    <color name="gray">#808080</color>
+    <color name="small_gray">#E5E5E5</color>
+
+    <!-- releasing 页面button未被选中状态颜色 -->
+    <color name="blue_gray">#587386</color>
+
+    <!-- releasing 页面button被选中状态颜色 -->
+    <color name="remember_password_color">#db482e</color>
+    <color name="toggle_on_color">#25AE60</color>
+    <color name="toggle_off_color">#BACEC2</color>
+    <color name="text_off_color">#CCCCCC</color>
+    <color name="text_on_color">#25AE60</color>
+    <color name="text_over_color">#000000</color>
+    <color name="text_bule_color">#0E7BFE</color>
+    <color name="text_red_color">#FF2711</color>
+    <color name="number_back_color">#E2E2E2</color>
+    <color name="view">#cccccc</color>
+    <color name="orange">#FF7102</color>
+    <color name="darkgreen">#25AC5D</color>
+
+    <color name="menu_bg_color">#99FFFFFF</color>
+    <color name="menu_text_color">#99000000</color>
+
+    <color name="jpush_blue">#3f80dc</color>
+    <color name="menu_item_back_pres_color">#3773cb</color>
+    <color name="default_cursor_color">#8db4eb</color>
+    <color name="chat_detail_item_content_color">#808080</color>
+    <color name="login_btn_sel_color">#006400</color>
+    <color name="relogin_txt_color">#555555</color>
+    <color name="register_split_line_color">#c2d4ec</color>
+    <color name="title_color">#e3170d</color>
+    <color name="title_name_color">#f5f5f5</color>
+
+</resources>
