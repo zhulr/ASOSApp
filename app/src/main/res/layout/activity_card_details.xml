@@ -12,42 +12,212 @@
         android:scrollbars="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="公司通过长期积累，并不断探索总结，形成以下产品与服务体系：
-1、医疗费救助服务体系：
-意外医疗费缺欠，安邦救援免息垫！全面解决客户面临的医疗费短缺难题。
-2、“四位一体损伤赔偿平台”服务体系：
-    安邦律所+医疗中心+伤残鉴定+理赔师联盟
-整合律师、医生、法医和公估理赔师于统一服务平台
-提供全过程、全流程和全节点的O2O服务；
-3、法律援助服务体系：
-争诉纷扰，安邦律所，专业律师，助阵解忧！省司法厅标准收费，价格更合理更透明！
-4、康复管理服务体系：
-借助APP移动终端，结合云计算技术服务中心，打造院后康复管理线上线下网络终端医学康复服务，全面解决客户出院后与医生的“失联”状态，针对于出现的可能变化，做到“早预防、早发现、早治疗”。
-5、“小李飞刀”服务体系：
-安邦救援代客遍寻“名医名家名刀”，聚融京沪江浙等医疗专家于综合救援服务平台，全面解决客户就医难题。
-6、“医疗救援”卡体系：
-“好帮手”保障卡，365天的好帮手：
-意外电话救援、院前医疗指导、评估推荐医院、治疗过程管理；
-好人平安 · 综合服务卡：
-配备专业医生和专业律师，遇到医疗健康问题，以及交通事故、房屋租售、民间借贷、婚姻纠结和财产分割等法律困惑时，替您维护利益；
-安邦救援--全球SOS服务卡：
-提供涵盖中国大陆境内、美国、日本、中国台湾地区、加拿大区域的救援支持服务。
-7、国际医疗转运服务体系：
- 通过与众多国内外高品质医疗机构、知名险企及国际战略救援合作机构等直接而广泛的合作，根据客户病情评估分析，协助客户转运至最优秀的医疗机构。" />
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/card_buy_title"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp">
+
+                <TableRow android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="请输入您的手机号"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/card_buy_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="phone" />
+                </TableRow>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/card_buy_phone_hint"
+                    android:textColor="@color/text_color_qianhui_a3a4a4"
+                    android:textSize="12sp" />
+
+                <TableRow
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="请输入您的姓名"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/card_buy_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="phone" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:text="请选择您的性别"
+                        android:textColor="@color/black" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="性别"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/card_buy_man"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="40dp"
+                            android:checked="true"
+                            android:text="男" />
+
+                        <RadioButton
+                            android:id="@+id/card_buy_woman"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="女" />
+                    </RadioGroup>
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:text="卡片类型"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/card_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:textSize="16sp"
+                        android:text="暖心卡"
+                        android:textColor="@color/btn_color_login" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:text="请输入卡片张数"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/card_buy_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="4"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:text="1" />
+
+
+                </TableRow>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/card_buy_time_hint"
+                    android:textColor="@color/text_color_qianhui_a3a4a4"
+                    android:textSize="12sp" />
+
+                <TableRow
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:text="总价（人民币）"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/card_total_prices"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:textSize="18sp"
+                        android:text="0"
+                        android:textColor="@color/btn_color_login" />
+
+                </TableRow>
+            </TableLayout>
+
+            <LinearLayout
+                android:id="@+id/service_call"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/phone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="400-608-6655"
+                    android:textColor="@color/btn_color_login"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/buy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
                 android:background="@color/btn_color_login"
                 android:text="购买"
                 android:textColor="@color/white" />

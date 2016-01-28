@@ -23,7 +23,8 @@
     <color name="mess_title">#99E07474</color>
     <color name="item_click_bg_color">#dddddd</color>
     <color name="chat_detail_split_line_color">#d3d3d3</color>
-
+    <color name="card_item_background">#7760656c</color>
+    <color name="carddetails_item_background">#2260656c</color>
     <color name="hint_font_color">#999999</color>
 
     <!-- 灰色字体，模仿输入框的hint -->

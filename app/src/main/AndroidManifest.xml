@@ -26,13 +26,16 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <!--拨打客服电话权限-->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <meta-data
         android:name="tooltipdata"
         android:value="com.open.MainActivity" />
     <meta-data
         android:name="JPUSH_APPKEY"
-        android:value="7f367547a0b579ec225c1164" /><!--  </>值来自开发者平台取得的AppKey-->
+        android:value="7f367547a0b579ec225c1164" />
+    <!--  </>值来自开发者平台取得的AppKey-->
     <service
         android:name="com.open.tooltip.TooltipService"
         android:exported="false"></service>
@@ -170,12 +173,12 @@
         <activity android:name=".activity.NewsDetailedActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.PersonalCenterActivity" />
-        <activity android:name=".activity.CardsDetailsActivity" />
+        <activity android:name=".activity.CardsDetailsActivity"/>
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.FeedbackActivity" />
         <activity android:name=".activity.SQLiteActivity" />
-        <activity android:name=".activity.LoginNewActivity"/>
-        <activity android:name=".activity.RegisterNewActivity"/>
+        <activity android:name=".activity.LoginNewActivity" />
+        <activity android:name=".activity.RegisterNewActivity" />
     </application>
 
 </manifest>

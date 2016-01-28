@@ -15,7 +15,7 @@ public class Const {
 			.getExternalStorageDirectory().getPath() + "/ASOS";
 
 	// 服务器的IP地址
-	public static final String SERVICE_URL = "http://223.68.152.158:80/Home";
+	public static final String SERVICE_URL = "http://223.68.152.158:65500/Home";
 
 	// sharePreference的文件名
 	public static final String SHARE_PREFENCE_NAME = "程序名" + "SP";
