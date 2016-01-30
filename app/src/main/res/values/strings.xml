@@ -160,4 +160,5 @@
     <string name="card_buy_title">请填入您的身份信息！</string>
     <string name="card_buy_phone_hint">请输入您真实的手机号码以便工作人员与您联系！</string>
     <string name="card_buy_time_hint">卡片可以重复购买，次数可以叠加！</string>
+    <string name="card_buy_hint">请在扫码付款后拨打客服电话与我们的客服取得联系！谢谢！</string>
 </resources>

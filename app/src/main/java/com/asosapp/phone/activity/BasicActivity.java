@@ -8,6 +8,6 @@ import android.widget.Toast;
  */
 public class BasicActivity extends Activity {
     public void toast(String mess) {
-        Toast.makeText(getApplicationContext(), mess, Toast.LENGTH_SHORT);
+        Toast.makeText(getApplication(), mess, Toast.LENGTH_SHORT).show();
     }
 }

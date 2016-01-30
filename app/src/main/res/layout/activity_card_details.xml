@@ -16,6 +16,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/card_img"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:src="@mipmap/heartcard" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,7 +54,9 @@
                         android:layout_column="1"
                         android:ems="10"
                         android:gravity="center"
-                        android:inputType="phone" />
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:maxLines="1" />
                 </TableRow>
 
                 <TextView
@@ -76,7 +84,8 @@
                         android:layout_column="1"
                         android:ems="10"
                         android:gravity="center"
-                        android:inputType="phone" />
+                        android:maxLength="8"
+                        android:maxLines="1" />
                 </TableRow>
 
                 <TableRow
@@ -130,9 +139,9 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:paddingTop="10dp"
-                        android:textSize="16sp"
                         android:text="暖心卡"
-                        android:textColor="@color/btn_color_login" />
+                        android:textColor="@color/btn_color_login"
+                        android:textSize="16sp" />
 
                 </TableRow>
 
@@ -154,6 +163,8 @@
                         android:ems="4"
                         android:gravity="center"
                         android:inputType="number"
+                        android:maxLength="3"
+                        android:maxLines="1"
                         android:text="1" />
 
 
@@ -184,9 +195,9 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:paddingTop="10dp"
-                        android:textSize="18sp"
                         android:text="0"
-                        android:textColor="@color/btn_color_login" />
+                        android:textColor="@color/btn_color_login"
+                        android:textSize="18sp" />
 
                 </TableRow>
             </TableLayout>
@@ -215,12 +226,21 @@
                 android:id="@+id/buy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
                 android:background="@color/btn_color_login"
                 android:text="购买"
                 android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/card_buy_hint"
+                android:textColor="@color/text_color_qianhui_a3a4a4"
+                android:textSize="12sp" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
         </LinearLayout>
 
     </ScrollView>
