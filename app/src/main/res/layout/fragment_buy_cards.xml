@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/activity_title" />
+    <include layout="@layout/layout_activity_title" />
 
     <LinearLayout
         android:id="@+id/search_layout"

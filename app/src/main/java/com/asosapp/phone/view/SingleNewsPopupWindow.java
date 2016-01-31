@@ -2,15 +2,12 @@ package com.asosapp.phone.view;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
@@ -97,7 +94,7 @@ public class SingleNewsPopupWindow extends PopupWindow {
      */
     JSONObject DATA;
     private void getdata() {
-        String url = Const.SERVICE_URL + Const.NEWSINTRO + "?newsID=" + ID;
+        String url = Const.SERVICE_URL + Const.NEWSDETAILS + "?newsID=" + ID;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
@@ -120,7 +117,7 @@ public class SingleNewsPopupWindow extends PopupWindow {
                 } else if (volleyError instanceof com.android.volley.TimeoutError) {
                     ToastView.NetTimeOut(context);
                 } else {
-                    ToastView.toast(context,volleyError.toString());
+                    ToastView.toast(context, volleyError.toString());
                 }
             }
         });

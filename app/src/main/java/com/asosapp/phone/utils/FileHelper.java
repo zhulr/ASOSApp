@@ -8,7 +8,6 @@ import android.text.format.DateFormat;
 import android.widget.Toast;
 
 import com.asosapp.phone.R;
-//import com.asosapp.phone.application.JChatDemoApplication;
 import com.asosapp.phone.initprogram.MyApplication;
 
 import java.io.File;
@@ -20,6 +19,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import cn.jpush.im.android.api.JMessageClient;
+
+//import com.asosapp.phone.application.JChatDemoApplication;
 
 /**
  * Created by Ken on 2015/11/13.

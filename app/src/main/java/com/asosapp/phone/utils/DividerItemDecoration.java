@@ -18,14 +18,15 @@ package com.asosapp.phone.utils;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-        import android.content.Context;
-        import android.content.res.TypedArray;
-        import android.graphics.Canvas;
-        import android.graphics.Rect;
-        import android.graphics.drawable.Drawable;
-        import android.support.v7.widget.LinearLayoutManager;
-        import android.support.v7.widget.RecyclerView;
-        import android.view.View;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 

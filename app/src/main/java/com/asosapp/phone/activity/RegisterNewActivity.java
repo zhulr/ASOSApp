@@ -26,7 +26,7 @@ public class RegisterNewActivity extends BaseActivity {
         mRegisterView.setListeners(mRegisterController);
     }
 
-    //ע��ɹ�
+    //注册成功
     public void onRegistSuccess(){
         Intent intent = new Intent();
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -3,13 +3,13 @@ package com.asosapp.phone.controller;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 
 import com.asosapp.phone.R;
 import com.asosapp.phone.activity.LoginNewActivity;
@@ -17,7 +17,6 @@ import com.asosapp.phone.utils.DialogCreator;
 import com.asosapp.phone.utils.HandleResponseCode;
 import com.asosapp.phone.utils.SharePreferenceManager;
 import com.asosapp.phone.view.LoginView;
-import com.asosapp.phone.view.ToastView;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -30,6 +29,7 @@ public class LoginController implements LoginView.Listener, OnClickListener,
 
     private LoginView mLoginView;
     private LoginNewActivity mContext;
+
 
     public LoginController(LoginView mLoginView, LoginNewActivity context) {
         this.mLoginView = mLoginView;
@@ -69,16 +69,20 @@ public class LoginController implements LoginView.Listener, OnClickListener,
                 dialog.show();
                 JMessageClient.login(userId, password, new BasicCallback() {
                     @Override
-                    public void gotResult(int i, String s) {
-                        dialog.dismiss();
-                    }
-                });
-                JMessageClient.login(userId, password, new BasicCallback() {
-                    @Override
                     public void gotResult(final int status, final String desc) {
                         dialog.dismiss();
                         if (status == 0) {
+                            long userId = JMessageClient.getMyInfo().getUserID();
+                            String name = JMessageClient.getMyInfo().getUserName();
+                            Log.e("Leo-->", name + "-" + userId);
+                            SharedPreferences sharedPreferences = mContext.getSharedPreferences("UserInfo", 1); //私有数据
+                            SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
+                            editor.putString("user_name", name);
+                            editor.putBoolean("isLogin", true);
+                            editor.commit();//提交修改
                             mContext.startMainActivity();
+
+
                         } else {
                             Log.i("LoginController", "status = " + status);
                             HandleResponseCode.onHandle(mContext, status, false);

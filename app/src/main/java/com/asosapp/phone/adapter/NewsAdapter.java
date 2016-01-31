@@ -19,7 +19,7 @@ import java.util.Map;
 public class NewsAdapter extends RecyclerView.Adapter<ViewHolder> {
     private LayoutInflater mInfalater;
     private Context context;
-    private List<Map<String,Object>> mDatas;
+    private List<Map<String, Object>> mDatas;
 
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
@@ -33,7 +33,7 @@ public class NewsAdapter extends RecyclerView.Adapter<ViewHolder> {
         this.mOnItemClickListener = listener;
     }
 
-    public NewsAdapter(Context context, List<Map<String,Object>> datas) {
+    public NewsAdapter(Context context, List<Map<String, Object>> datas) {
         this.context = context;
         this.mDatas = datas;
         mInfalater = LayoutInflater.from(context);
@@ -41,18 +41,15 @@ public class NewsAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = mInfalater.inflate(R.layout.item_single_textview, viewGroup, false);
+        View view = mInfalater.inflate(R.layout.item_single_card_list, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int pos) {
-//        for (int i=mDatas.size();i>0;i--){
-            holder.intro.setText(mDatas.get(pos).get("intro").toString());
-            holder.title.setText(mDatas.get(pos).get("title").toString());
-
-//        }
+        holder.intro.setText(mDatas.get(pos).get("intro").toString());
+        holder.title.setText(mDatas.get(pos).get("title").toString());
         if (mOnItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

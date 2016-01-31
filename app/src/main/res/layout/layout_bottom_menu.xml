@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:background="@color/menu_bg"
+    android:orientation="horizontal"
+    android:paddingTop="5dp">
 
     <LinearLayout
         android:id="@+id/layout_news"
@@ -24,7 +26,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/news_fragment_buttom_name" />
+            android:text="@string/news_fragment_buttom_name"
+            android:textColor="@color/text_color_heise_504f4f"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -47,7 +51,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/online_consult_fragment_buttom_name" />
+            android:text="@string/online_consult_fragment_buttom_name"
+            android:textColor="@color/text_color_heise_504f4f"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -70,7 +76,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/buy_cards_fragment_buttom_name" />
+            android:text="@string/buy_cards_fragment_buttom_name"
+            android:textColor="@color/text_color_heise_504f4f"
+            android:textSize="12sp" />
     </LinearLayout>
 
 </LinearLayout>

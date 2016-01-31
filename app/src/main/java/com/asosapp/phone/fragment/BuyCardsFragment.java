@@ -162,7 +162,7 @@ public class BuyCardsFragment extends Fragment implements View.OnClickListener {
                 try {
                     if (jsonObject.get("CODE").toString().equals("200")) {
                         DATA = (JSONObject) jsonObject.get("DATA");
-                        toastString += "已购暖心卡 ";
+                        toastString += "已预购暖心卡 ";
                         if (DATA.get("BUYTIME").toString().equals("null")) {
                             toastString += "0";
                         } else {
@@ -170,7 +170,7 @@ public class BuyCardsFragment extends Fragment implements View.OnClickListener {
                         }
                         toastString += " 次\n";
                     } else if (jsonObject.get("CODE").toString().equals("100")) {
-                        toastString += "未购暖心卡\n ";
+                        toastString += "未预购暖心卡\n ";
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -203,16 +203,16 @@ public class BuyCardsFragment extends Fragment implements View.OnClickListener {
                 try {
                     if (jsonObject.get("CODE").toString().equals("200")) {
                         DATA = (JSONObject) jsonObject.get("DATA");
-                        toastString += "已购司机卡 ";
+                        toastString += "已预购司机卡 ";
                         if (DATA.get("BUYTIME").toString().equals("null")) {
                             toastString += "0";
                         } else {
                             toastString += DATA.get("BUYTIME").toString();
                         }
-                        toastString += " 次\n";
+                        toastString += " 次";
                         toast(toastString);
                     } else if (jsonObject.get("CODE").toString().equals("100")) {
-                        toastString += "未购司机卡\n ";
+                        toastString += "未预购司机卡";
                         toast(toastString);
                     }
                 } catch (JSONException e) {

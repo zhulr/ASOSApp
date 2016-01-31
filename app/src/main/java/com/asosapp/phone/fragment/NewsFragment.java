@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -28,6 +31,7 @@ import com.asosapp.phone.initprogram.MyApplication;
 import com.asosapp.phone.utils.Const;
 import com.asosapp.phone.utils.DividerItemDecoration;
 import com.asosapp.phone.view.SingleNewsPopupWindow;
+import com.asosapp.phone.view.SlideShowView;
 import com.asosapp.phone.view.ToastView;
 
 
@@ -51,6 +55,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
     private List<Map<String, Object>> mDatas;
     private NewsAdapter mAdapter;
     private ImageView none;
+    private SlideShowView slideshowView;
     private String TAG = "NewsFragment";
     private List<String> idList = new ArrayList<String>();
     private List<String> introList = new ArrayList<String>();
@@ -65,9 +70,21 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
         //设置RecycleView对的布局管理
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(linearLayoutManager);
-
+        //设置RecycleView的上下滑动监听事件
+        mRecyclerView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (slideshowView.getVisibility() == View.VISIBLE) {
+                        view.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.view_visible));
+                        slideshowView.setVisibility(View.GONE);
+                    }
+                }
+                return false;
+            }
+        });
         //设置RecycleView的Item间分割线
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+//        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         return view;
     }
 
@@ -85,15 +102,15 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                 try {
                     if (jsonObject.get("CODE").toString().equals("200")) {
                         JSONArray array = jsonObject.getJSONArray("DATA");
-                            for (int i = array.length()-1;i>=0;i--) {
-                                JSONObject object = array.getJSONObject(i);
-                                idList.add(object.getString("ID"));
-                                introList.add(object.getString("NEWS_INTRO"));
-                                titleList.add(object.getString("NEWS_TITLE"));
-                            }
+                        for (int i = array.length() - 1; i >= 0; i--) {
+                            JSONObject object = array.getJSONObject(i);
+                            idList.add(object.getString("ID"));
+                            introList.add(object.getString("NEWS_INTRO"));
+                            titleList.add(object.getString("NEWS_TITLE"));
+                        }
 
                     } else if (jsonObject.get("CODE").toString().equals("100")) {
-                        ToastView.toast(getActivity(),jsonObject.get("MESSAGE").toString());
+                        ToastView.toast(getActivity(), jsonObject.get("MESSAGE").toString());
                     }
 
 
@@ -109,12 +126,16 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                         Intent intent = new Intent(getActivity(), NewsDetailedActivity.class);
                         intent.putExtra("newsID", idList.get(position).toString());
                         startActivity(intent);
+                        if (slideshowView.getVisibility() == View.GONE) {
+                            view.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.view_gone));
+                            slideshowView.setVisibility(View.VISIBLE);
+                        }
                     }
 
                     @Override
                     public void onItemLongClick(View view, int position) {
 //                Toast.makeText(getActivity(), "long click:" + position, Toast.LENGTH_SHORT).show();
-                        SingleNewsPopupWindow singleNewsPopupWindow = new SingleNewsPopupWindow(getActivity(), Integer.parseInt(idList.get(position).toString()),mDatas);
+                        SingleNewsPopupWindow singleNewsPopupWindow = new SingleNewsPopupWindow(getActivity(), Integer.parseInt(idList.get(position).toString()), mDatas);
                         singleNewsPopupWindow.showPopupWindow(none);
                     }
                 });
@@ -127,7 +148,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                 } else if (volleyError instanceof com.android.volley.TimeoutError) {
                     ToastView.NetTimeOut(getActivity());
                 } else {
-                    ToastView.toast(getActivity(),volleyError.toString());
+                    ToastView.toast(getActivity(), volleyError.toString());
                 }
             }
         });
@@ -142,7 +163,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("intro", introList.get(i).toString());
             map.put("title", titleList.get(i).toString());
-            map.put("id",idList.get(i).toString());
+            map.put("id", idList.get(i).toString());
 
             listItems.add(map);
         }
@@ -153,7 +174,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
 
     private void initView() {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-
+        slideshowView = (SlideShowView) view.findViewById(R.id.slideshowView);
         none = (ImageView) view.findViewById(R.id.none);
     }
 
@@ -170,17 +191,4 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
     public void onDestroy() {
         super.onDestroy();
     }
-
-    /**
-     *
-     * 触摸事件
-     */
-    private MainActivity.MyOnTouchListener onTouchListener=new MainActivity.MyOnTouchListener() {
-        @Override
-        public boolean onTouch(MotionEvent ev) {
-            return false;
-        }
-    };
-
-
 }

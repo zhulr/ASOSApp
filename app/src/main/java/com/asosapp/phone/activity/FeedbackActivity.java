@@ -1,20 +1,16 @@
 package com.asosapp.phone.activity;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.Intent;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Environment;
+import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,73 +20,80 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import com.asosapp.phone.R;
-import com.asosapp.phone.adapter.MegViewAdapter;
+import com.asosapp.phone.adapter.ConversationListAdapter;
+import com.asosapp.phone.adapter.MsgListAdapter;
 import com.asosapp.phone.bean.FeedbackEntity;
+import com.asosapp.phone.initprogram.MyApplication;
+import com.asosapp.phone.utils.BitmapLoader;
+import com.asosapp.phone.utils.HandleResponseCode;
+import com.asosapp.phone.view.DropDownListView;
+
+import android.widget.TextView;
+
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.content.CustomContent;
+import cn.jpush.im.android.api.content.ImageContent;
+import cn.jpush.im.android.api.content.TextContent;
+import cn.jpush.im.android.api.enums.ConversationType;
+import cn.jpush.im.android.api.model.Conversation;
+import cn.jpush.im.android.api.model.GroupInfo;
+import cn.jpush.im.android.api.model.Message;
+import cn.jpush.im.android.api.model.UserInfo;
+import cn.jpush.im.api.BasicCallback;
+import de.greenrobot.event.EventBus;
 
 
-public class FeedbackActivity extends Activity implements OnClickListener {
-
+public class FeedbackActivity extends BaseActivity implements OnClickListener {
+    private String TAG= "FeedbackActivity";
     private Button mBtnSend;
     private Button mBtnBack;
     private EditText mEditTextContent;
-    //	private static final String FEEDBACK_URL = "??��URL???";
-    // ???????????????
-    private MegViewAdapter mAdapter;
-    private ListView mListView;
-    SQLiteOpenHelper openHelper;
-    private String userId;
-    private SharedPreferences sp;
-    // ?????????
+    private MsgListAdapter mChatAdapter;
+    private DropDownListView mListView;
+    private final MyHandler myHandler = new MyHandler(FeedbackActivity.this);
+    Conversation mConv;
+    private static final int REFRESH_LAST_PAGE = 1023;
+    private static final int UPDATE_CHAT_LISTVIEW = 1026;
+    private String mTargetId;
+    private String serviceTargetId;
+    private TextView titleTV;
     private List<FeedbackEntity> mDataArrays = new ArrayList<FeedbackEntity>();
+    private String nameID;
+    InputMethodManager imm;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
+        JMessageClient.registerEventReceiver(this);
         setContentView(R.layout.activity_feedback);
-        //????????
-        sp = this.getSharedPreferences("login_Info",
-                Context.MODE_WORLD_READABLE);
-        userId = sp.getString("USERID", "");
-        //????activity???????????????
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         initView();
-        //????????????????
-//		String dbName=Environment.getExternalStorageDirectory().getAbsolutePath()+"/Chat.db";
-//		try{
-//			File file=new File(dbName);
-//			if(!file.exists()){
-//				InputStream fis=getAssets().open("database/Chat.db");
-//				FileOutputStream fos=new FileOutputStream(dbName,false);
-//				byte[] buff=new byte[1024];
-//				int len=0;
-//				while((len=fis.read(buff))>0){
-//					fos.write(buff, 0,len);
-//				}
-//				fos.close();
-//			}
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}
-//		openHelper=new SQLiteOpenHelper(this,dbName,null,1) {
-//			@Override
-//			public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//				// TODO Auto-generated method stub
-//			}
-//			@Override
-//			public void onCreate(SQLiteDatabase db) {
-//				// TODO Auto-generated method stub
-//			}
-//		};
-//		receive();
+
     }
 
-    // ????????
+
+
     private void initView() {
-        mListView = (ListView) findViewById(R.id.listview);
+
+//        mEditTextContent.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        Intent intent = this.getIntent();
+        nameID=intent.getStringExtra("nameID");
+//        if (nameID=="1"){
+//            serviceTargetId = intent.getStringExtra("service");
+//            mTargetId = intent.getStringExtra("myID");
+//        }else{
+        serviceTargetId = intent.getStringExtra("service");
+        mTargetId = intent.getStringExtra("myID");
+//        }
+
+
+        mListView = (DropDownListView) findViewById(R.id.listview);
         this.mListView.setOnScrollListener(new OnScrollListener() {
 
             @Override
@@ -106,162 +109,188 @@ public class FeedbackActivity extends Activity implements OnClickListener {
 
             }
         });
+        titleTV = (TextView) findViewById(R.id.chat_title_type);
         mBtnBack = (Button) findViewById(R.id.btn_back);
         mBtnBack.setOnClickListener(this);
         mBtnSend = (Button) findViewById(R.id.btn_send);
         mBtnSend.setOnClickListener(this);
         mEditTextContent = (EditText) findViewById(R.id.et_sendmessage);
-    }
 
-    List<String> rev_list = new ArrayList<String>();
-    List<String> send_list = new ArrayList<String>();
+        if (mConv == null) {
 
-    //????
-    private void receive() {
-        //??????????,???????��????????,??????????????????
-        String msg = "????????KingPeng????????????????????????????????!";
-        SQLiteDatabase db = openHelper.getReadableDatabase();
-        String sql = "select chatUser,chatDate,chatContext from  chat";
-        Cursor c = db.rawQuery(sql, null);
-        if (!c.moveToNext()) {
-            db = openHelper.getReadableDatabase();
-            String sql1 = "insert into chat(chatUser,chatDate,chatContext) values(?,?,?)";
-            System.out.println(getDate());
-            db.execSQL(sql1, new Object[]{"???", getDate(), msg});
+            mConv = Conversation.createSingleConversation(serviceTargetId);
+            UserInfo userInfo = (UserInfo) mConv.getTargetInfo();
+            if (TextUtils.isEmpty(userInfo.getNickname())) {
+                if (nameID=="1"){
+                    titleTV.setText(userInfo.getUserName());
+                }else{
+                    setTitle();
+                }
+
+            } else {
+                titleTV.setText(userInfo.getNickname());
+            }
         }
+        if (mConv != null) {
+            mChatAdapter = new MsgListAdapter(this, serviceTargetId);
+            mListView.setAdapter(mChatAdapter);
+            //监听下拉刷新
+            mListView.setOnDropDownListener(new DropDownListView.OnDropDownListener() {
+                @Override
+                public void onDropDown() {
+                    myHandler.sendEmptyMessageDelayed(REFRESH_LAST_PAGE, 1000);
+                }
+            });
+        }
+        // 滑动到底部
+        setToBottom();
     }
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+    }
     @Override
     public boolean onTouchEvent(android.view.MotionEvent event) {
-        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+
         return imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
     }
 
-    //????????????????
-    private void send() {
-        String sendMsg = mEditTextContent.getText().toString();
-        if (!sendMsg.equals("")) {
-            FeedbackEntity entity = new FeedbackEntity();
-            entity.setDate(getDate());
-            entity.setName("??");
-            entity.setMsgType(false);
-            entity.setText(sendMsg);
-            mDataArrays.add(entity);
-            mAdapter = new MegViewAdapter(mDataArrays, this, FeedbackActivity.this);
-            mAdapter.notifyDataSetChanged();
-            mListView.setAdapter(mAdapter);
-            mListView.setSelection(mListView.getCount() - 1);
-            send_list.add(sendMsg);
-//			sendkMessage(entity);
-            //???????????��????????????
-//			SQLiteDatabase db=openHelper.getReadableDatabase();
-//            String sql = "insert into chat(chatUser,chatDate,chatContext) values(?,?,?)";
-//			db.execSQL(sql, new Object[]{userId,getDate(),sendMsg});
-            System.out.println(getDate());
-            mEditTextContent.setText("");
-        }
-    }
-
-    //???????��???????????listView?????????????????????
-    public void chatRecords() {
-        String user = "";
-        String date = "";
-        String context = "";
-        //????????��????
-        SQLiteDatabase db = openHelper.getReadableDatabase();
-        String sql = "select chatUser,chatDate,chatContext from chat where chatUser=? or chatUser=?";
-        Cursor c = db.rawQuery(sql, new String[]{userId, "???"});
-        while (c.moveToNext()) {
-            user = c.getString(0);
-            date = c.getString(1);
-            context = c.getString(2);
-            Log.v("ceshi", user + date + context);
-            FeedbackEntity entity = new FeedbackEntity();
-            entity.setName(user);
-
-            if (user.equals("???")) {
-                entity.setMsgType(true);
-            } else {
-                entity.setMsgType(false);
-                System.out.println("????????");
-            }
-            entity.setDate(date);
-            entity.setText(context);
-            mDataArrays.add(entity);
-            mAdapter = new MegViewAdapter(mDataArrays, this, FeedbackActivity.this);
-            mAdapter.notifyDataSetChanged();
-            mListView.setAdapter(mAdapter);
-            mListView.setSelection(mListView.getCount() - 1);
-        }
-    }
-
-    //?????????????????????
-//	public void sendkMessage(final FeedbackEntity entity){
-//		final String url=FEEDBACK_URL;
-//		new AsyncTask<Object,Object,Object>() {
-//			String msg="";
-//			@Override
-//			protected Object doInBackground(Object... arg0) {
-//				// TODO Auto-generated method stub
-//				Map<String, String> map=new HashMap<String, String>();
-////				String userId=LoginActivity.sureUser;
-//			    map.put("feedbackUser", userId);
-//				map.put("feedbackInfo", entity.getText());
-//				map.put("feedbackDate", entity.getDate());
-////				msg=HttpUtils.getInputStreamByPost(url, map, "UTF-8");
-//				Log.v("Tag", msg);
-//				return msg;
-//			}
-//		}.execute(url);
-//	}
-
-    // ?????????? String ????
-    private String getDate() {
-        Calendar c = Calendar.getInstance();
-        String year = String.valueOf(c.get(Calendar.YEAR));
-        String month = String.valueOf(c.get(Calendar.MONTH) + 1);
-        String day = String.valueOf(c.get(Calendar.DAY_OF_MONTH) + 1);
-        String hour = String.valueOf(c.get(Calendar.HOUR_OF_DAY));
-        String mins = String.valueOf(c.get(Calendar.MINUTE));
-        String sec = String.valueOf(c.get(Calendar.SECOND));
-        StringBuffer sbBuffer = new StringBuffer();
-        sbBuffer.append(year + "-" + month + "-" + day + " " + hour + ":" + mins + ":" + sec);
-        return sbBuffer.toString();
-    }
 
     @Override
     public void onClick(View view) {
         // TODO Auto-generated method stub
         switch (view.getId()) {
             case R.id.btn_send:
-                send();
+                sendMessage();
                 break;
             case R.id.btn_back:
+                mConv.resetUnreadCount();
+                JMessageClient.exitConversaion();
                 FeedbackActivity.this.finish();
         }
     }
+
+    private void sendMessage() {
+        String editTextContent = mEditTextContent.getText().toString();
+        Log.e("Leo-->", mEditTextContent.getText().toString());
+
+        mEditTextContent.setText("");
+        if (editTextContent.equals("")) {
+            return;
+        }
+        TextContent content = new TextContent(editTextContent);
+        final Message msg = mConv.createSendMessage(content);
+        msg.setOnSendCompleteCallback(new BasicCallback() {
+
+            @Override
+            public void gotResult(final int status, String desc) {
+                Log.i("ChatController", "send callback " + status + " desc " + desc);
+                if (status == 803008) {
+                    CustomContent customContent = new CustomContent();
+                    customContent.setBooleanValue("blackList", true);
+                    Message customMsg = mConv.createSendMessage(customContent);
+                    mChatAdapter.addMsgToList(customMsg);
+                } else if (status != 0) {
+                    HandleResponseCode.onHandle(FeedbackActivity.this, status, false);
+                }
+                // 发送成功或失败都要刷新一次
+                myHandler.sendEmptyMessage(UPDATE_CHAT_LISTVIEW);
+            }
+        });
+        mChatAdapter.addMsgToList(msg);
+        JMessageClient.sendMessage(msg);
+        // 滑动到底部
+        setToBottom();
+        imm.hideSoftInputFromWindow(mEditTextContent.getWindowToken(), 0); //强制隐藏键盘
+    }
+
+
 
     @Override
     protected void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
-//		chatRecords();
     }
 
     @Override
     protected void onStop() {
         // TODO Auto-generated method stub
         super.onStop();
-        int size = mDataArrays.size();
-        if (size > 0) {
-            System.out.println(size);
-            mDataArrays.removeAll(mDataArrays);
-            mAdapter.notifyDataSetChanged();
-        }
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
+        JMessageClient.unRegisterEventReceiver(this);
+        EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
+
+
+    private class MyHandler extends Handler {
+        private final WeakReference<FeedbackActivity> mController;
+
+        public MyHandler(FeedbackActivity controller) {
+            mController = new WeakReference<FeedbackActivity>(controller);
+        }
+
+        @Override
+        public void handleMessage(android.os.Message msg) {
+            super.handleMessage(msg);
+            FeedbackActivity controller = mController.get();
+            if (controller != null) {
+                switch (msg.what) {
+                    case REFRESH_LAST_PAGE:
+                        controller.mChatAdapter.dropDownToRefresh();
+
+                        mListView.onDropDownComplete();
+                        if (controller.mChatAdapter.isHasLastPage()) {
+                            mListView.setSelection(controller.mChatAdapter.getOffset());
+                            controller.mChatAdapter.refreshStartPosition();
+                        } else {
+                            mListView.setSelection(0);
+                        }
+                        mListView.setOffset(controller.mChatAdapter.getOffset());
+                        break;
+                    case UPDATE_CHAT_LISTVIEW:
+                        controller.mChatAdapter.notifyDataSetChanged();
+                        break;
+                }
+
+            }
+        }
+    }
+    private void setToBottom(){
+        // 滑动到底部
+        mListView.post(new Runnable() {
+            @Override
+            public void run() {
+                mListView.setSelection(mListView.getBottom());
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        String targetID = getIntent().getStringExtra("myID");
+
+        if (null != targetID) {
+            JMessageClient.enterSingleConversaion(targetID);
+        }
+        super.onResume();
+    }
+
+    private void setTitle(){
+        if (serviceTargetId.equals("asos111"))
+            titleTV.setText("医疗康复在线客服");
+        else if (serviceTargetId.equals("asos222"))
+            titleTV.setText("法律服务问答客服");
+        else if (serviceTargetId.equals("asos333"))
+            titleTV.setText("伤残鉴定咨询客服");
+        else if (serviceTargetId.equals("asos444"))
+            titleTV.setText("损伤赔偿问答客服");
+    }
+
+
 }
+

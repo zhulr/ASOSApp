@@ -17,7 +17,7 @@
             android:layout_width="@dimen/title_bar_height"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/back_btn"
+            android:src="@mipmap/back_btn"
             android:background="@drawable/back_btn_bg"
             android:visibility="invisible"
             />
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/username" />
+            android:src="@mipmap/username" />
 
         <EditText
             android:id="@+id/username"
@@ -85,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/password" />
+            android:src="@mipmap/password" />
 
         <EditText
             android:id="@+id/password"
@@ -163,7 +163,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="30dp"
             android:background="@null"
-            android:drawableTop="@drawable/login_regist"
+            android:drawableTop="@mipmap/login_regist"
             android:text="@string/register"
             android:textColor="@color/relogin_txt_color" />
     </RelativeLayout>

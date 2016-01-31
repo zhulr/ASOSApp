@@ -16,6 +16,7 @@ import com.asosapp.phone.R;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
 import cn.jpush.im.android.api.JMessageClient;
 
 
@@ -98,6 +99,12 @@ public class LoginView extends LinearLayout {
     public void setListener(Listener listener) {
         this.mListener = listener;
     }
+
+	public String getResult(){
+		String username=mUserId.getText().toString();
+		return username;
+	}
+
 
 	public void isShowReturnBtn(boolean fromSwitch) {
 		if(fromSwitch){

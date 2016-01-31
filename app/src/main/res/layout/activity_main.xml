@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,18 +8,18 @@
     <com.asosapp.phone.view.NoScrollViewPager
         android:id="@+id/id_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"></com.asosapp.phone.view.NoScrollViewPager>
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
-        android:background="@drawable/tab_bg"
-        android:orientation="horizontal">
-
-        <include layout="@layout/layout_bottom_menu" />
-
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout">
+        <include layout="@layout/layout_bottom_menu"/>
     </LinearLayout>
-</LinearLayout>
+
+</RelativeLayout>

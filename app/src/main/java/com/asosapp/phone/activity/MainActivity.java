@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -38,6 +39,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private ImageView newsImageView;
     private ImageView onlineConsultImageView;
     private ImageView buyCardsImageView;
+    private TextView newsTextView;
+    private TextView onlineConsultTextView;
+    private TextView buyCardsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         newsImageView = (ImageView) findViewById(R.id.iv_news);
         onlineConsultImageView = (ImageView) findViewById(R.id.iv_online_consult);
         buyCardsImageView = (ImageView) findViewById(R.id.iv_buy_cards);
+        newsTextView = (TextView) findViewById(R.id.tv_news);
+        onlineConsultTextView = (TextView) findViewById(R.id.tv_online_consult);
+        buyCardsTextView = (TextView) findViewById(R.id.tv_buy_cards);
     }
 
     private void initDatas() {
@@ -91,12 +98,15 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 switch (position) {
                     case 0:
                         newsImageView.setImageResource(R.mipmap.documents_64px_color);
+                        newsTextView.setTextColor(getResources().getColorStateList(R.color.white));
                         break;
                     case 1:
                         onlineConsultImageView.setImageResource(R.mipmap.chat_64px_color);
+                        onlineConsultTextView.setTextColor(getResources().getColorStateList(R.color.white));
                         break;
                     case 2:
                         buyCardsImageView.setImageResource(R.mipmap.commerce_64px_color);
+                        buyCardsTextView.setTextColor(getResources().getColorStateList(R.color.white));
                         break;
                 }
             }
@@ -112,6 +122,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         newsImageView.setImageResource(R.mipmap.documents_64px_line);
         onlineConsultImageView.setImageResource(R.mipmap.chat_64px_line);
         buyCardsImageView.setImageResource(R.mipmap.commerce_64px_line);
+        newsTextView.setTextColor(getResources().getColorStateList(R.color.text_color_heise_504f4f));
+        onlineConsultTextView.setTextColor(getResources().getColorStateList(R.color.text_color_heise_504f4f));
+        buyCardsTextView.setTextColor(getResources().getColorStateList(R.color.text_color_heise_504f4f));
     }
 
 

@@ -18,7 +18,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.asosapp.phone.R;
@@ -77,7 +76,7 @@ public class RoundImageView extends ImageView {
         if (drawable.getClass() == NinePatchDrawable.class)
             return;
         Bitmap b = ((BitmapDrawable) drawable).getBitmap();
-        Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
+        Bitmap bitmap = b.copy(Config.ARGB_8888, true);
         if (defaultWidth == 0) {
             defaultWidth = getWidth();
         }

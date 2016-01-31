@@ -12,7 +12,6 @@ import com.asosapp.phone.utils.HandleResponseCode;
 import com.asosapp.phone.utils.SharePreferenceManager;
 import com.asosapp.phone.view.LoginDialog;
 import com.asosapp.phone.view.RegisterView;
-import com.asosapp.phone.view.ToastView;
 
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.api.BasicCallback;
@@ -62,7 +61,7 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                             JMessageClient.login(userId, password, new BasicCallback() {
                                 @Override
                                 public void gotResult(final int status, String desc) {
-                                    Log.e("Leo-->",""+status);
+                                    Log.e("Leo-->", "" + status);
                                     if (status == 0) {
                                         mContext.onRegistSuccess();
                                     } else {

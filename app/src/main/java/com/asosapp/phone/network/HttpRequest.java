@@ -3,7 +3,6 @@ package com.asosapp.phone.network;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -20,6 +19,7 @@ import com.asosapp.phone.utils.Const;
 import com.asosapp.phone.utils.DeviceHelper;
 
 import org.json.JSONObject;
+
 import java.util.Map;
 
 /**

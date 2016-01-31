@@ -16,7 +16,7 @@
             android:layout_width="@dimen/title_bar_height"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/back_btn"
+            android:src="@mipmap/back_btn"
             android:background="@drawable/back_btn_bg"
             />
 
@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/username" />
+            android:src="@mipmap/username" />
 
         <EditText
             android:id="@+id/username"
@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/password" />
+            android:src="@mipmap/password" />
 
         <EditText
             android:id="@+id/password"

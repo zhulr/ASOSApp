@@ -72,36 +72,36 @@ public class DialogCreator {
 //        return dialog;
 //    }
 
-//    public static Dialog createLongPressMessageDialog(Context context, String title, boolean hide,
-//                                                      View.OnClickListener listener){
-//        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//        View view = LayoutInflater.from(context).inflate(
-//                R.layout.dialog_msg_alert, null);
-//        builder.setView(view);
-//        Button copyBtn = (Button) view
-//                .findViewById(R.id.copy_msg_btn);
-//        Button forwardBtn = (Button) view
-//                .findViewById(R.id.forward_msg_btn);
-//        View line1 = view.findViewById(R.id.forward_split_line);
-//        View line2 = view.findViewById(R.id.delete_split_line);
-//        Button deleteBtn = (Button) view.findViewById(R.id.delete_msg_btn);
-//        final TextView titleTv = (TextView) view
-//                .findViewById(R.id.dialog_title);
-//        if (hide) {
-//            copyBtn.setVisibility(View.GONE);
-//            forwardBtn.setVisibility(View.GONE);
-//            line1.setVisibility(View.GONE);
-//            line2.setVisibility(View.GONE);
-//        }
-//        titleTv.setText(title);
-//        final Dialog dialog = builder.create();
-//        copyBtn.setOnClickListener(listener);
-//        forwardBtn.setOnClickListener(listener);
-//        deleteBtn.setOnClickListener(listener);
-//        dialog.setCancelable(true);
-//        dialog.setCanceledOnTouchOutside(true);
-//        return dialog;
-//    }
+    public static Dialog createLongPressMessageDialog(Context context, String title, boolean hide,
+                                                      View.OnClickListener listener){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        View view = LayoutInflater.from(context).inflate(
+                R.layout.dialog_msg_alert, null);
+        builder.setView(view);
+        Button copyBtn = (Button) view
+                .findViewById(R.id.copy_msg_btn);
+        Button forwardBtn = (Button) view
+                .findViewById(R.id.forward_msg_btn);
+        View line1 = view.findViewById(R.id.forward_split_line);
+        View line2 = view.findViewById(R.id.delete_split_line);
+        Button deleteBtn = (Button) view.findViewById(R.id.delete_msg_btn);
+        final TextView titleTv = (TextView) view
+                .findViewById(R.id.dialog_title);
+        if (hide) {
+            copyBtn.setVisibility(View.GONE);
+            forwardBtn.setVisibility(View.GONE);
+            line1.setVisibility(View.GONE);
+            line2.setVisibility(View.GONE);
+        }
+        titleTv.setText(title);
+        final Dialog dialog = builder.create();
+        copyBtn.setOnClickListener(listener);
+        forwardBtn.setOnClickListener(listener);
+        deleteBtn.setOnClickListener(listener);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+        return dialog;
+    }
 
 //    public static Dialog createResendDialog(Context context, View.OnClickListener listener){
 //        AlertDialog.Builder builder = new AlertDialog.Builder(context);

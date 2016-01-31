@@ -160,7 +160,9 @@
             android:value="7f367547a0b579ec225c1164" />
         <!-- </>值来自开发者平台取得的AppKey-->
 
-        <activity android:name=".activity.MainActivity" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.UpstartActivity"
             android:label="@string/app_name">
@@ -173,12 +175,15 @@
         <activity android:name=".activity.NewsDetailedActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.PersonalCenterActivity" />
-        <activity android:name=".activity.CardsDetailsActivity"/>
+        <activity android:name=".activity.CardsDetailsActivity" />
         <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.FeedbackActivity" />
+        <activity
+            android:name=".activity.FeedbackActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".activity.SQLiteActivity" />
         <activity android:name=".activity.LoginNewActivity" />
         <activity android:name=".activity.RegisterNewActivity" />
+        <activity android:name=".activity.ServiceActivity" />
     </application>
 
 </manifest>
