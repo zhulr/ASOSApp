@@ -68,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="12"
-        android:background="@color/title_color"
+        android:background="@color/btn_color_login"
         android:orientation="horizontal">
 
         <ImageView
