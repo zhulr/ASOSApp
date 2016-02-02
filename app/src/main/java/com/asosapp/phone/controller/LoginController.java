@@ -17,6 +17,7 @@ import com.asosapp.phone.utils.DialogCreator;
 import com.asosapp.phone.utils.HandleResponseCode;
 import com.asosapp.phone.utils.SharePreferenceManager;
 import com.asosapp.phone.view.LoginView;
+import com.asosapp.phone.view.ToastView;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -74,7 +75,6 @@ public class LoginController implements LoginView.Listener, OnClickListener,
                         if (status == 0) {
                             long userId = JMessageClient.getMyInfo().getUserID();
                             String name = JMessageClient.getMyInfo().getUserName();
-                            Log.e("Leo-->", name + "-" + userId);
                             SharedPreferences sharedPreferences = mContext.getSharedPreferences("UserInfo", 1); //私有数据
                             SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
                             editor.putString("user_name", name);
@@ -93,6 +93,10 @@ public class LoginController implements LoginView.Listener, OnClickListener,
 
             case R.id.register_btn:
                 mContext.startRegisterActivity();
+                break;
+            case R.id.forget_password:
+                ToastView.toast(mContext,"请拨打客服热线400-608-6655");
+                break;
         }
     }
 

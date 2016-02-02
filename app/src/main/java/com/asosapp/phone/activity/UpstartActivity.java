@@ -57,7 +57,6 @@ public class UpstartActivity extends BasicActivity {
     private void init() {
         ad = (ImageView) findViewById(R.id.upstart_ad);
         logo = (ImageView) findViewById(R.id.upstart_logo);
-        ad.setBackground(getResources().getDrawable(R.mipmap.blackbg));
         startSkip = (TextView) findViewById(R.id.upstart_skip);
         startSkip.setOnClickListener(new View.OnClickListener() {
             @Override

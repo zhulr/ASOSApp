@@ -49,6 +49,10 @@ public class RegisterView extends LinearLayout {
         mReturnBtn.setOnClickListener(onclickListener);
     }
 
+    public void isMobileError(Context context) {
+        Toast.makeText(context, context.getString(R.string.moblie_not_null_toast), Toast.LENGTH_SHORT).show();
+    }
+
     public void userNameError(Context context) {
         Toast.makeText(context, context.getString(R.string.username_not_null_toast), Toast.LENGTH_SHORT).show();
     }

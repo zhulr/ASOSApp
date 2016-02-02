@@ -53,4 +53,7 @@ public class Const {
 	//查询是否购司机卡接口
 	public static final String SEARCHDRIVER = "/Card/searchdriver.php";
 
+	//留言接口
+	public static final String LM = "/LM/lm.php";
+
 }

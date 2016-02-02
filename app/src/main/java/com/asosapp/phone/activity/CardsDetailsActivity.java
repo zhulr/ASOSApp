@@ -26,6 +26,8 @@ import com.asosapp.phone.utils.Const;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.regex.Pattern;
 
 /**
@@ -215,7 +217,12 @@ public class CardsDetailsActivity extends BasicActivity implements View.OnClickL
      * 写入数据库
      */
     private void intoInfo() {
-        String url = URL + "?userPhone=" + phoneET.getText().toString().trim() + "&userName=" + nameET.getText().toString().trim() + "&buyTime=" + timeET.getText().toString().trim();
+        String url = null;
+        try {
+            url = URL + "?userPhone=" + phoneET.getText().toString().trim() + "&userName=" +  URLEncoder.encode(nameET.getText().toString().trim(), "UTF-8") + "&buyTime=" + timeET.getText().toString().trim();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {

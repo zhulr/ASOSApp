@@ -89,7 +89,7 @@ public class LoginNewActivity extends BaseActivity {
         if (isService()) {
             intent.setClass(getContext(), ServiceActivity.class);
         } else {
-            finish();
+            intent.setClass(getContext(), MainActivity.class);
         }
         startActivity(intent);
     }

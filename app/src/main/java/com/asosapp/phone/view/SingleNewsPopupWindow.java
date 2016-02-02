@@ -102,7 +102,7 @@ public class SingleNewsPopupWindow extends PopupWindow {
                     if (jsonObject.get("CODE").toString().equals("200")) {
                         DATA = (JSONObject) jsonObject.get("DATA");
                         titleView.setText(DATA.get("NEWS_TITLE").toString());
-                        introView.setText(DATA.get("NEWS_CONTENT").toString());
+                        introView.setText(DATA.get("NEWS_CONTENT").toString().replace("<br>","\n"));
                     } else if (jsonObject.get("CODE").toString().equals("100")) {
                     }
                 } catch (JSONException e) {

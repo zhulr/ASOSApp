@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,7 @@ import com.asosapp.phone.utils.HandleResponseCode;
 import com.asosapp.phone.utils.SortConvList;
 import com.asosapp.phone.utils.TimeFormat;
 import com.asosapp.phone.view.CircleImageView;
+import com.asosapp.phone.view.ToastView;
 
 import java.util.Collections;
 import java.util.List;
@@ -107,6 +107,7 @@ public class ConversationListAdapter extends BaseAdapter{
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         final Conversation convItem = mDatas.get(position);
+//        ToastView.toast(mContext, position + "");
         final ViewHolder viewHolder;
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.conversation_list_item,
@@ -213,13 +214,12 @@ public class ConversationListAdapter extends BaseAdapter{
         viewHolder.msg_item_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewHolder.newMsgNumber.setVisibility(View.GONE);
+//                viewHolder.newMsgNumber.setVisibility(View.GONE);
                 String targetId = ((UserInfo) mDatas.get(position).getTargetInfo()).getUserName();
                 Intent intent=new Intent(mContext, FeedbackActivity.class);
                 intent.putExtra("myID", JMessageClient.getMyInfo().getUserName());
                 intent.putExtra("service", targetId);
                 intent.putExtra("nameID","1");
-                Log.e("Leo-->", targetId);
                 mContext.startActivity(intent);
             }
         });

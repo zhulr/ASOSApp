@@ -10,6 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asosapp.phone.R;
@@ -26,10 +27,11 @@ public class LoginView extends LinearLayout {
 	private EditText mUserId;
 	private EditText mPassword;
 	private Button mLoginBtn;
-	private Button mRegistBtnOnlogin;
+	private TextView mRegistBtnOnlogin;
     private Listener mListener;
 	private CheckBox mTestEvnCB;
     private Context mContext;
+	private TextView forget_password;
 	private static final boolean DEV_FLAG = false;
 
 	public LoginView(Context context, AttributeSet attrs) {
@@ -41,8 +43,9 @@ public class LoginView extends LinearLayout {
 		mUserId = (EditText) findViewById(R.id.username);
 		mPassword = (EditText) findViewById(R.id.password);
 		mLoginBtn = (Button) findViewById(R.id.login_btn);
-		mRegistBtnOnlogin = (Button) findViewById(R.id.register_btn);
+		mRegistBtnOnlogin = (TextView) findViewById(R.id.register_btn);
 		mTestEvnCB = (CheckBox) findViewById(R.id.testEvn_cb);
+		forget_password= (TextView) findViewById(R.id.forget_password);
 		initTestEvnCB();
 	}
 
@@ -74,6 +77,7 @@ public class LoginView extends LinearLayout {
 		mReturnBtn.setOnClickListener(onClickListener);
 		mLoginBtn.setOnClickListener(onClickListener);
 		mRegistBtnOnlogin.setOnClickListener(onClickListener);
+		forget_password.setOnClickListener(onClickListener);
 	}
 
 	public void setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener onCheckedChangeListener){

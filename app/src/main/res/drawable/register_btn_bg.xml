@@ -3,13 +3,13 @@
     <item android:state_pressed="true">
         <shape >
             <corners android:radius="@dimen/default_btn_radius"/>
-            <solid android:color="#346fc3"/>
+            <solid android:color="@color/remember_password_color"/>
         </shape>
     </item>
     <item>
         <shape >
             <corners android:radius="@dimen/default_btn_radius"/>
-            <solid android:color="@color/jpush_blue"/>
+            <solid android:color="@color/btn_color_login"/>
         </shape>
     </item>
 

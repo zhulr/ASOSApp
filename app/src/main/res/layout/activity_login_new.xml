@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_bar_height"
-        android:background="@color/jpush_blue">
+        android:background="@color/btn_color_login">
 
         <ImageButton
             android:id="@+id/return_btn"
@@ -70,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
-            android:background="#C1D3EC"  />
+            android:background="@color/btn_color_login"  />
     </RelativeLayout>
 
     <RelativeLayout
@@ -108,7 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
-            android:background="#C1D3EC" />
+            android:background="@color/btn_color_login" />
     </RelativeLayout>
 
     <Button
@@ -120,7 +120,20 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/login_btn_bg"
         android:gravity="center"
-        android:text="登录"
+        android:text="登 录"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/text_medium_size" />
+    <Button
+        android:id="@+id/register_btn1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/login_btn_bg"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/register"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/text_medium_size" />
 
@@ -139,6 +152,18 @@
             android:textColor="#555555"
             android:textSize="18sp"/>
         <TextView
+            android:id="@+id/register_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="立即注册"
+            android:visibility="visible"
+            android:textColor="#555555"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/forget_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -151,21 +176,6 @@
     </RelativeLayout>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
 
-        <Button
-            android:id="@+id/register_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="30dp"
-            android:background="@null"
-            android:drawableTop="@mipmap/login_regist"
-            android:text="@string/register"
-            android:textColor="@color/relogin_txt_color" />
-    </RelativeLayout>
 
 </com.asosapp.phone.view.LoginView>

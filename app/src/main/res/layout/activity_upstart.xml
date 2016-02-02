@@ -13,7 +13,8 @@
         <ImageView
             android:id="@+id/upstart_ad"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@mipmap/blackbg"/>
 
         <Button
             android:id="@+id/upstart_skip"
@@ -32,5 +33,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="3.4"
-        android:background="@mipmap/asos_name_logo" />
+        android:src="@mipmap/upstar_asos_logo" />
 </LinearLayout>

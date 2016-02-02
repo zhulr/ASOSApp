@@ -35,10 +35,7 @@
     <meta-data
         android:name="JPUSH_APPKEY"
         android:value="7f367547a0b579ec225c1164" />
-    <!--  </>值来自开发者平台取得的AppKey-->
-    <service
-        android:name="com.open.tooltip.TooltipService"
-        android:exported="false"></service>
+
     <application
         android:name=".initprogram.MyApplication"
         android:allowBackup="true"

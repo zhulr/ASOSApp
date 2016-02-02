@@ -1,6 +1,5 @@
 package com.asosapp.phone.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -15,8 +14,10 @@ import com.asosapp.phone.R;
 import com.asosapp.phone.adapter.ConversationListAdapter;
 import com.asosapp.phone.utils.Event;
 import com.asosapp.phone.utils.HandleResponseCode;
+import com.asosapp.phone.utils.SortConvList;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import cn.jpush.im.android.api.JMessageClient;
@@ -31,7 +32,7 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by Leo on 2016/1/27.
  */
-public class ServiceActivity extends Activity implements View.OnClickListener{
+public class ServiceActivity extends BaseActivity implements View.OnClickListener{
     private ListView chatList;
     private Button btn_back;
     private TextView chat_title;
@@ -41,9 +42,9 @@ public class ServiceActivity extends Activity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service);
-
+        JMessageClient.registerEventReceiver(this);
         EventBus.getDefault().register(this);
+        setContentView(R.layout.activity_service);
         init();
         data();
 
@@ -125,6 +126,10 @@ public class ServiceActivity extends Activity implements View.OnClickListener{
         chat_title= (TextView) findViewById(R.id.chat_title_type);
         mListView=new ArrayList<Conversation>();
         mListView = JMessageClient.getConversationList();
+        if (mListView.size() > 1) {
+            SortConvList sortList = new SortConvList();
+            Collections.sort(mListView, sortList);
+        }
 
         mListAdapter = new ConversationListAdapter(ServiceActivity.this, mListView,250);
         chatList.setAdapter(mListAdapter);

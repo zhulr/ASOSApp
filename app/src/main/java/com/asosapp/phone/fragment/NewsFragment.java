@@ -126,10 +126,6 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                         Intent intent = new Intent(getActivity(), NewsDetailedActivity.class);
                         intent.putExtra("newsID", idList.get(position).toString());
                         startActivity(intent);
-                        if (slideshowView.getVisibility() == View.GONE) {
-                            view.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.view_gone));
-                            slideshowView.setVisibility(View.VISIBLE);
-                        }
                     }
 
                     @Override

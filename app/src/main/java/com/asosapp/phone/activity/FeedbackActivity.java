@@ -4,10 +4,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -18,25 +15,26 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.asosapp.phone.R;
-import com.asosapp.phone.adapter.ConversationListAdapter;
 import com.asosapp.phone.adapter.MsgListAdapter;
 import com.asosapp.phone.bean.FeedbackEntity;
-import com.asosapp.phone.initprogram.MyApplication;
-import com.asosapp.phone.utils.BitmapLoader;
 import com.asosapp.phone.utils.HandleResponseCode;
 import com.asosapp.phone.view.DropDownListView;
 
 import android.widget.TextView;
+import android.widget.Toast;
 
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.content.CustomContent;
-import cn.jpush.im.android.api.content.ImageContent;
+import cn.jpush.im.android.api.content.EventNotificationContent;
 import cn.jpush.im.android.api.content.TextContent;
+import cn.jpush.im.android.api.enums.ContentType;
 import cn.jpush.im.android.api.enums.ConversationType;
+import cn.jpush.im.android.api.event.MessageEvent;
 import cn.jpush.im.android.api.model.Conversation;
 import cn.jpush.im.android.api.model.GroupInfo;
 import cn.jpush.im.android.api.model.Message;
@@ -45,7 +43,7 @@ import cn.jpush.im.api.BasicCallback;
 import de.greenrobot.event.EventBus;
 
 
-public class FeedbackActivity extends BaseActivity implements OnClickListener {
+public class FeedbackActivity extends BaseActivity implements OnClickListener{
     private String TAG= "FeedbackActivity";
     private Button mBtnSend;
     private Button mBtnBack;
@@ -90,6 +88,7 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener {
 //        }else{
         serviceTargetId = intent.getStringExtra("service");
         mTargetId = intent.getStringExtra("myID");
+        Log.e("Leo--->",serviceTargetId+"="+mTargetId);
 //        }
 
 
@@ -146,10 +145,7 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener {
         setToBottom();
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
-    }
     @Override
     public boolean onTouchEvent(android.view.MotionEvent event) {
 
@@ -227,6 +223,8 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener {
     }
 
 
+
+
     private class MyHandler extends Handler {
         private final WeakReference<FeedbackActivity> mController;
 
@@ -290,6 +288,101 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener {
         else if (serviceTargetId.equals("asos444"))
             titleTV.setText("损伤赔偿问答客服");
     }
+
+    /**
+     * 接收消息类事件
+     *
+     * @param event 消息事件
+     */
+    public void onEvent(MessageEvent event) {
+        final Message msg = event.getMessage();
+        //若为群聊相关事件，如添加、删除群成员
+        Log.i(TAG, event.getMessage().toString());
+        if (msg.getContentType() == ContentType.eventNotification) {
+            GroupInfo groupInfo = (GroupInfo) msg.getTargetInfo();
+            long groupID = groupInfo.getGroupID();
+            UserInfo myInfo = JMessageClient.getMyInfo();
+            EventNotificationContent.EventNotificationType type = ((EventNotificationContent) msg
+                    .getContent()).getEventNotificationType();
+//            if (groupID == mChatController.getGroupId()) {
+//                switch (type) {
+//                    case group_member_added:
+//                        //添加群成员事件
+//                        List<String> userNames = ((EventNotificationContent) msg.getContent()).getUserNames();
+//                        //群主把当前用户添加到群聊，则显示聊天详情按钮
+//                        refreshGroupNum();
+//                        if (userNames.contains(myInfo.getNickname()) || userNames.contains(myInfo.getUserName())) {
+//                            runOnUiThread(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    mChatView.showRightBtn();
+//                                }
+//                            });
+//                        }
+//
+//                        break;
+//                    case group_member_removed:
+//                        //删除群成员事件
+//                        userNames = ((EventNotificationContent) msg.getContent()).getUserNames();
+//                        //群主删除了当前用户，则隐藏聊天详情按钮
+//                        if (userNames.contains(myInfo.getNickname()) || userNames.contains(myInfo.getUserName())) {
+//                            runOnUiThread(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    mChatView.dismissRightBtn();
+//                                    GroupInfo groupInfo = (GroupInfo) mChatController.getConversation()
+//                                            .getTargetInfo();
+//                                    if (TextUtils.isEmpty(groupInfo.getGroupName())) {
+//                                        mChatView.setChatTitle(ChatActivity.this.getString(R.string.group));
+//                                    } else {
+//                                        mChatView.setChatTitle(groupInfo.getGroupName());
+//                                    }
+//                                    mChatView.dismissGroupNum();
+//                                }
+//                            });
+//                        } else {
+//                            refreshGroupNum();
+//                        }
+//
+//                        break;
+//                    case group_member_exit:
+//                        refreshGroupNum();
+//                        break;
+//                }
+//            }
+        }
+        //刷新消息
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                //收到消息的类型为单聊
+                if (msg.getTargetType().equals(ConversationType.single)) {
+                    String targetID = ((UserInfo) msg.getTargetInfo()).getUserName();
+                    //判断消息是否在当前会话中
+                    if (targetID.equals(serviceTargetId)) {
+                        Message lastMsg = mChatAdapter.getLastMsg();
+                        if (lastMsg == null || msg.getId() != lastMsg.getId()) {
+                            mChatAdapter.addMsgToList(msg);
+                        } else {
+                            mChatAdapter.notifyDataSetChanged();
+                        }
+                    }
+//                } else {
+//                    long groupID = ((GroupInfo)msg.getTargetInfo()).getGroupID();
+//                    if (mChatController.isGroup() && groupID == mChatController.getGroupId()) {
+//                        Message lastMsg = mChatAdapter.getLastMsg();
+//                        if (lastMsg == null || msg.getId() != lastMsg.getId()) {
+//                            mChatAdapter.addMsgToList(msg);
+//                        } else {
+//                            mChatAdapter.notifyDataSetChanged();
+//                        }
+//                    }
+                }
+            }
+        });
+    }
+
+
 
 
 }
