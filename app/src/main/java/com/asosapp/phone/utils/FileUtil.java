@@ -22,37 +22,37 @@ import java.io.IOException;
 public class FileUtil {
 
 	/**
-	 * @return µ±Ç°µÇÂ¼ÓÃ»§µÄµ±Ç°»áÒéµÄÍ¼Æ¬ÎÄ¼ş¼ĞÄ¿Â¼
+	 * @return å½“å‰ç™»å½•ç”¨æˆ·çš„å½“å‰ä¼šè®®çš„å›¾ç‰‡æ–‡ä»¶å¤¹ç›®å½•
 	 */
 	public static String getImageFolder(String url) {
 		String sDir = "";
 		String bitmapName = url.substring(url.lastIndexOf("/") + 1);
 		sDir = Const.SD_CARD_URL + "/Image/";
-		// ´´½¨ÎÄ¼ş¼Ğ
+		// åˆ›å»ºæ–‡ä»¶å¤¹
 		File destDir = new File(sDir);
 		if (!destDir.exists()) {
 			destDir.mkdirs();
 		}
-		// ·µ»Ø¸ÃÓÃ»§idÏÂµÄÎÄ¼ş¼ĞÄ¿Â¼
+		// è¿”å›è¯¥ç”¨æˆ·idä¸‹çš„æ–‡ä»¶å¤¹ç›®å½•
 		return sDir + bitmapName;
 	}
 	/**
-	 * @return µ±Ç°µÇÂ¼ÓÃ»§µÄµ±Ç°»áÒéµÄÍ¼Æ¬ÎÄ¼ş¼ĞÄ¿Â¼
+	 * @return å½“å‰ç™»å½•ç”¨æˆ·çš„å½“å‰ä¼šè®®çš„å›¾ç‰‡æ–‡ä»¶å¤¹ç›®å½•
 	 */
 	public static String getApkFolder() {
 		String sDir = "";
 		sDir = Const.SD_CARD_URL + "/apk/";
-		// ´´½¨ÎÄ¼ş¼Ğ
+		// åˆ›å»ºæ–‡ä»¶å¤¹
 		File destDir = new File(sDir);
 		if (!destDir.exists()) {
 			destDir.mkdirs();
 		}
-		// ·µ»Ø¸ÃÓÃ»§idÏÂµÄÎÄ¼ş¼ĞÄ¿Â¼
+		// è¿”å›è¯¥ç”¨æˆ·idä¸‹çš„æ–‡ä»¶å¤¹ç›®å½•
 		return sDir;
 	}
 
 	/**
-	 * ±£´æÍøÂçÍ¼Æ¬
+	 * ä¿å­˜ç½‘ç»œå›¾ç‰‡
 	 */
 	public static void saveBitmap(final Context context, final String url) {
 		File bitMapFile = new File(getImageFolder(url));
@@ -91,7 +91,7 @@ public class FileUtil {
 	}
 
 	/**
-	 * ´«ÈëÍøÂçÍ¼Æ¬µÄÂ·¾¶,½«Í¼Æ¬±£´æ,²¢¸³ÓèImageView
+	 * ä¼ å…¥ç½‘ç»œå›¾ç‰‡çš„è·¯å¾„,å°†å›¾ç‰‡ä¿å­˜,å¹¶èµ‹äºˆImageView
 	 *
 	 * @param context
 	 * @param url
@@ -145,7 +145,7 @@ public class FileUtil {
 	}
 
 	/**
-	 * Èô¸ùÎÄ¼ş¼Ğ²»´æÔÚÔò´´½¨
+	 * è‹¥æ ¹æ–‡ä»¶å¤¹ä¸å­˜åœ¨åˆ™åˆ›å»º
 	 */
 	public static String createFolder() {
 		String sDir = "";
@@ -155,7 +155,7 @@ public class FileUtil {
 			// sDir = NOSDCARD_DIR;
 		}
 
-		// ´´½¨ÎÄ¼ş¼Ğ
+		// åˆ›å»ºæ–‡ä»¶å¤¹
 		File destDir = new File(sDir);
 		if (!destDir.exists()) {
 			destDir.mkdirs();
@@ -165,17 +165,17 @@ public class FileUtil {
 	}
 
 	/**
-	 * É¾³ıÎÄ¼ş¼ĞËùÓĞÄÚÈİ
+	 * åˆ é™¤æ–‡ä»¶å¤¹æ‰€æœ‰å†…å®¹
 	 *
 	 */
 	public static void deleteFile(File file) {
-		if (file.exists()) { // ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
-			if (file.isFile()) { // ÅĞ¶ÏÊÇ·ñÊÇÎÄ¼ş
-				file.delete(); // delete()·½·¨ ÄãÓ¦¸ÃÖªµÀ ÊÇÉ¾³ıµÄÒâË¼;
-			} else if (file.isDirectory()) { // ·ñÔòÈç¹ûËüÊÇÒ»¸öÄ¿Â¼
-				File files[] = file.listFiles(); // ÉùÃ÷Ä¿Â¼ÏÂËùÓĞµÄÎÄ¼ş files[];
-				for (int i = 0; i < files.length; i++) { // ±éÀúÄ¿Â¼ÏÂËùÓĞµÄÎÄ¼ş
-					deleteFile(files[i]); // °ÑÃ¿¸öÎÄ¼ş ÓÃÕâ¸ö·½·¨½øĞĞµü´ú
+		if (file.exists()) { // åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
+			if (file.isFile()) { // åˆ¤æ–­æ˜¯å¦æ˜¯æ–‡ä»¶
+				file.delete(); // delete()æ–¹æ³• ä½ åº”è¯¥çŸ¥é“ æ˜¯åˆ é™¤çš„æ„æ€;
+			} else if (file.isDirectory()) { // å¦åˆ™å¦‚æœå®ƒæ˜¯ä¸€ä¸ªç›®å½•
+				File files[] = file.listFiles(); // å£°æ˜ç›®å½•ä¸‹æ‰€æœ‰çš„æ–‡ä»¶ files[];
+				for (int i = 0; i < files.length; i++) { // éå†ç›®å½•ä¸‹æ‰€æœ‰çš„æ–‡ä»¶
+					deleteFile(files[i]); // æŠŠæ¯ä¸ªæ–‡ä»¶ ç”¨è¿™ä¸ªæ–¹æ³•è¿›è¡Œè¿­ä»£
 				}
 			}
 			file.delete();

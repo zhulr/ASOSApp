@@ -115,14 +115,14 @@ public class CardsDetailsActivity extends BasicActivity implements View.OnClickL
         String value = intent.getStringExtra("type");
         if (value.equals("HEART")) {
             URL = Const.SERVICE_URL + Const.HEARTCARD;
-            price = 68;
+            price = 99;
             totalPrices = price;
             cardTypeTV.setText(HEART);
             cardIV.setImageResource(R.mipmap.heartcard);
             pricesTV.setText(String.valueOf(price));
         } else if (value.equals("DRIVER")) {
             URL = Const.SERVICE_URL + Const.DRIVERCARD;
-            price = 198;
+            price = 299;
             totalPrices = price;
             cardTypeTV.setText(DRIVER);
             cardIV.setImageResource(R.mipmap.drivercard);

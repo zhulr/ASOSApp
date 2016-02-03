@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_bar_height"
-        android:background="@color/jpush_blue">
+        android:background="@color/btn_color_login">
 
         <ImageButton
             android:id="@+id/return_btn"
@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/register_split_line_color" />
+            android:background="@color/btn_color_login" />
     </RelativeLayout>
 
 
@@ -104,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/register_split_line_color" />
+            android:background="@color/btn_color_login" />
     </RelativeLayout>
 
     <Button

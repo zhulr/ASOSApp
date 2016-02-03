@@ -8,7 +8,7 @@ import android.widget.Toast;
 /**
  * Created by ASOS_lijianfeng on 2016/1/22.
  *
- * Êä³öÆÁÄ»ĞÅÏ¢
+ * è¾“å‡ºå±å¹•ä¿¡æ¯
  */
 public class ToastView extends LinearLayout{
     public ToastView(Context context, AttributeSet attrs) {
@@ -19,10 +19,10 @@ public class ToastView extends LinearLayout{
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
     }
     public static void NetError(Context context){
-        Toast.makeText(context,"ÍøÂçÒì³££¬Çë¼ì²âÍøÂçÁ¬½Ó¡£",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context,"ç½‘ç»œå¼‚å¸¸ï¼Œè¯·æ£€æµ‹ç½‘ç»œè¿æ¥ã€‚",Toast.LENGTH_SHORT).show();
     }
 
     public static void NetTimeOut(Context context){
-        Toast.makeText(context,"ÍøÂçÁ¬½Ó³¬Ê±£¬Çë¼ì²âÍøÂçÁ¬½Ó¡£",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context,"ç½‘ç»œè¿æ¥è¶…æ—¶ï¼Œè¯·æ£€æµ‹ç½‘ç»œè¿æ¥ã€‚",Toast.LENGTH_SHORT).show();
     }
 }

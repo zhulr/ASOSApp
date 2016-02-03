@@ -1,9 +1,6 @@
 package com.asosapp.phone.activity;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,19 +12,13 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.asosapp.phone.R;
 import com.asosapp.phone.adapter.MsgListAdapter;
-import com.asosapp.phone.bean.FeedbackEntity;
 import com.asosapp.phone.utils.HandleResponseCode;
 import com.asosapp.phone.view.DropDownListView;
-
 import android.widget.TextView;
-import android.widget.Toast;
-
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.content.CustomContent;
 import cn.jpush.im.android.api.content.EventNotificationContent;
@@ -57,7 +48,6 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener{
     private String mTargetId;
     private String serviceTargetId;
     private TextView titleTV;
-    private List<FeedbackEntity> mDataArrays = new ArrayList<FeedbackEntity>();
     private String nameID;
     InputMethodManager imm;
 
@@ -77,15 +67,9 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener{
 
 
     private void initView() {
-
-//        mEditTextContent.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         Intent intent = this.getIntent();
         nameID=intent.getStringExtra("nameID");
-//        if (nameID=="1"){
-//            serviceTargetId = intent.getStringExtra("service");
-//            mTargetId = intent.getStringExtra("myID");
-//        }else{
         serviceTargetId = intent.getStringExtra("service");
         mTargetId = intent.getStringExtra("myID");
         Log.e("Leo--->",serviceTargetId+"="+mTargetId);
@@ -304,52 +288,6 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener{
             UserInfo myInfo = JMessageClient.getMyInfo();
             EventNotificationContent.EventNotificationType type = ((EventNotificationContent) msg
                     .getContent()).getEventNotificationType();
-//            if (groupID == mChatController.getGroupId()) {
-//                switch (type) {
-//                    case group_member_added:
-//                        //添加群成员事件
-//                        List<String> userNames = ((EventNotificationContent) msg.getContent()).getUserNames();
-//                        //群主把当前用户添加到群聊，则显示聊天详情按钮
-//                        refreshGroupNum();
-//                        if (userNames.contains(myInfo.getNickname()) || userNames.contains(myInfo.getUserName())) {
-//                            runOnUiThread(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    mChatView.showRightBtn();
-//                                }
-//                            });
-//                        }
-//
-//                        break;
-//                    case group_member_removed:
-//                        //删除群成员事件
-//                        userNames = ((EventNotificationContent) msg.getContent()).getUserNames();
-//                        //群主删除了当前用户，则隐藏聊天详情按钮
-//                        if (userNames.contains(myInfo.getNickname()) || userNames.contains(myInfo.getUserName())) {
-//                            runOnUiThread(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    mChatView.dismissRightBtn();
-//                                    GroupInfo groupInfo = (GroupInfo) mChatController.getConversation()
-//                                            .getTargetInfo();
-//                                    if (TextUtils.isEmpty(groupInfo.getGroupName())) {
-//                                        mChatView.setChatTitle(ChatActivity.this.getString(R.string.group));
-//                                    } else {
-//                                        mChatView.setChatTitle(groupInfo.getGroupName());
-//                                    }
-//                                    mChatView.dismissGroupNum();
-//                                }
-//                            });
-//                        } else {
-//                            refreshGroupNum();
-//                        }
-//
-//                        break;
-//                    case group_member_exit:
-//                        refreshGroupNum();
-//                        break;
-//                }
-//            }
         }
         //刷新消息
         runOnUiThread(new Runnable() {
@@ -367,16 +305,6 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener{
                             mChatAdapter.notifyDataSetChanged();
                         }
                     }
-//                } else {
-//                    long groupID = ((GroupInfo)msg.getTargetInfo()).getGroupID();
-//                    if (mChatController.isGroup() && groupID == mChatController.getGroupId()) {
-//                        Message lastMsg = mChatAdapter.getLastMsg();
-//                        if (lastMsg == null || msg.getId() != lastMsg.getId()) {
-//                            mChatAdapter.addMsgToList(msg);
-//                        } else {
-//                            mChatAdapter.notifyDataSetChanged();
-//                        }
-//                    }
                 }
             }
         });

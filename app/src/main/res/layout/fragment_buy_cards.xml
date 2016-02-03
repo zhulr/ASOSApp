@@ -16,11 +16,11 @@
         android:paddingTop="5dp">
 
         <EditText
-            android:hint="输入手机号查询是否购卡"
             android:id="@+id/search_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:hint="输入手机号查询是否购卡"
             android:inputType="phone" />
 
         <ImageView
@@ -78,7 +78,17 @@
                     android:layout_marginLeft="8dp"
                     android:layout_toRightOf="@+id/iv_card1"
                     android:text="@string/h_content"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:id="@+id/textView3" />
+
+                <TextView
+                    android:id="@+id/card_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="价格：99"
+                    android:layout_alignBottom="@+id/textView3"
+                    android:layout_alignLeft="@+id/textView3"
+                    android:layout_alignStart="@+id/textView3" />
 
                 <LinearLayout
                     android:id="@+id/heartcard_details"
@@ -189,7 +199,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:background="@color/red"
+                        android:background="@color/btn_color_login"
                         android:text="购\t\t\t买"
                         android:textColor="@color/white" />
                 </LinearLayout>
@@ -220,17 +230,24 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/iv_card2"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:layout_below="@+id/tv_card_name2"
                     android:layout_marginLeft="8dp"
                     android:layout_toRightOf="@+id/iv_card2"
                     android:text="@string/d_content"
                     android:textSize="10sp" />
 
+                <TextView
+                    android:id="@+id/driver_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/textView2"
+                    android:layout_alignLeft="@+id/textView2"
+                    android:layout_alignStart="@+id/textView2"
+                    android:text="价格：299" />
 
                 <LinearLayout
                     android:id="@+id/drivercard_details"
@@ -444,7 +461,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:background="@color/red"
+                        android:background="@color/btn_color_login"
                         android:text="购\t\t\t买"
                         android:textColor="@color/white" />
                 </LinearLayout>

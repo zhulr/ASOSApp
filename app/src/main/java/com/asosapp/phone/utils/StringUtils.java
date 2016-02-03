@@ -5,10 +5,10 @@ import java.util.regex.Pattern;
 
 public class StringUtils {
 	/**
-	 * ÅĞ¶Ï×Ö·û´®ÊÇ·ñÎª¿Õ
+	 * åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦ä¸ºç©º
 	 *
 	 * @param s
-	 * @return true±íÊ¾×Ö·û´®Îªnull»òÕß"" false±íÊ¾·Ç¿Õ
+	 * @return trueè¡¨ç¤ºå­—ç¬¦ä¸²ä¸ºnullæˆ–è€…"" falseè¡¨ç¤ºéç©º
 	 */
 	public static boolean isEmpty(String s) {
 		boolean isEmpty = false;
@@ -19,12 +19,12 @@ public class StringUtils {
 	}
 
 	/**
-	 * ÅĞ¶ÏÁ½×Ö·û´®ÊÇ·ñÏàÍ¬
+	 * åˆ¤æ–­ä¸¤å­—ç¬¦ä¸²æ˜¯å¦ç›¸åŒ
 	 *
 	 * @param s
-	 *            ×Ö·û´®1
+	 *            å­—ç¬¦ä¸²1
 	 * @param t
-	 *            ×Ö·û´®2
+	 *            å­—ç¬¦ä¸²2
 	 * @return true/false
 	 */
 	public static boolean isSame(String s, String t) {
@@ -36,10 +36,10 @@ public class StringUtils {
 	}
 
 	/**
-	 * ½«×Ö·û´®ĞÎÊ½µÄÊı×Ö×ª»»ÎªintĞÍ
+	 * å°†å­—ç¬¦ä¸²å½¢å¼çš„æ•°å­—è½¬æ¢ä¸ºintå‹
 	 *
 	 * @param msg
-	 * @return ÕıÈ·Ôò·µ»ØÊı×Ö£¬·ñÔò·µ»Ø-1
+	 * @return æ­£ç¡®åˆ™è¿”å›æ•°å­—ï¼Œå¦åˆ™è¿”å›-1
 	 */
 	public static int getNum(String msg) {
 		Pattern p = Pattern.compile("[0-9\\.]+");
@@ -52,7 +52,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * ÅĞ¶Ï×Ö·û´®ÊÇ·ñÎªºÏ·¨µÄÊÖ»úºÅ
+	 * åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦ä¸ºåˆæ³•çš„æ‰‹æœºå·
 	 *
 	 * @param mobiles
 	 * @return true/false
@@ -65,7 +65,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * ÅĞ¶Ï×Ö·û´®ÊÇ·ñÎªºÏ·¨µÄµç×ÓÓÊÏä
+	 * åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦ä¸ºåˆæ³•çš„ç”µå­é‚®ç®±
 	 *
 	 * @param email
 	 * @return true/false
@@ -79,7 +79,7 @@ public class StringUtils {
 
 
 	/**
-	 * ĞŞ¸Äµ±ÔÂ·İºÍÈÕÆÚĞ¡ÓÚ10µÄÊ±ºòÇ°²¹Áã
+	 * ä¿®æ”¹å½“æœˆä»½å’Œæ—¥æœŸå°äº10çš„æ—¶å€™å‰è¡¥é›¶
 	 * @param ss
 	 * @return
 	 */
