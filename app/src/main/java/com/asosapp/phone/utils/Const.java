@@ -36,7 +36,7 @@ public class Const {
 	public static final String NEWSINTRO = "/News/newsintro.php";
 
 	// 新闻详情接口
-	public static final String NEWSDETAILS = "/News/newsdetails.php";
+	public static final String NEWSHTML = "/News/newshtml.php";
 
 	// 获取版本信息
 	public static final String GETVERSION = "/General/getVersion";

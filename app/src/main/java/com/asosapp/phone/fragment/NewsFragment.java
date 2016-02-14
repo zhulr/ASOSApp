@@ -24,7 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.asosapp.phone.R;
 import com.asosapp.phone.activity.MainActivity;
-import com.asosapp.phone.activity.NewsDetailedActivity;
+import com.asosapp.phone.activity.NewsHTMLActivity;
 import com.asosapp.phone.adapter.NewsAdapter;
 import com.asosapp.phone.bean.News;
 import com.asosapp.phone.initprogram.MyApplication;
@@ -123,7 +123,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                 mAdapter.setOnItemClickListener(new NewsAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Intent intent = new Intent(getActivity(), NewsDetailedActivity.class);
+                        Intent intent = new Intent(getActivity(), NewsHTMLActivity.class);
                         intent.putExtra("newsID", idList.get(position).toString());
                         startActivity(intent);
                     }
@@ -175,7 +175,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
     }
 
     public void newDetailed() {
-        startActivity(new Intent(getActivity(), NewsDetailedActivity.class));
+        startActivity(new Intent(getActivity(), NewsHTMLActivity.class));
     }
 
     @Override

@@ -94,7 +94,7 @@ public class SingleNewsPopupWindow extends PopupWindow {
      */
     JSONObject DATA;
     private void getdata() {
-        String url = Const.SERVICE_URL + Const.NEWSDETAILS + "?newsID=" + ID;
+        String url = Const.SERVICE_URL + Const.NEWSINTRO + "?newsID=" + ID;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
