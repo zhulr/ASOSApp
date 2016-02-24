@@ -5,6 +5,13 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!--app启动页-->
+    <style name="AppUpstart" parent="AppTheme">
+        <item name="android:windowBackground">@mipmap/asos_ad</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+
     <style name="chat_content_date_style">
         <item name="android:minHeight">36dp</item>
         <item name="android:gravity">left|center</item>

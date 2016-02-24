@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="roundedimageview">
-        <attr name="border_thickness" format="dimension" />
-        <attr name="border_inside_color" format="color" />
-        <attr name="border_outside_color" format="color"></attr>
-    </declare-styleable>
     <declare-styleable name="HoloCircularProgressBar">
         <attr name="stroke_width" format="dimension" />
         <attr name="progress" format="float" />
@@ -90,7 +85,11 @@
         <attr name="isDrawingListUnderStickyHeader" format="boolean" />
     </declare-styleable>
 
-
+    <declare-styleable name="RoundImage">
+        <attr name="border_inside_color" format="color"/>
+        <attr name="border_outside_color" format="color"/>
+        <attr name="border_thickness" format="dimension"/>
+    </declare-styleable>
 
 
 </resources>

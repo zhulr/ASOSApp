@@ -48,7 +48,7 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
     private View view;
     private View online_1, online_2, online_3, online_4;
     private boolean isLogin = false;
-    private TextView titleView;
+    private TextView titleName;
     private ImageView asos111_pic, asos222_pic, asos333_pic, asos444_pic;
     //客服ID
     private String serviceID = "";
@@ -88,8 +88,8 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
         asos444_pic = (ImageView) view.findViewById(R.id.asos444_pic);
         message = (TextView) view.findViewById(R.id.message);
         message_btn = (TextView) view.findViewById(R.id.message_btn);
-        titleView = (TextView) view.findViewById(R.id.title_name);
-        titleView.setText(R.string.mess);
+        titleName = (TextView) view.findViewById(R.id.title_name);
+        titleName.setText(R.string.mess);
         online_1.setOnClickListener(this);
         online_2.setOnClickListener(this);
         online_3.setOnClickListener(this);

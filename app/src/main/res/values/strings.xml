@@ -18,6 +18,7 @@
     <string name="news_fragment_buttom_name">资讯</string>
     <string name="online_consult_fragment_buttom_name">消息</string>
     <string name="buy_cards_fragment_buttom_name">安邦卡</string>
+    <string name="set_center_fragment_buttom_name">我</string>
     <string name="online_medical_chat">医疗康复在线</string>
     <string name="online_law_chat">法律服务问答</string>
     <string name="online_medical_rehabilitation_chat">伤残鉴定咨询</string>
@@ -39,6 +40,10 @@
     <string name="mess">消\t\t\t息</string>
     <string name="news">资\t\t\t讯</string>
     <string name="cards">安\t邦\t卡</string>
+    <string name="set">我</string>
+    <string name="feedback">留\t\t\t言</string>
+    <string name="invite">邀\t请\t好\t友</string>
+    <string name="mycoupon">我\t的\t卡\t券</string>
     <string name="menu_home">Home</string>
     <string name="menu_setting">Setting</string>
     <string name="menu_update">Update</string>

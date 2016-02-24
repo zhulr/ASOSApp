@@ -21,11 +21,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.asosapp.phone.R;
 import com.asosapp.phone.activity.CardsDetailsActivity;
-import com.asosapp.phone.activity.LoginActivity;
-import com.asosapp.phone.activity.PersonalCenterActivity;
 import com.asosapp.phone.initprogram.MyApplication;
 import com.asosapp.phone.utils.Const;
-import com.asosapp.phone.view.ToastView;
 
 import org.json.JSONException;
 import org.json.JSONObject;

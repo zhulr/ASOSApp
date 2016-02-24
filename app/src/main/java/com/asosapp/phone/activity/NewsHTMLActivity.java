@@ -46,13 +46,13 @@ public class NewsHTMLActivity extends BaseActivity implements View.OnClickListen
     private void init() {
         newsHTML = (WebView) findViewById(R.id.news_html);
         WebSettings webSettings = newsHTML.getSettings();
-        //设置WebView属性，能够执行Javascript脚本
+        //璁剧疆WebView灞炴�э紝鑳藉鎵цJavascript鑴氭湰
         webSettings.setJavaScriptEnabled(true);
-        //设置可以访问文件
+        //璁剧疆鍙互璁块棶鏂囦欢
         webSettings.setAllowFileAccess(true);
-        //设置支持缩放
+        //璁剧疆鏀寔缂╂斁
         webSettings.setBuiltInZoomControls(true);
-        //设置Web视图
+        //璁剧疆Web瑙嗗浘
         newsHTML.setWebViewClient(new webViewClient());
         backBtn = (ImageView) findViewById(R.id.back);
         backBtn.setOnClickListener(this);
@@ -67,7 +67,7 @@ public class NewsHTMLActivity extends BaseActivity implements View.OnClickListen
     }
 
     /**
-     * get请求
+     * get璇锋眰
      * <p/>
      * *
      */
@@ -82,7 +82,7 @@ public class NewsHTMLActivity extends BaseActivity implements View.OnClickListen
                     if (jsonObject.get("CODE").toString().equals("200")) {
                         DATA = (JSONObject) jsonObject.get("DATA");
                         newsHTMLUrl = DATA.get("NEWS_HTML").toString();
-                        //加载需要显示的网页
+                        //鍔犺浇闇�瑕佹樉绀虹殑缃戦〉
                         newsHTML.loadUrl(newsHTMLUrl);
                     } else if (jsonObject.get("CODE").toString().equals("100")) {
                         ToastView.toast(getApplication(), jsonObject.get("MESSAGE").toString());
@@ -107,7 +107,7 @@ public class NewsHTMLActivity extends BaseActivity implements View.OnClickListen
         MyApplication.getHttpQueues().add(request);
     }
 
-    //Web视图
+    //Web瑙嗗浘
     private class webViewClient extends WebViewClient {
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);

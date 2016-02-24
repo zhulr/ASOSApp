@@ -2,36 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/AppUpstart"
     android:orientation="vertical">
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-
-        <ImageView
-            android:id="@+id/upstart_ad"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@mipmap/blackbg"/>
-
-        <Button
-            android:id="@+id/upstart_skip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:background="@color/transparent"
-            android:text="@string/upstar_skip_ch"
-            android:textColor="@color/white" />
-    </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/upstart_logo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="3.4"
-        android:src="@mipmap/upstar_asos_logo" />
 </LinearLayout>
