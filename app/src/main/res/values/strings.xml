@@ -40,10 +40,11 @@
     <string name="mess">消\t\t\t息</string>
     <string name="news">资\t\t\t讯</string>
     <string name="cards">安\t邦\t卡</string>
-    <string name="set">我</string>
+    <string name="mine">我</string>
     <string name="feedback">留\t\t\t言</string>
     <string name="invite">邀\t请\t好\t友</string>
     <string name="mycoupon">我\t的\t卡\t券</string>
+    <string name="set">设\t\t\t置</string>
     <string name="menu_home">Home</string>
     <string name="menu_setting">Setting</string>
     <string name="menu_update">Update</string>

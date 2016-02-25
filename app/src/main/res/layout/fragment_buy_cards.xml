@@ -6,31 +6,6 @@
 
     <include layout="@layout/layout_activity_title" />
 
-    <LinearLayout
-        android:id="@+id/search_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:orientation="horizontal"
-        android:paddingTop="5dp">
-
-        <EditText
-            android:id="@+id/search_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="输入手机号查询是否购卡"
-            android:inputType="phone" />
-
-        <ImageView
-            android:id="@+id/search_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:src="@mipmap/search" />
-    </LinearLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

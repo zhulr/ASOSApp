@@ -182,6 +182,8 @@
         <activity android:name=".activity.UserFeedbackActivity" />
         <activity android:name=".activity.MyQRActivity" />
         <activity android:name=".activity.CouponActivity" />
+        <activity android:name=".activity.SetActivity" />
+        <activity android:name=".activity.AboutAppActivity" />
     </application>
 
 </manifest>

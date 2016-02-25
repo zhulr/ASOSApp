@@ -17,6 +17,7 @@ import com.asosapp.phone.R;
 import com.asosapp.phone.activity.CardsDetailsActivity;
 import com.asosapp.phone.activity.CouponActivity;
 import com.asosapp.phone.activity.MyQRActivity;
+import com.asosapp.phone.activity.SetActivity;
 import com.asosapp.phone.activity.UserFeedbackActivity;
 import com.asosapp.phone.bean.UserInfo;
 import com.asosapp.phone.view.RoundImage;
@@ -74,7 +75,7 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
         setView = view.findViewById(R.id.view_set);
         outLogView = view.findViewById(R.id.view_out_login);
         isPush = (ToggleButton) view.findViewById(R.id.ispush);
-        titleName.setText(R.string.set);
+        titleName.setText(R.string.mine);
         userHead.setOnClickListener(this);
         isVIP.setOnClickListener(this);
         isSVIP.setOnClickListener(this);
@@ -145,6 +146,8 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
         Intent intent = new Intent();
         switch (CLASS) {
             case 1:
+                intent.setClass(getActivity(), SetActivity.class);
+                startActivity(intent);
                 break;
             case 2:
                 intent.setClass(getActivity(), UserFeedbackActivity.class);
