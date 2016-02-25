@@ -50,7 +50,7 @@ public class SetActivity extends BasicActivity implements View.OnClickListener {
                 break;
             case R.id.clean:
                 DataCleanManager.cleanInternalCache(this);
-                toast("»º´æÒÑÇåÀí");
+                toast("ç¼“å­˜å·²æ¸…ç†");
                 break;
 
         }
