@@ -10,8 +10,6 @@ import android.widget.TextView;
 import com.asosapp.phone.R;
 import com.asosapp.phone.utils.DataCleanManager;
 
-import java.util.Set;
-
 /**
  * Created by ASOS_zhulr on 2016/2/24.
  */
