@@ -237,4 +237,15 @@
     <string name="card_buy_phone_hint">请输入您真实的手机号码以便工作人员与您联系！</string>
     <string name="card_buy_time_hint">卡片可以重复购买，次数可以叠加！</string>
     <string name="card_buy_hint">请在扫码付款后拨打客服电话与我们的客服取得联系！谢谢！</string>
+
+    <string name="load_origin_image">查看原图</string>
+    <string name="origin_picture">原图</string>
+    <string name="choose">选择</string>
+    <string name="picture_num_limit_toast">你最多只能同时发送9张图片</string>
+    <string name="sending_hint">正在发送</string>
+    <string name="downloading_hint">正在下载</string>
+    <string name="download_completed_toast">下载完成</string>
+    <string name="sdcard_not_prepare_toast">sdcard尚未准备好</string>
+    <string name="choose_album_title">选择相册</string>
+    <string name="person_information">个人信息</string>
 </resources>

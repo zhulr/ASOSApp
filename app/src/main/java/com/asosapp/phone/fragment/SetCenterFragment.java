@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -17,6 +18,7 @@ import com.asosapp.phone.R;
 import com.asosapp.phone.activity.CardsDetailsActivity;
 import com.asosapp.phone.activity.CouponActivity;
 import com.asosapp.phone.activity.MyQRActivity;
+import com.asosapp.phone.activity.PersonInformationActivity;
 import com.asosapp.phone.activity.SetActivity;
 import com.asosapp.phone.activity.UserFeedbackActivity;
 import com.asosapp.phone.bean.UserInfo;
@@ -47,6 +49,7 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
     private View outLogView;
     private ToggleButton isPush;
     private boolean is_push;
+    private LinearLayout user_layout;
 
 
     @Nullable
@@ -60,6 +63,7 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
     }
 
     private void init() {
+        user_layout= (LinearLayout) view.findViewById(R.id.user_layout);
         titleName = (TextView) view.findViewById(R.id.title_name);
         userHead = (RoundImage) view.findViewById(R.id.user_head_img);
         userName = (TextView) view.findViewById(R.id.user_name);
@@ -75,7 +79,10 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
         setView = view.findViewById(R.id.view_set);
         outLogView = view.findViewById(R.id.view_out_login);
         isPush = (ToggleButton) view.findViewById(R.id.ispush);
+
         titleName.setText(R.string.mine);
+
+        user_layout.setOnClickListener(this);
         userHead.setOnClickListener(this);
         isVIP.setOnClickListener(this);
         isSVIP.setOnClickListener(this);
@@ -138,6 +145,11 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
             case R.id.view_out_login:
                 UserInfo.instance().logOut(getActivity());
                 break;
+            case R.id.user_layout:
+                intent(0);
+                break;
+            default:
+                break;
         }
 
     }
@@ -145,6 +157,10 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
     private void intent(int CLASS) {
         Intent intent = new Intent();
         switch (CLASS) {
+            case 0:
+                intent.setClass(getActivity(), PersonInformationActivity.class);
+                startActivity(intent);
+                break;
             case 1:
                 intent.setClass(getActivity(), SetActivity.class);
                 startActivity(intent);

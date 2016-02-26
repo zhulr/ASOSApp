@@ -2,6 +2,7 @@ package com.asosapp.phone.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -30,6 +31,7 @@ public class RegisterView extends LinearLayout {
     public void initModule() {
         // 获取注册所用的用户名、密码、昵称
         mUserId = (EditText) findViewById(R.id.username);
+        mUserId.setInputType(EditorInfo.TYPE_CLASS_PHONE);
         mPassword = (EditText) findViewById(R.id.password);
         mRegistBtn = (Button) findViewById(R.id.regist_btn);
         mReturnBtn = (ImageButton) findViewById(R.id.return_btn);

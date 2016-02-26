@@ -173,17 +173,29 @@
         <activity android:name=".activity.CardsDetailsActivity" />
         <activity
             android:name=".activity.FeedbackActivity"
+            android:windowSoftInputMode="adjustResize"
             android:launchMode="singleTask" />
         <activity android:name=".activity.SQLiteActivity" />
         <activity android:name=".activity.LoginNewActivity" />
         <activity android:name=".activity.RegisterNewActivity" />
         <activity android:name=".activity.ServiceActivity" />
         <activity android:name=".activity.NewsHTMLActivity" />
-        <activity android:name=".activity.UserFeedbackActivity" />
+        <activity android:name=".activity.UserFeedbackActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            />
         <activity android:name=".activity.MyQRActivity" />
         <activity android:name=".activity.CouponActivity" />
         <activity android:name=".activity.SetActivity" />
         <activity android:name=".activity.AboutAppActivity" />
+        <activity android:name=".activity.BrowserViewPagerActivity"/>
+        <activity android:name=".activity.PickPictureTotalActivity"/>
+        <activity android:name=".activity.PickPictureActivity"/>
+        <activity android:name=".activity.PersonInformationActivity"/>
+        <activity android:name=".activity.AgeChangeActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+           />
+        <activity android:name=".activity.NameChangeActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"/>
     </application>
 
 </manifest>

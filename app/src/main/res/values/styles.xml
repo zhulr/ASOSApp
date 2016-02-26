@@ -219,4 +219,27 @@
         <attr name="isAutoLoadOnBottom" format="boolean" />
     </declare-styleable>
 
+    <style name="MeInfoItemContent">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingLeft">50dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:gravity">right</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#808080</item>
+    </style>
+
+    <style name="round_check_box_style" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:background">@drawable/round_check_box_bg</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <style name="default_check_box_style" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:background">@drawable/default_check_box_style</item>
+        <item name="android:button">@null</item>
+    </style>
+
 </resources>

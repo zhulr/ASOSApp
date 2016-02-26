@@ -4,6 +4,7 @@ package com.asosapp.phone.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -41,6 +42,7 @@ public class LoginView extends LinearLayout {
 	public void initModule() {
 		mReturnBtn = (ImageButton) findViewById(R.id.return_btn);
 		mUserId = (EditText) findViewById(R.id.username);
+		mUserId.setInputType(EditorInfo.TYPE_CLASS_PHONE);
 		mPassword = (EditText) findViewById(R.id.password);
 		mLoginBtn = (Button) findViewById(R.id.login_btn);
 		mRegistBtnOnlogin = (TextView) findViewById(R.id.register_btn);

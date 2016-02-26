@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
@@ -34,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asosapp.phone.R;
+import com.asosapp.phone.activity.BrowserViewPagerActivity;
 import com.asosapp.phone.initprogram.MyApplication;
 import com.asosapp.phone.utils.DialogCreator;
 import com.asosapp.phone.utils.HandleResponseCode;
@@ -876,54 +878,54 @@ public class MsgListAdapter extends BaseAdapter {
 //                }
 //            });
         }
-//        if (holder.picture != null) {
-//            // 点击预览图片
-//            holder.picture.setOnClickListener(new OnClickListener() {
-//                @Override
-//                public void onClick(View arg0) {
-//                    Intent intent = new Intent();
-//                    intent.putExtra(MyApplication.TARGET_ID, mTargetId);
-//                    intent.putExtra("msgId", msg.getId());
-//                    intent.putExtra(MyApplication.GROUP_ID, mGroupId);
-//                    intent.putExtra("msgCount", mMsgList.size());
-//                    intent.putIntegerArrayListExtra(MyApplication.MsgIDs, getImgMsgIDList());
-//                    intent.putExtra("fromChatActivity", true);
-//                    intent.setClass(mContext, BrowserViewPagerActivity.class);
-//                    mContext.startActivity(intent);
-//                }
-//            });
-//
-//            holder.picture.setOnLongClickListener(new OnLongClickListener() {
-//                @Override
-//                public boolean onLongClick(View v) {
-//                    String name = msg.getFromUser().getNickname();
-//                    OnClickListener listener = new OnClickListener() {
-//
-//                        @Override
-//                        public void onClick(View v) {
-//                            switch (v.getId()) {
-//                                case R.id.copy_msg_btn:
-//                                    break;
-//                                case R.id.forward_msg_btn:
-//                                    mDialog.dismiss();
-//                                    break;
-//                                case R.id.delete_msg_btn:
-//                                    mConv.deleteMessage(msg.getId());
-//                                    mMsgList.remove(position);
-//                                    notifyDataSetChanged();
-//                                    mDialog.dismiss();
-//                                    break;
-//                            }
-//                        }
-//                    };
-//                    mDialog = DialogCreator.createLongPressMessageDialog(mContext, name, true, listener);
-//                    mDialog.show();
-//                    mDialog.getWindow().setLayout((int) (0.8 * mWidth), WindowManager.LayoutParams.WRAP_CONTENT);
-//                    return true;
-//                }
-//            });
-//
-//        }
+        if (holder.picture != null) {
+            // 点击预览图片
+            holder.picture.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+                    Intent intent = new Intent();
+                    intent.putExtra(MyApplication.TARGET_ID, mTargetId);
+                    intent.putExtra("msgId", msg.getId());
+                    intent.putExtra(MyApplication.GROUP_ID, mGroupId);
+                    intent.putExtra("msgCount", mMsgList.size());
+                    intent.putIntegerArrayListExtra(MyApplication.MsgIDs, getImgMsgIDList());
+                    intent.putExtra("fromChatActivity", true);
+                    intent.setClass(mContext, BrowserViewPagerActivity.class);
+                    mContext.startActivity(intent);
+                }
+            });
+
+            holder.picture.setOnLongClickListener(new OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    String name = msg.getFromUser().getNickname();
+                    OnClickListener listener = new OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            switch (v.getId()) {
+                                case R.id.copy_msg_btn:
+                                    break;
+                                case R.id.forward_msg_btn:
+                                    mDialog.dismiss();
+                                    break;
+                                case R.id.delete_msg_btn:
+                                    mConv.deleteMessage(msg.getId());
+                                    mMsgList.remove(position);
+                                    notifyDataSetChanged();
+                                    mDialog.dismiss();
+                                    break;
+                            }
+                        }
+                    };
+                    mDialog = DialogCreator.createLongPressMessageDialog(mContext, name, true, listener);
+                    mDialog.show();
+                    mDialog.getWindow().setLayout((int) (0.8 * mWidth), WindowManager.LayoutParams.WRAP_CONTENT);
+                    return true;
+                }
+            });
+
+        }
     }
 
     private void sendingImage(final ViewHolder holder, final Animation sendingAnim, final Message msg) {

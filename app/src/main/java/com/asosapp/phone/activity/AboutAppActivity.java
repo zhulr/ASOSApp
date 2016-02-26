@@ -19,20 +19,20 @@ public class AboutAppActivity extends BasicActivity {
         setContentView(R.layout.activity_about_app);
         about = (WebView) findViewById(R.id.about_webview);
         WebSettings webSettings = about.getSettings();
-        //设置WebView属性，能够执行Javascript脚本
+        //璁剧疆WebView灞炴�э紝鑳藉鎵цJavascript鑴氭湰
         webSettings.setJavaScriptEnabled(true);
-        //设置可以访问文件
+        //璁剧疆鍙互璁块棶鏂囦欢
         webSettings.setAllowFileAccess(true);
-        //设置支持缩放
+        //璁剧疆鏀寔缂╂斁
         webSettings.setBuiltInZoomControls(true);
-        //设置Web视图
+        //璁剧疆Web瑙嗗浘
         about.setWebViewClient(new webViewClient());
-        //加载需要显示的网页
+        //鍔犺浇闇�瑕佹樉绀虹殑缃戦〉
         about.loadUrl("http://mp.weixin.qq.com/s?__biz=MzA4ODY3MTU0MQ==&mid=401741723&idx=1&sn=a58c3652f9373edc095a605b64215006#rd");
     }
 
 
-    //Web视图
+    //Web瑙嗗浘
     private class webViewClient extends WebViewClient {
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);
