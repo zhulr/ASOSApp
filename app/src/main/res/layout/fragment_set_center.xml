@@ -32,6 +32,7 @@
                     android:layout_height="60dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
+                    android:visibility="invisible"
                     tools:src="@mipmap/user_iconbig" />
 
                 <TextView
