@@ -45,7 +45,7 @@ public class SetActivity extends BasicActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.aboutLL:
-                intent.setClass(this, AboutAppActivity.class);
+                intent.setClass(SetActivity.this, AboutAppActivity.class);
                 startActivity(intent);
                 break;
             case R.id.clean:
