@@ -36,4 +36,6 @@ dependencies {
     compile 'com.android.support:cardview-v7:23.1.1'
     compile files('libs/picasso-2.4.0.jar')
     compile files('libs/zxing.jar')
+    compile files('libs/alipaySdk-20160120.jar')
+    compile 'com.android.support:support-v13:23.1.1'
 }

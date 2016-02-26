@@ -182,11 +182,12 @@ public class CardsDetailsActivity extends BasicActivity implements View.OnClickL
                 break;
             }
             case "pay": {
-                ImageView img = new ImageView(this);
-                img.setImageResource(R.mipmap.pay_codes);
-                new AlertDialog.Builder(this)
-                        .setView(img)
-                        .show();
+                Intent intent = new Intent();
+                intent.putExtra("name", cardTypeTV.getText().toString().trim());
+                intent.putExtra("content", cardTypeTV.getText().toString().trim()+"购买支付费用");
+                intent.putExtra("totalPrices", String.valueOf(totalPrices));
+                intent.setClass(CardsDetailsActivity.this,PayActivity.class);
+                startActivity(intent);
                 break;
             }
         }
@@ -210,7 +211,7 @@ public class CardsDetailsActivity extends BasicActivity implements View.OnClickL
     private void pay() {
         dialog("pay");
         //用户信息插入欲购买数据库
-        intoInfo();
+//        intoInfo();
     }
 
     /**
