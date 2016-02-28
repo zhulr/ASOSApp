@@ -1,14 +1,25 @@
 package com.asosapp.phone.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.asosapp.phone.R;
 import com.asosapp.phone.utils.DataCleanManager;
+import com.asosapp.phone.view.ToastView;
+
+import cn.jpush.im.android.api.JMessageClient;
 
 /**
  * Created by ASOS_zhulr on 2016/2/24.
@@ -20,6 +31,7 @@ public class SetActivity extends BasicActivity implements View.OnClickListener {
     private View cleanView;
     private Intent intent;
     private TextView versionName;
+    private TextView change_psw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +43,8 @@ public class SetActivity extends BasicActivity implements View.OnClickListener {
     private void init() {
         aboutView = findViewById(R.id.aboutLL);
         cleanView = findViewById(R.id.clean);
+        change_psw = (TextView) findViewById(R.id.change_psw);
+        change_psw.setOnClickListener(this);
         versionName = (TextView) findViewById(R.id.version_name);
         aboutView.setOnClickListener(this);
         cleanView.setOnClickListener(this);
@@ -50,6 +64,11 @@ public class SetActivity extends BasicActivity implements View.OnClickListener {
                 DataCleanManager.cleanInternalCache(this);
                 toast("缓存已清理");
                 break;
+            case R.id.change_psw:
+                ToastView.toast(this, "点击成功");
+                Dialog dialog =createResetPwdDialog();
+                dialog.show();
+                break;
 
         }
     }
@@ -65,5 +84,46 @@ public class SetActivity extends BasicActivity implements View.OnClickListener {
         }
         String version = info.versionName;
         return version;
+    }
+
+    private Dialog createResetPwdDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final LayoutInflater inflater = LayoutInflater.from(this);
+        View view = inflater.inflate(R.layout.dialog_reset_password, null);
+        builder.setView(view);
+        final Dialog dialog = builder.create();
+        final EditText pwdEt = (EditText) view.findViewById(R.id.password_et);
+        final Button cancel = (Button) view.findViewById(R.id.cancel_btn);
+        final Button commit = (Button) view.findViewById(R.id.commit_btn);
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.cancel_btn:
+                        dialog.cancel();
+                        break;
+                    case R.id.commit_btn:
+                        String input = pwdEt.getText().toString().trim();
+                        if (JMessageClient.isCurrentUserPasswordValid(input)) {
+                            Intent intent = new Intent();
+                            intent.putExtra("oldPassword", input);
+                            intent.setClass(SetActivity.this, ChangePasswordActivity.class);
+                            startActivity(intent);
+                            dialog.cancel();
+                        } else {
+                            Toast toast = Toast.makeText(SetActivity.this, getString(R.string.input_password_error_toast), Toast.LENGTH_SHORT);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
+                        }
+                        break;
+                }
+
+            }
+        };
+        cancel.setOnClickListener(listener);
+        commit.setOnClickListener(listener);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+        return dialog;
     }
 }

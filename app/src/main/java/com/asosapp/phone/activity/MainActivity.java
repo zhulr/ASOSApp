@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.asosapp.phone.R;
 import com.asosapp.phone.fragment.BuyCardsFragment;
+import com.asosapp.phone.fragment.NewsAllFragment;
 import com.asosapp.phone.fragment.NewsFragment;
 import com.asosapp.phone.fragment.OnlineConsultFragment;
 import com.asosapp.phone.fragment.SetCenterFragment;
@@ -77,7 +78,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
 
     private void initDatas() {
-        NewsFragment newsFragment = new NewsFragment();
+        NewsAllFragment newsFragment = new NewsAllFragment();
         OnlineConsultFragment onlineConsultFragment = new OnlineConsultFragment();
         BuyCardsFragment buyCardsFragment = new BuyCardsFragment();
         SetCenterFragment setCenterFragment = new SetCenterFragment();

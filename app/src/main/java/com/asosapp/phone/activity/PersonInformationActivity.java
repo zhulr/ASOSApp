@@ -50,10 +50,10 @@ public class PersonInformationActivity extends Activity implements View.OnClickL
         name_layout= (LinearLayout) findViewById(R.id.name_layout);
         name= (TextView) findViewById(R.id.name);
         SharedPreferences sp = this.getSharedPreferences("UserInfo", 1); //私有数据
-        account.setText(sp.getString("user_name", null));
+        account.setText(sp.getString("user_id", null));
         sexy.setText(sp.getString("user_sexy", null));
         age.setText(sp.getString("user_age", null));
-        name.setText(sp.getString("new_name",null));
+        name.setText(sp.getString("user_name",null));
         onclickListen();//点击事件
     }
 
@@ -75,10 +75,10 @@ public class PersonInformationActivity extends Activity implements View.OnClickL
                 showSexDialog();
                 break;
             case R.id.age_layout:
-                changeActivity(1);
+                changeActivity(0);
                 break;
             case  R.id.name_layout:
-                changeActivity(0);
+                changeActivity(1);
                 break;
             default :
                 break;
@@ -166,7 +166,7 @@ public class PersonInformationActivity extends Activity implements View.OnClickL
             if (requestCode==SELECT_AGE_REQUEST_CODE){
                 age.setText(data.getStringExtra("userage"));
             }else if (requestCode==SELECT_NAME_REQUEST_CODE){
-                name.setText(data.getStringExtra("newname"));
+                name.setText(data.getStringExtra("username"));
             }
         }
     }

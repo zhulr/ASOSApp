@@ -21,6 +21,9 @@ public class NewsAdapter extends RecyclerView.Adapter<ViewHolder> {
     private Context context;
     private List<Map<String, Object>> mDatas;
 
+    public List<Map<String,Object>> getList() {
+        return mDatas;
+    }
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
 

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="reset_password_title_color">#4e4e4e</color>
+    <color name="me_split_line_color">#d0d0d0</color>
     <color name="white">#FFF</color>
     <color name="black">#000</color>
     <color name="red">#F00</color>
@@ -69,5 +71,13 @@
     <color name="register_split_line_color">#c2d4ec</color>
     <color name="title_color">#e3170d</color>
     <color name="title_name_color">#f5f5f5</color>
+
+    <color name="color1">#ff0f9d58</color>
+    <color name="color2">#ffdb4437</color>
+    <color name="color3">#ff4285f4</color>
+    <color name="color4">#fff4b400</color>
+    <color name="color_ff">#F0F0F0</color>
+    <color name="color_00">#8A000000</color>
+    <color name="colorAccent">#FF4081</color>
 
 </resources>

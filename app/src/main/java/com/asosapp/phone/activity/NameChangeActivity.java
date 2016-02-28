@@ -27,8 +27,8 @@ public class NameChangeActivity extends Activity implements View.OnClickListener
 
     private void init() {
 
-        keep= (TextView) findViewById(R.id.keep);
-        name_edit= (EditText) findViewById(R.id.age_edit);
+        keep= (TextView) findViewById(R.id.name_keep);
+        name_edit= (EditText) findViewById(R.id.name_edit);
         name_edit.setHint(getIntent().getStringExtra("oldname"));
         listener();
 
@@ -48,7 +48,7 @@ public class NameChangeActivity extends Activity implements View.OnClickListener
                 }else{
                     keepData();
                     Intent intent = new Intent();
-                    intent.putExtra("newname", name_edit.getText().toString().trim());
+                    intent.putExtra("username", name_edit.getText().toString().trim());
                     setResult(2, intent);
                     finish();
                 }
@@ -66,7 +66,7 @@ public class NameChangeActivity extends Activity implements View.OnClickListener
     private void keepData() {
         SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", 1); //私有数据
         SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
-        editor.putString("new_name", name_edit.getText().toString());
+        editor.putString("user_name", name_edit.getText().toString());
         editor.commit();//提交修改
     }
 }

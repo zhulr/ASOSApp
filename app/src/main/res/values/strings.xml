@@ -61,10 +61,12 @@
     <string name="moblie_not_null_toast">您输入的手机号不正确</string>
     <string name="username_not_null_toast">用户名不能为空</string>
     <string name="password_not_null_toast">密码不能为空</string>
+    <string name="passwordsure_not_null_toast">两次密码不一样</string>
     <string name="username_hit">用户名</string>
     <string name="password_hit">用户密码</string>
     <string name="register">注册</string>
     <string name="password_length_illegal">密码长度要在4-128个字节之间</string>
+    <string name="error_null">姓名、性别、验证码或者年龄不能为空</string>
     <string name="register_username_hit">用户名(手机号码)</string>
     <string name="loading">正在加载</string>
     <string name="login_hint">登录中</string>
@@ -248,4 +250,21 @@
     <string name="sdcard_not_prepare_toast">sdcard尚未准备好</string>
     <string name="choose_album_title">选择相册</string>
     <string name="person_information">个人信息</string>
+    <string name="input_password_error_toast">输入密码错误，请重新输入</string>
+    <string name="password">密码</string>
+    <string name="hint_reset_password">请设置登录密码</string>
+    <string name="hint_confirm_password">请再次输入</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="commit">确认</string>
+    <string name="change_password">修改密码</string>
+    <string name="password_same_to_previous">不能和原密码相同，请输入新密码</string>
+    <string name="password_not_match_toast">两次输入的密码不一致</string>
+    <string name="detail_explain_name"> 1.该优惠有效期：截止2017年1月30日 \n   2. 凭此券可以享受以下优惠：\n   全场8.8折 \n    仅限适用于安邦医疗咨询。</string>
+    <string name="detail_explain"> 除特殊注明外，本优惠不能与其他优惠同时享受；\n 本优惠最终解释权归商家所有，如有疑问请与商家联系。\n 提示： 为了使您得到更好的服务，请在进店时出示本券。</string>
+    <!--footer-->
+    <string name="list_footer_loading">正在加载中…</string>
+    <string name="list_footer_network_error">点击重新加载</string>
+    <string name="list_footer_end">已经到底了</string>
+    <string name="header_text">The Header</string>
+    <string name="footer_text">The Footer</string>
 </resources>

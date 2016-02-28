@@ -63,7 +63,7 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
     }
 
     private void init() {
-        user_layout= (LinearLayout) view.findViewById(R.id.user_layout);
+        user_layout = (LinearLayout) view.findViewById(R.id.user_layout);
         titleName = (TextView) view.findViewById(R.id.title_name);
         userHead = (RoundImage) view.findViewById(R.id.user_head_img);
         userName = (TextView) view.findViewById(R.id.user_name);
@@ -129,6 +129,7 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
             case R.id.view_account:
                 break;
             case R.id.view_my_asos:
+                Toast.makeText(getActivity(),"测试版无法进入！请下载正式版",Toast.LENGTH_SHORT);
                 break;
             case R.id.view_my_coupon:
                 intent(4);
@@ -144,6 +145,7 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
                 break;
             case R.id.view_out_login:
                 UserInfo.instance().logOut(getActivity());
+                Toast.makeText(getActivity(), "已退出登录", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.user_layout:
                 intent(0);

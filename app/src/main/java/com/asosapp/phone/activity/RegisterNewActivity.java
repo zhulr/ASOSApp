@@ -1,6 +1,5 @@
 package com.asosapp.phone.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +7,8 @@ import android.util.Log;
 import com.asosapp.phone.R;
 import com.asosapp.phone.controller.RegisterController;
 import com.asosapp.phone.view.RegisterView;
+
+import cn.smssdk.SMSSDK;
 
 /**
  * Created by ASOS_lijianfeng on 2016/1/20.
@@ -24,6 +25,7 @@ public class RegisterNewActivity extends BaseActivity {
         mRegisterController = new RegisterController(mRegisterView,this);
         mRegisterView.setListener(mRegisterController);
         mRegisterView.setListeners(mRegisterController);
+        SMSSDK.initSDK(this, "fcb8bfe539c0", "56d9864ccf775584ab58c146dc82f75f");
     }
 
     //注册成功

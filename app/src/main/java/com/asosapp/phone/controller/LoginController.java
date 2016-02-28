@@ -77,7 +77,7 @@ public class LoginController implements LoginView.Listener, OnClickListener,
                             String name = JMessageClient.getMyInfo().getUserName();
                             SharedPreferences sharedPreferences = mContext.getSharedPreferences("UserInfo", 1); //私有数据
                             SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
-                            editor.putString("user_name", name);
+                            editor.putString("user_id", name);
                             editor.putBoolean("isLogin", true);
                             editor.commit();//提交修改
                             mContext.startMainActivity();
