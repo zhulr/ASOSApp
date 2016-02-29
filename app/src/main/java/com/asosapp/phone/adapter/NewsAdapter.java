@@ -81,6 +81,7 @@ class ViewHolder extends RecyclerView.ViewHolder {
     TextView title;
     TextView intro;
 
+
     public ViewHolder(View itemView) {
         super(itemView);
         title = (TextView) itemView.findViewById(R.id.id_title);
