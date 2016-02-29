@@ -26,7 +26,7 @@ public class Const {
 	// 登录接口
 	public static final String LOGIN = "/Login/login.php";
 
-	// 登录接口
+	// 注册接口
 	public static final String REGISTER = "/Login/register.php";
 
 	// 新闻接口

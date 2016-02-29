@@ -45,7 +45,7 @@ public class NewsAllFragment extends Fragment{
 
             @Override
             public void onPageSelected(int arg0) {
-                Toast.makeText(getActivity(), TITLE[arg0], Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), TITLE[arg0], Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -75,11 +75,24 @@ public class NewsAllFragment extends Fragment{
         @Override
         public Fragment getItem(int position) {
             // 示例，新建一样的Fragment，传入String进行显示
-            NewsFragment fragment = new NewsFragment();
-            Bundle args = new Bundle();
-            args.putString("arg", TITLE[position]);
-            fragment.setArguments(args);
-            return fragment;
+            NewsMedicalFragment medicalFragment=new NewsMedicalFragment();
+            NewsLawFragment lawFragment=new NewsLawFragment();
+            NewsCompensationFragment compensationFragment=new NewsCompensationFragment();
+            NewsRestFragment restFragment=new NewsRestFragment();
+            NewsSinsuranceFragment sinsuranceFragment=new NewsSinsuranceFragment();
+            switch (position){
+                case 0:
+                    return medicalFragment;
+                case 1:
+                    return lawFragment;
+                case 2:
+                    return sinsuranceFragment;
+                case 3:
+                    return compensationFragment;
+                case 4:
+                    return restFragment;
+            }
+            return null;
         }
 
         @Override

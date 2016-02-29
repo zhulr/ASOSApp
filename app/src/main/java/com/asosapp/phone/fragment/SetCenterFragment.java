@@ -49,7 +49,6 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
     private View outLogView;
     private ToggleButton isPush;
     private boolean is_push;
-    private LinearLayout user_layout;
 
 
     @Nullable
@@ -63,7 +62,6 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
     }
 
     private void init() {
-        user_layout = (LinearLayout) view.findViewById(R.id.user_layout);
         titleName = (TextView) view.findViewById(R.id.title_name);
         userHead = (RoundImage) view.findViewById(R.id.user_head_img);
         userName = (TextView) view.findViewById(R.id.user_name);
@@ -82,7 +80,7 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
 
         titleName.setText(R.string.mine);
 
-        user_layout.setOnClickListener(this);
+        userName.setOnClickListener(this);
         userHead.setOnClickListener(this);
         isVIP.setOnClickListener(this);
         isSVIP.setOnClickListener(this);
@@ -116,8 +114,6 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.user_head_img:
                 break;
-            case R.id.user_name:
-                break;
             case R.id.isvip:
                 break;
             case R.id.issvip:
@@ -147,7 +143,7 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
                 UserInfo.instance().logOut(getActivity());
                 Toast.makeText(getActivity(), "已退出登录", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.user_layout:
+            case R.id.user_name:
                 intent(0);
                 break;
             default:

@@ -36,7 +36,7 @@ public class UserInfo {
         this.is_push = true;
 
         //保存到配置文件
-        SharedPreferences sharedPreferences = context.getSharedPreferences("userInfo", 0);
+        SharedPreferences sharedPreferences = context.getSharedPreferences("UserInfo", 0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("isLogin", isLogin);
         editor.putString("user_id", user_id);

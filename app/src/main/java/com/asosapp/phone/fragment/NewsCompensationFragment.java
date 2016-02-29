@@ -35,8 +35,6 @@ import com.asosapp.phone.view.ToastView;
 import com.asosapp.phone.weight.LoadingFooter;
 import com.cundong.recyclerview.EndlessRecyclerOnScrollListener;
 
-
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,9 +45,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by ASOS_zhulr on 2015/12/7.
+ * Created by Leo on 2016/2/29.
+ * 赔偿
  */
-public class NewsFragment extends Fragment implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener {
+public class NewsCompensationFragment extends Fragment implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener {
     private View view;
     private ImageView newsView;
     private RecyclerView mRecyclerView;
@@ -76,7 +75,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener,Swipe
             switch (msg.what) {
                 case 0:
                     mSwipeRefreshWidget.setRefreshing(false);
-//                    ToastView.toast(getActivity(),"刷新成功");
+                    ToastView.toast(getActivity(), "刷新成功");
                     mAdapter.getList().clear();
                     jsonData();
                     break;
@@ -84,20 +83,20 @@ public class NewsFragment extends Fragment implements View.OnClickListener,Swipe
 //                    addList();
                     break;
                 case -1:
-                    int currentSize = mAdapter.getItemCount();
-                    ArrayList<Map<String, Object>> newList = new ArrayList<>();
-                    for (int i = 0; i < 10; i++) {
-                        if (newList.size() + currentSize >= TOTAL_COUNTER) {
-                            break;
-                        }
-                        Map<String, Object> map = new HashMap<String, Object>();
-                        map.put("intro", introList.get(currentSize+i).toString());
-                        map.put("title", titleList.get(currentSize+i).toString());
-                        map.put("id", idList.get(currentSize+i).toString());
-                        newList.add(map);
-                    }
-                    addItems(newList);
-                    RecyclerViewStateUtils.setFooterViewState(mRecyclerView, LoadingFooter.State.Normal);
+//                    int currentSize = mAdapter.getItemCount();
+//                    ArrayList<Map<String, Object>> newList = new ArrayList<>();
+//                    for (int i = 0; i < 10; i++) {
+//                        if (newList.size() + currentSize >= TOTAL_COUNTER) {
+//                            break;
+//                        }
+//                        Map<String, Object> map = new HashMap<String, Object>();
+//                        map.put("intro", introList.get(currentSize+i).toString());
+//                        map.put("title", titleList.get(currentSize+i).toString());
+//                        map.put("id", idList.get(currentSize+i).toString());
+//                        newList.add(map);
+//                    }
+//                    addItems(newList);
+//                    RecyclerViewStateUtils.setFooterViewState(mRecyclerView, LoadingFooter.State.Normal);
                     break;
                 case -2:
                     mAdapter.notifyDataSetChanged();
@@ -147,7 +146,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener,Swipe
         titleList.clear();
         idList.clear();
 
-        String url = Const.SERVICE_URL + Const.NEWS;
+        String url = Const.SERVICE_URL + Const.NEWSCOMPENSATION;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
@@ -209,7 +208,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener,Swipe
     //将数据分装到map里，返回list
     private List<Map<String, Object>> getDatas() {
         List<Map<String, Object>> listItems = new ArrayList<Map<String, Object>>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < introList.size(); i++) {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("intro", introList.get(i).toString());
             map.put("title", titleList.get(i).toString());

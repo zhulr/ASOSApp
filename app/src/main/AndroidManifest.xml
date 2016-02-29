@@ -190,7 +190,7 @@
         <activity android:name=".activity.SQLiteActivity" />
         <activity android:name=".activity.LoginNewActivity" />
         <activity android:name=".activity.RegisterNewActivity"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan|stateVisible"/>
         <activity android:name=".activity.ServiceActivity" />
         <activity android:name=".activity.NewsHTMLActivity" />
         <activity android:name=".activity.UserFeedbackActivity"
@@ -230,6 +230,7 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind"></activity>
+
     </application>
 
 </manifest>

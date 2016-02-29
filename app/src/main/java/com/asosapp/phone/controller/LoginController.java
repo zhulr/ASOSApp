@@ -11,13 +11,23 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 
+import com.android.volley.NoConnectionError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.asosapp.phone.R;
 import com.asosapp.phone.activity.LoginNewActivity;
+import com.asosapp.phone.initprogram.MyApplication;
+import com.asosapp.phone.utils.Const;
 import com.asosapp.phone.utils.DialogCreator;
 import com.asosapp.phone.utils.HandleResponseCode;
 import com.asosapp.phone.utils.SharePreferenceManager;
 import com.asosapp.phone.view.LoginView;
 import com.asosapp.phone.view.ToastView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -28,6 +38,7 @@ import cn.jpush.im.api.BasicCallback;
 public class LoginController implements LoginView.Listener, OnClickListener,
         CompoundButton.OnCheckedChangeListener {
 
+    private String TAG = "LoginNewActivity";
     private LoginView mLoginView;
     private LoginNewActivity mContext;
 
@@ -75,11 +86,12 @@ public class LoginController implements LoginView.Listener, OnClickListener,
                         if (status == 0) {
                             long userId = JMessageClient.getMyInfo().getUserID();
                             String name = JMessageClient.getMyInfo().getUserName();
-                            SharedPreferences sharedPreferences = mContext.getSharedPreferences("UserInfo", 1); //私有数据
-                            SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
-                            editor.putString("user_id", name);
-                            editor.putBoolean("isLogin", true);
-                            editor.commit();//提交修改
+//                            SharedPreferences sharedPreferences = mContext.getSharedPreferences("UserInfo", 1); //私有数据
+//                            SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
+//                            editor.putString("user_id", name);
+//                            editor.putBoolean("isLogin", true);
+//                            editor.commit();//提交修改
+                            volley_Get();
                             mContext.startMainActivity();
 
 
@@ -138,6 +150,56 @@ public class LoginController implements LoginView.Listener, OnClickListener,
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * get请求
+     * <p/>
+     * *
+     */
+    JSONObject DATA = null;
+
+    private void volley_Get() {
+        String url = Const.SERVICE_URL + Const.LOGIN + "?userPhone=" + mLoginView.getUserId();
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                try {
+                    if (jsonObject.get("CODE").toString().equals("200")) {
+
+
+                        DATA=jsonObject.getJSONObject("DATA");
+                        SharedPreferences sharedPreferences = mContext.getSharedPreferences("UserInfo", 1); //私有数据
+                        SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
+                        editor.putString("user_id", mLoginView.getUserId());
+                        editor.putString("user_psw", DATA.getString("USER_PASSWORD"));
+                        editor.putString("user_name", DATA.getString("USER_NAME"));
+                        editor.putString("user_age", DATA.getString("USER_AGE"));
+                        editor.putString("user_sexy", DATA.getString("USER_SEX"));
+                        editor.putBoolean("isLogin", true);
+                        editor.commit();//提交修改
+                        Log.e("Leo",DATA.toString());
+                    } else if (jsonObject.get("CODE").toString().equals("100")) {
+                        ToastView.toast(mContext, jsonObject.get("MESSAGE").toString());
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                if (volleyError instanceof NoConnectionError) {
+                    ToastView.NetError(mContext);
+                } else if (volleyError instanceof com.android.volley.TimeoutError) {
+                    ToastView.NetTimeOut(mContext);
+                } else {
+                    ToastView.toast(mContext, volleyError.toString());
+                }
+            }
+        });
+        request.setTag(TAG);
+        MyApplication.getHttpQueues().add(request);
     }
 
 }

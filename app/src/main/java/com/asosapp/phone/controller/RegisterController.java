@@ -11,14 +11,24 @@ import android.view.View.OnClickListener;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.android.volley.NoConnectionError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.asosapp.phone.R;
 import com.asosapp.phone.activity.RegisterNewActivity;
+import com.asosapp.phone.initprogram.MyApplication;
+import com.asosapp.phone.utils.Const;
 import com.asosapp.phone.utils.DialogCreator;
 import com.asosapp.phone.utils.HandleResponseCode;
 import com.asosapp.phone.utils.SharePreferenceManager;
 import com.asosapp.phone.view.LoginDialog;
 import com.asosapp.phone.view.RegisterView;
 import com.asosapp.phone.view.ToastView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,9 +40,17 @@ import cn.smssdk.SMSSDK;
 
 public class RegisterController implements RegisterView.Listener, OnClickListener {
 
+    private String TAG = "RegisterNewActivity";
     private RegisterView mRegisterView;
     private RegisterNewActivity mContext;
     private Dialog mLoginDialog;
+    private String userId;
+    private String password;
+    private String passwordsure;
+    private String userName;
+    private String userAge;
+    private String code;
+    private String userSexy;
 
     public RegisterController(RegisterView registerView, RegisterNewActivity context) {
         this.mRegisterView = registerView;
@@ -46,13 +64,13 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
             case R.id.regist_btn:
                 SMSSDK.submitVerificationCode("86", mRegisterView.getUserId(), mRegisterView.getCode());
                 Log.i("Tag", "[register]register event execute!");
-                final String userId = mRegisterView.getUserId();
-                final String password = mRegisterView.getPassword();
-                final String passwordsure=mRegisterView.getPasswordSure();
-                final String userName=mRegisterView.getUserName();
-                final String userAge=mRegisterView.getUserAge();
-                final String code=mRegisterView.getCode();
-                final String userSexy=mRegisterView.getSexy();
+                userId = mRegisterView.getUserId();
+                password = mRegisterView.getPassword();
+                passwordsure=mRegisterView.getPasswordSure();
+                userName=mRegisterView.getUserName();
+                userAge=mRegisterView.getUserAge();
+                code=mRegisterView.getCode();
+                userSexy=mRegisterView.getSexy();
 
                 if (isMobileNO(userId)==false){
                     mRegisterView.isMobileError(mContext);
@@ -91,16 +109,8 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                                 @Override
                                 public void gotResult(final int status, String desc) {
                                     if (status == 0) {
+                                        volley_Get();//上传到本地数据库
 
-                                        SharedPreferences sharedPreferences = mContext.getSharedPreferences("UserInfo", 1); //私有数据
-                                        SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
-                                        editor.putString("user_id", userId);
-                                        editor.putString("user_psw", password);
-                                        editor.putString("user_name", userName);
-                                        editor.putString("user_age", userAge);
-                                        editor.putString("user_code", code);
-                                        editor.putString("user_sexy", userSexy);
-                                        editor.commit();//提交修改
                                         mContext.onRegistSuccess();
                                     } else {
                                         mLoginDialog.dismiss();
@@ -131,6 +141,45 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                 }
                 break;
         }
+    }
+
+    /**
+     * get请求
+     * <p/>
+     * *
+     */
+    JSONObject DATA = null;
+
+    private void volley_Get() {
+        String url = Const.SERVICE_URL + Const.REGISTER + "?userPhone=" + userId+"&userName="+userName+"&userPassword="+password+"&userAge="+userAge+"&userSex="+userSexy;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                try {
+                    if (jsonObject.get("CODE").toString().equals("200")) {
+                        DATA = (JSONObject) jsonObject.get("DATA");
+                        Log.e("Leo",DATA.toString());
+                    } else if (jsonObject.get("CODE").toString().equals("100")) {
+                        ToastView.toast(mContext, jsonObject.get("MESSAGE").toString());
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                if (volleyError instanceof NoConnectionError) {
+                    ToastView.NetError(mContext);
+                } else if (volleyError instanceof com.android.volley.TimeoutError) {
+                    ToastView.NetTimeOut(mContext);
+                } else {
+                    ToastView.toast(mContext, volleyError.toString());
+                }
+            }
+        });
+        request.setTag(TAG);
+        MyApplication.getHttpQueues().add(request);
     }
 
 

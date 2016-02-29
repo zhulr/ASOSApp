@@ -60,14 +60,6 @@ public class NewsAdapter extends RecyclerView.Adapter<ViewHolder> {
                     mOnItemClickListener.onItemClick(holder.itemView, pos);
                 }
             });
-            //longclick
-            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    mOnItemClickListener.onItemLongClick(holder.itemView, pos);
-                    return true;
-                }
-            });
         }
     }
 

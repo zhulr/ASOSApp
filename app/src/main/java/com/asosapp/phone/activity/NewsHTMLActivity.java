@@ -74,7 +74,7 @@ public class NewsHTMLActivity extends BaseActivity implements View.OnClickListen
     JSONObject DATA = null;
 
     private void volley_Get() {
-        String url = Const.SERVICE_URL + Const.NEWSHTML + "?newsID=" + newsID;
+        String url = Const.SERVICE_URL + Const.NEWSMEDICALHTML + "?newsID=" + newsID;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
