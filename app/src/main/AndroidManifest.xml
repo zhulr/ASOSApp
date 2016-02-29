@@ -189,7 +189,8 @@
             android:launchMode="singleTask" />
         <activity android:name=".activity.SQLiteActivity" />
         <activity android:name=".activity.LoginNewActivity" />
-        <activity android:name=".activity.RegisterNewActivity" />
+        <activity android:name=".activity.RegisterNewActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activity.ServiceActivity" />
         <activity android:name=".activity.NewsHTMLActivity" />
         <activity android:name=".activity.UserFeedbackActivity"

@@ -44,6 +44,7 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.regist_btn:
+                SMSSDK.submitVerificationCode("86", mRegisterView.getUserId(), mRegisterView.getCode());
                 Log.i("Tag", "[register]register event execute!");
                 final String userId = mRegisterView.getUserId();
                 final String password = mRegisterView.getPassword();
@@ -73,7 +74,7 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                     mRegisterView.passwordSureError(mContext);
                     break;
                 }
-               SMSSDK.submitVerificationCode("86", mRegisterView.getUserId(), mRegisterView.getCode());
+
 
                 final Dialog dialog = DialogCreator.createLoadingDialog(mContext, mContext.getString(R.string.registering_hint));
                 dialog.show();
