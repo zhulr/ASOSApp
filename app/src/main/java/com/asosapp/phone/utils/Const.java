@@ -56,4 +56,34 @@ public class Const {
 	//留言接口
 	public static final String LM = "/LM/lm.php";
 
+	// 医学新闻接口
+	public static final String NEWSMEDICAL = "/News/newsmedicallist.php";
+
+	// 医学新闻详情接口
+	public static final String NEWSMEDICALHTML = "/News/newsmedicalhtml.php";
+
+	// 法律新闻接口
+	public static final String NEWSLAW = "/News/newslawlist.php";
+
+	// 法律新闻详情接口
+	public static final String NEWLAWHTML = "/News/newslawhtml.php";
+
+	// 保险新闻接口
+	public static final String NEWSINSURANCE = "/News/newsinsurancelist.php";
+
+	// 保险新闻详情接口
+	public static final String NEWSHTMLINSURANCE = "/News/newsinsurancehtml.php";
+
+	// 赔偿新闻接口
+	public static final String NEWSCOMPENSATION = "/News/newscompensationlist.php";
+
+	// 赔偿新闻详情接口
+	public static final String NEWSCOMPENSATIONHTML = "/News/newscompensationhtml.php";
+
+	// 其他新闻接口
+	public static final String NEWSREST = "/News/newsrestlist.php";
+
+	// 其他新闻详情接口
+	public static final String NEWSRESTHTML = "/News/newsresthtml.php";
+
 }
