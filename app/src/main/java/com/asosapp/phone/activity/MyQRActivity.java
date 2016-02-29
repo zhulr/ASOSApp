@@ -41,17 +41,17 @@ public class MyQRActivity extends BasicActivity {
 
     public void createQRImage(String url) {
         try {
-            //ÅĞ¶ÏURLºÏ·¨ĞÔ
+            //åˆ¤æ–­URLåˆæ³•æ€§
             if (url == null || "".equals(url) || url.length() < 1) {
                 return;
             }
             Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
             hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
-            //Í¼ÏñÊı¾İ×ª»»£¬Ê¹ÓÃÁË¾ØÕó×ª»»
+            //å›¾åƒæ•°æ®è½¬æ¢ï¼Œä½¿ç”¨äº†çŸ©é˜µè½¬æ¢
             BitMatrix bitMatrix = new QRCodeWriter().encode(url, BarcodeFormat.QR_CODE, QR_WIDTH, QR_HEIGHT, hints);
             int[] pixels = new int[QR_WIDTH * QR_HEIGHT];
-            //ÏÂÃæÕâÀï°´ÕÕ¶şÎ¬ÂëµÄËã·¨£¬Öğ¸öÉú³É¶şÎ¬ÂëµÄÍ¼Æ¬£¬
-            //Á½¸öforÑ­»·ÊÇÍ¼Æ¬ºáÁĞÉ¨ÃèµÄ½á¹û
+            //ä¸‹é¢è¿™é‡ŒæŒ‰ç…§äºŒç»´ç çš„ç®—æ³•ï¼Œé€ä¸ªç”ŸæˆäºŒç»´ç çš„å›¾ç‰‡ï¼Œ
+            //ä¸¤ä¸ªforå¾ªç¯æ˜¯å›¾ç‰‡æ¨ªåˆ—æ‰«æçš„ç»“æœ
             for (int y = 0; y < QR_HEIGHT; y++) {
                 for (int x = 0; x < QR_WIDTH; x++) {
                     if (bitMatrix.get(x, y)) {
@@ -61,10 +61,10 @@ public class MyQRActivity extends BasicActivity {
                     }
                 }
             }
-            //Éú³É¶şÎ¬ÂëÍ¼Æ¬µÄ¸ñÊ½£¬Ê¹ÓÃARGB_8888
+            //ç”ŸæˆäºŒç»´ç å›¾ç‰‡çš„æ ¼å¼ï¼Œä½¿ç”¨ARGB_8888
             Bitmap bitmap = Bitmap.createBitmap(QR_WIDTH, QR_HEIGHT, Bitmap.Config.ARGB_8888);
             bitmap.setPixels(pixels, 0, QR_WIDTH, 0, 0, QR_WIDTH, QR_HEIGHT);
-            //ÏÔÊ¾µ½Ò»¸öImageViewÉÏÃæ
+            //æ˜¾ç¤ºåˆ°ä¸€ä¸ªImageViewä¸Šé¢
             myQR.setImageBitmap(bitmap);
         } catch (WriterException e) {
             e.printStackTrace();

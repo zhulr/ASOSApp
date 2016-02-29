@@ -99,7 +99,7 @@ public class CouponActivity extends FragmentActivity implements View.OnClickList
     }
 
     /**
-     * ¸Ä±ä±êÇ©±³¾°
+     * æ”¹å˜æ ‡ç­¾èƒŒæ™¯
      * *
      */
     private void changeTag() {

@@ -18,6 +18,7 @@ public class ToastView extends LinearLayout{
     public static void toast(Context context, String message){
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
     }
+
     public static void NetError(Context context){
         Toast.makeText(context,"网络异常，请检测网络连接。",Toast.LENGTH_SHORT).show();
     }

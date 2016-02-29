@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
 
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.api.BasicCallback;
+import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
 public class RegisterController implements RegisterView.Listener, OnClickListener {
@@ -72,7 +73,8 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                     mRegisterView.passwordSureError(mContext);
                     break;
                 }
-                SMSSDK.submitVerificationCode("86", mRegisterView.getUserId(), mRegisterView.getCode());
+               SMSSDK.submitVerificationCode("86", mRegisterView.getUserId(), mRegisterView.getCode());
+
                 final Dialog dialog = DialogCreator.createLoadingDialog(mContext, mContext.getString(R.string.registering_hint));
                 dialog.show();
                 JMessageClient.register(userId, password, new BasicCallback() {

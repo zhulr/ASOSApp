@@ -15,6 +15,7 @@
                 android:id="@+id/slideshowView"
                 android:layout_width="fill_parent"
                 android:layout_height="180dp"
+                android:visibility="gone"
                 android:layout_centerHorizontal="true" />
 
 

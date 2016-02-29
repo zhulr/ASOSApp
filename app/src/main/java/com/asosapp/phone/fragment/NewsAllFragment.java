@@ -22,7 +22,7 @@ import java.util.TimerTask;
  * Created by Leo on 2016/2/27.
  */
 public class NewsAllFragment extends Fragment{
-    private static final String[] TITLE = new String[]{"健康", "法律", "赔偿", "社会", "其它"};
+    private static final String[] TITLE = new String[]{"医学", "法律", "保险", "赔偿", "其它"};
     private View view;
 
     @Nullable

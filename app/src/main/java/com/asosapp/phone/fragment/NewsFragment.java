@@ -84,6 +84,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener,Swipe
 //                    addList();
                     break;
                 case -1:
+                    ToastView.toast(getActivity(),"向上滑动");
                     int currentSize = mAdapter.getItemCount();
                     ArrayList<Map<String, Object>> newList = new ArrayList<>();
                     for (int i = 0; i < 10; i++) {
@@ -209,7 +210,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener,Swipe
     //将数据分装到map里，返回list
     private List<Map<String, Object>> getDatas() {
         List<Map<String, Object>> listItems = new ArrayList<Map<String, Object>>();
-        for (int i = 0; i < introList.size(); i++) {
+        for (int i = 0; i < 10; i++) {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("intro", introList.get(i).toString());
             map.put("title", titleList.get(i).toString());

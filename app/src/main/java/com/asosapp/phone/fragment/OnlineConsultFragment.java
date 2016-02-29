@@ -27,6 +27,7 @@ import com.asosapp.phone.activity.ServiceActivity;
 import com.asosapp.phone.bean.ServiceInfo;
 import com.asosapp.phone.initprogram.MyApplication;
 import com.asosapp.phone.utils.Const;
+import com.asosapp.phone.view.SlideShowView;
 import com.asosapp.phone.view.ToastView;
 
 import org.json.JSONException;
@@ -58,10 +59,9 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
     private Activity mContext;
     private List<Conversation> mListView;
     private Conversation convItem;
-    private TextView message;
-    private TextView message_btn;
-    private String URL = "";
     private static JSONObject DATA = null;
+
+    private SlideShowView slideshowView;
 
 
     @Nullable
@@ -71,7 +71,6 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
         mContext = this.getActivity();
         JMessageClient.registerEventReceiver(this);
         sharedPreferences = getActivity().getSharedPreferences("UserInfo", 1);
-        URL = Const.SERVICE_URL + Const.LM;
         init();
         return view;
     }
@@ -86,15 +85,14 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
         asos222_pic = (ImageView) view.findViewById(R.id.asos222_pic);
         asos333_pic = (ImageView) view.findViewById(R.id.asos333_pic);
         asos444_pic = (ImageView) view.findViewById(R.id.asos444_pic);
-        message = (TextView) view.findViewById(R.id.message);
-        message_btn = (TextView) view.findViewById(R.id.message_btn);
+        slideshowView = (SlideShowView) view.findViewById(R.id.slideshowView);
         titleName = (TextView) view.findViewById(R.id.title_name);
         titleName.setText(R.string.mess);
         online_1.setOnClickListener(this);
         online_2.setOnClickListener(this);
         online_3.setOnClickListener(this);
         online_4.setOnClickListener(this);
-        message_btn.setOnClickListener(this);
+
     }
 
 
@@ -119,44 +117,12 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
                 serviceID = ServiceInfo.getServiceName_4();
                 isSelfLogin();
                 break;
-            case R.id.message_btn:
-                    sendMessage();
-                break;
+
+
         }
     }
 
-    /**
-     * 发送留言
-     */
-    private void sendMessage()  {
-        String url = null;
-        try {
-            url = URL + "?content=" + URLEncoder.encode(message.getText().toString().trim(), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject jsonObject) {
-                try {
-                    if (jsonObject.get("CODE").toString().equals("200")) {
-                        ToastView.toast(getActivity(), "发送成功");
-                        message.setText("");
-                    } else if (jsonObject.get("CODE").toString().equals("100")) {
-                        ToastView.toast(getActivity(), jsonObject.get("MESSAGE").toString());
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-            }
-        });
-        request.setTag(TAG);
-        MyApplication.getHttpQueues().add(request);
-    }
+
 
     //提示框
     protected void dialog() {
