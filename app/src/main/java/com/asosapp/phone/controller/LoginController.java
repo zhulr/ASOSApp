@@ -172,11 +172,13 @@ public class LoginController implements LoginView.Listener, OnClickListener,
                         SharedPreferences sharedPreferences = mContext.getSharedPreferences("UserInfo", 1); //私有数据
                         SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
                         editor.putString("user_id", mLoginView.getUserId());
-                        editor.putString("user_psw", DATA.getString("USER_PASSWORD"));
+//                        editor.putString("user_psw", DATA.getString("USER_PASSWORD"));
+                        editor.putString("user_phone", DATA.getString("USER_PHONE"));
                         editor.putString("user_name", DATA.getString("USER_NAME"));
                         editor.putString("user_age", DATA.getString("USER_AGE"));
                         editor.putString("user_sexy", DATA.getString("USER_SEX"));
                         editor.putBoolean("isLogin", true);
+                        editor.putBoolean("is_push", true);
                         editor.commit();//提交修改
                         Log.e("Leo",DATA.toString());
                     } else if (jsonObject.get("CODE").toString().equals("100")) {
