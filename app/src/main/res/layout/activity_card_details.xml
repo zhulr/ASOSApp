@@ -39,89 +39,6 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp">
 
-                <TableRow android:layout_marginBottom="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="请输入您的手机号"
-                        android:textColor="@color/black" />
-
-                    <EditText
-                        android:id="@+id/card_buy_phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:ems="10"
-                        android:gravity="center"
-                        android:inputType="phone"
-                        android:maxLength="11"
-                        android:maxLines="1" />
-                </TableRow>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/card_buy_phone_hint"
-                    android:textColor="@color/text_color_qianhui_a3a4a4"
-                    android:textSize="12sp" />
-
-                <TableRow
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="请输入您的姓名"
-                        android:textColor="@color/black" />
-
-                    <EditText
-                        android:id="@+id/card_buy_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:ems="10"
-                        android:gravity="center"
-                        android:maxLength="8"
-                        android:maxLines="1" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:text="请选择您的性别"
-                        android:textColor="@color/black" />
-
-                    <RadioGroup
-                        android:id="@+id/radioGroup"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="性别"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/card_buy_man"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="40dp"
-                            android:checked="true"
-                            android:text="男" />
-
-                        <RadioButton
-                            android:id="@+id/card_buy_woman"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="女" />
-                    </RadioGroup>
-                </TableRow>
-
                 <TableRow
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp">
@@ -231,13 +148,6 @@
                 android:background="@color/btn_color_login"
                 android:text="购买"
                 android:textColor="@color/white" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/card_buy_hint"
-                android:textColor="@color/text_color_qianhui_a3a4a4"
-                android:textSize="12sp" />
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="60dp" />

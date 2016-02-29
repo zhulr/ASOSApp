@@ -46,10 +46,13 @@ import java.util.Map;
 
 /**
  * Created by Leo on 2016/2/29.
- *
+ * <p/>
  * 其他
  */
-public class NewsRestFragment extends Fragment implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener {
+public class NewsRestFragment extends Fragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+
+    private static int NEWS_REST = 4;
+
     private View view;
     private ImageView newsView;
     private RecyclerView mRecyclerView;
@@ -63,11 +66,17 @@ public class NewsRestFragment extends Fragment implements View.OnClickListener,S
     private List<String> titleList = new ArrayList<String>();
 
     private SwipeRefreshLayout mSwipeRefreshWidget;
-    /**每一页展示多少条数据*/
+    /**
+     * 每一页展示多少条数据
+     */
     private static final int REQUEST_COUNT = 10;
-    /**已经获取到多少条数据了*/
+    /**
+     * 已经获取到多少条数据了
+     */
     private int mCurrentCounter = 0;
-    /**服务器端一共多少条数据*/
+    /**
+     * 服务器端一共多少条数据
+     */
     private static final int TOTAL_COUNTER = 64;
     private Handler handler = new Handler() {
 
@@ -103,7 +112,7 @@ public class NewsRestFragment extends Fragment implements View.OnClickListener,S
                     mAdapter.notifyDataSetChanged();
                     break;
                 case -3:
-                    ToastView.toast(getActivity(),"网络异常");
+                    ToastView.toast(getActivity(), "网络异常");
                     break;
                 default:
                     break;
@@ -179,6 +188,7 @@ public class NewsRestFragment extends Fragment implements View.OnClickListener,S
                     public void onItemClick(View view, int position) {
                         Intent intent = new Intent(getActivity(), NewsHTMLActivity.class);
                         intent.putExtra("newsID", idList.get(position).toString());
+                        intent.putExtra("newsType", NEWS_REST);
                         startActivity(intent);
                     }
 
@@ -235,7 +245,7 @@ public class NewsRestFragment extends Fragment implements View.OnClickListener,S
             super.onLoadNextPage(view);
 
             LoadingFooter.State state = RecyclerViewStateUtils.getFooterViewState(mRecyclerView);
-            if(state == LoadingFooter.State.Loading) {
+            if (state == LoadingFooter.State.Loading) {
                 Log.d("@Cundong", "the state is Loading, just wait..");
                 return;
             }
@@ -260,7 +270,6 @@ public class NewsRestFragment extends Fragment implements View.OnClickListener,S
         slideshowView = (SlideShowView) view.findViewById(R.id.slideshowView);
         none = (ImageView) view.findViewById(R.id.none);
         mRecyclerView.setHasFixedSize(true);
-
 
 
     }
@@ -302,7 +311,7 @@ public class NewsRestFragment extends Fragment implements View.OnClickListener,S
                 }
 
                 //模拟一下网络请求失败的情况
-                if(NetworkUtils.isNetAvailable(getActivity())) {
+                if (NetworkUtils.isNetAvailable(getActivity())) {
                     handler.sendEmptyMessage(-1);
                 } else {
                     handler.sendEmptyMessage(-3);

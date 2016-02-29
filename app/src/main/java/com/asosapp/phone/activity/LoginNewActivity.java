@@ -69,7 +69,7 @@ public class LoginNewActivity extends BaseActivity {
     }
 
     public void startMainActivity() {
-        long id = JMessageClient.getMyInfo().getUserID();
+//        long id = JMessageClient.getMyInfo().getUserID();
         Intent intent = new Intent();
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         if (isService()) {

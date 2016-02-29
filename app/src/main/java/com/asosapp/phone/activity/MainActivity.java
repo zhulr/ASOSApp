@@ -20,7 +20,6 @@ import android.widget.Toast;
 import com.asosapp.phone.R;
 import com.asosapp.phone.fragment.BuyCardsFragment;
 import com.asosapp.phone.fragment.NewsAllFragment;
-import com.asosapp.phone.fragment.NewsFragment;
 import com.asosapp.phone.fragment.OnlineConsultFragment;
 import com.asosapp.phone.fragment.SetCenterFragment;
 import com.asosapp.phone.view.NoScrollViewPager;

@@ -3,6 +3,7 @@ package com.asosapp.phone.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodSubtype;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -30,7 +31,13 @@ public class NewsHTMLActivity extends BaseActivity implements View.OnClickListen
     private ImageView backBtn;
     private WebView newsHTML;
     private String newsID;
-
+    private int newsType = 0;
+    private static int NEWS_MEDICAL = 0;
+    private static int NEWS_LAW = 1;
+    private static int NEWS_INSURANCE = 2;
+    private static int NEWS_COMPENSATION = 3;
+    private static int NEWS_REST = 4;
+    private String URL = Const.SERVICE_URL + Const.NEWSMEDICAL;
     private String newsHTMLUrl;
 
     @Override
@@ -39,6 +46,8 @@ public class NewsHTMLActivity extends BaseActivity implements View.OnClickListen
         setContentView(R.layout.activity_news_html);
         Intent intent = getIntent();
         newsID = intent.getStringExtra("newsID");
+        newsType = intent.getIntExtra("newsType", 0);
+        GetUrl();
         volley_Get();
         init();
     }
@@ -56,6 +65,7 @@ public class NewsHTMLActivity extends BaseActivity implements View.OnClickListen
         newsHTML.setWebViewClient(new webViewClient());
         backBtn = (ImageView) findViewById(R.id.back);
         backBtn.setOnClickListener(this);
+        //获取url地址
     }
 
     @Override
@@ -74,7 +84,7 @@ public class NewsHTMLActivity extends BaseActivity implements View.OnClickListen
     JSONObject DATA = null;
 
     private void volley_Get() {
-        String url = Const.SERVICE_URL + Const.NEWSMEDICALHTML + "?newsID=" + newsID;
+        String url = URL + "?newsID=" + newsID;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
@@ -114,4 +124,28 @@ public class NewsHTMLActivity extends BaseActivity implements View.OnClickListen
             return true;
         }
     }
+
+    private void GetUrl() {
+        if (newsType == NEWS_MEDICAL) {
+            URL = Const.SERVICE_URL + Const.NEWSMEDICALHTML;
+            return;
+        }
+        if (newsType == NEWS_LAW) {
+            URL = Const.SERVICE_URL + Const.NEWSLAWHTML;
+            return;
+        }
+        if (newsType == NEWS_INSURANCE) {
+            URL = Const.SERVICE_URL + Const.NEWSINSURANCEHTML;
+            return;
+        }
+        if (newsType == NEWS_COMPENSATION) {
+            URL = Const.SERVICE_URL + Const.NEWSCOMPENSATIONHTML;
+            return;
+        }
+        if (newsType == NEWS_REST) {
+            URL = Const.SERVICE_URL + Const.NEWSRESTHTML;
+            return;
+        }
+    }
+
 }

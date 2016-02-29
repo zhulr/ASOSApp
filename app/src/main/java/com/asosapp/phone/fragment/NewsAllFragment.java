@@ -6,17 +6,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.asosapp.phone.R;
 import com.viewpagerindicator.TabPageIndicator;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by Leo on 2016/2/27.
@@ -79,7 +74,7 @@ public class NewsAllFragment extends Fragment{
             NewsLawFragment lawFragment=new NewsLawFragment();
             NewsCompensationFragment compensationFragment=new NewsCompensationFragment();
             NewsRestFragment restFragment=new NewsRestFragment();
-            NewsSinsuranceFragment sinsuranceFragment=new NewsSinsuranceFragment();
+            NewsInsuranceFragment sinsuranceFragment=new NewsInsuranceFragment();
             switch (position){
                 case 0:
                     return medicalFragment;

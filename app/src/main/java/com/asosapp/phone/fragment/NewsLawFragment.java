@@ -51,6 +51,9 @@ import java.util.Map;
  * 法律
  */
 public class NewsLawFragment extends Fragment implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener {
+
+    private static int NEWS_LAW = 1;
+
     private View view;
     private ImageView newsView;
     private RecyclerView mRecyclerView;
@@ -180,6 +183,7 @@ public class NewsLawFragment extends Fragment implements View.OnClickListener,Sw
                     public void onItemClick(View view, int position) {
                         Intent intent = new Intent(getActivity(), NewsHTMLActivity.class);
                         intent.putExtra("newsID", idList.get(position).toString());
+                        intent.putExtra("newsType",NEWS_LAW);
                         startActivity(intent);
                     }
 

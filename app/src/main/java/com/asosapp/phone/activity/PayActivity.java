@@ -8,9 +8,15 @@ import java.util.Locale;
 import java.util.Random;
 
 import com.alipay.sdk.app.PayTask;
+import com.android.volley.NoConnectionError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.asosapp.phone.R;
 import com.asosapp.phone.alipay.PayResult;
 import com.asosapp.phone.alipay.SignUtils;
+import com.asosapp.phone.initprogram.MyApplication;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -24,6 +30,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class PayActivity extends FragmentActivity {
 	String cardName = "安邦卡";
 	String cardContent = "安邦卡付款";
@@ -31,6 +40,7 @@ public class PayActivity extends FragmentActivity {
 	private TextView nameTV;
 	private TextView contentTV;
 	private TextView priceTV;
+	private String URL = "";
 	// 商户PID
 	public static final String PARTNER = "2088121911919459";
 	// 商户收款账号
@@ -71,6 +81,7 @@ public class PayActivity extends FragmentActivity {
 				// 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
 				if (TextUtils.equals(resultStatus, "9000")) {
 					Toast.makeText(PayActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+					intoInfo();
 				} else {
 					// 判断resultStatus 为非"9000"则代表可能支付失败
 					// "8000"代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
@@ -310,6 +321,12 @@ public class PayActivity extends FragmentActivity {
 	 */
 	private String getSignType() {
 		return "sign_type=\"RSA\"";
+	}
+	/**
+	 * 写入数据库
+	 */
+	private void intoInfo() {
+
 	}
 
 }

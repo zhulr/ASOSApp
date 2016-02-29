@@ -51,6 +51,9 @@ import java.util.Map;
  */
 
 public class NewsMedicalFragment  extends Fragment implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener  {
+
+    private static int NEWS_MEDICAL = 0;
+
     private View view;
     private ImageView newsView;
     private RecyclerView mRecyclerView;
@@ -180,6 +183,7 @@ public class NewsMedicalFragment  extends Fragment implements View.OnClickListen
                     public void onItemClick(View view, int position) {
                         Intent intent = new Intent(getActivity(), NewsHTMLActivity.class);
                         intent.putExtra("newsID", idList.get(position).toString());
+                        intent.putExtra("newsType",NEWS_MEDICAL);
                         startActivity(intent);
                     }
 

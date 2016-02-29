@@ -48,7 +48,10 @@ import java.util.Map;
  * Created by Leo on 2016/2/29.
  * 保险
  */
-public class NewsSinsuranceFragment extends Fragment implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener {
+public class NewsInsuranceFragment extends Fragment implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener {
+
+    private static int NEWS_INSURANCE = 2;
+
     private View view;
     private ImageView newsView;
     private RecyclerView mRecyclerView;
@@ -178,6 +181,7 @@ public class NewsSinsuranceFragment extends Fragment implements View.OnClickList
                     public void onItemClick(View view, int position) {
                         Intent intent = new Intent(getActivity(), NewsHTMLActivity.class);
                         intent.putExtra("newsID", idList.get(position).toString());
+                        intent.putExtra("newsType",NEWS_INSURANCE);
                         startActivity(intent);
                     }
 

@@ -49,6 +49,9 @@ import java.util.Map;
  * 赔偿
  */
 public class NewsCompensationFragment extends Fragment implements View.OnClickListener,SwipeRefreshLayout.OnRefreshListener {
+
+    private static int NEWS_COMPENSATION = 3;
+
     private View view;
     private ImageView newsView;
     private RecyclerView mRecyclerView;
@@ -178,6 +181,7 @@ public class NewsCompensationFragment extends Fragment implements View.OnClickLi
                     public void onItemClick(View view, int position) {
                         Intent intent = new Intent(getActivity(), NewsHTMLActivity.class);
                         intent.putExtra("newsID", idList.get(position).toString());
+                        intent.putExtra("newsType",NEWS_COMPENSATION);
                         startActivity(intent);
                     }
 

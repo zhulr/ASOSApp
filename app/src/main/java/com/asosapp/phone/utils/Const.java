@@ -29,14 +29,8 @@ public class Const {
 	// 注册接口
 	public static final String REGISTER = "/Login/register.php";
 
-	// 新闻接口
-	public static final String NEWS = "/News/newslist.php";
-
 	// 新闻快速浏览接口
 	public static final String NEWSINTRO = "/News/newsintro.php";
-
-	// 新闻详情接口
-	public static final String NEWSHTML = "/News/newshtml.php";
 
 	// 获取版本信息
 	public static final String GETVERSION = "/General/getVersion";
@@ -66,13 +60,13 @@ public class Const {
 	public static final String NEWSLAW = "/News/newslawlist.php";
 
 	// 法律新闻详情接口
-	public static final String NEWLAWHTML = "/News/newslawhtml.php";
+	public static final String NEWSLAWHTML = "/News/newslawhtml.php";
 
 	// 保险新闻接口
 	public static final String NEWSINSURANCE = "/News/newsinsurancelist.php";
 
 	// 保险新闻详情接口
-	public static final String NEWSHTMLINSURANCE = "/News/newsinsurancehtml.php";
+	public static final String NEWSINSURANCEHTML = "/News/newsinsurancehtml.php";
 
 	// 赔偿新闻接口
 	public static final String NEWSCOMPENSATION = "/News/newscompensationlist.php";

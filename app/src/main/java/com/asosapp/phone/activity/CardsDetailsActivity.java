@@ -38,16 +38,12 @@ public class CardsDetailsActivity extends BasicActivity implements View.OnClickL
     private static JSONObject DATA = null;
     String TAG = "CardsDetailsActivity";
     private Button btnBuy;
-    private String HEART = "暖心卡";
-    private String DRIVER = "司机卡";
+    private String BOSS = "司机-安心符";
+    private String DRIVER = "司机-安心符";
     private int price = 0;
     private int totalPrices = 0;
     //布局控件
     private ImageView cardIV;
-    private EditText phoneET;
-    private EditText nameET;
-    private RadioButton manRB;
-    private RadioButton womenRB;
     private TextView cardTypeTV;
     private EditText timeET;
     private TextView pricesTV;
@@ -67,10 +63,6 @@ public class CardsDetailsActivity extends BasicActivity implements View.OnClickL
 
     private void init() {
         cardIV = (ImageView) findViewById(R.id.card_img);
-        phoneET = (EditText) findViewById(R.id.card_buy_phone);
-        nameET = (EditText) findViewById(R.id.card_buy_name);
-        manRB = (RadioButton) findViewById(R.id.card_buy_man);
-        womenRB = (RadioButton) findViewById(R.id.card_buy_woman);
         cardTypeTV = (TextView) findViewById(R.id.card_type);
         timeET = (EditText) findViewById(R.id.card_buy_time);
         pricesTV = (TextView) findViewById(R.id.card_total_prices);
@@ -103,7 +95,6 @@ public class CardsDetailsActivity extends BasicActivity implements View.OnClickL
                 }
             }
         });
-        SetFocusable(phoneET);
     }
 
 
@@ -115,9 +106,9 @@ public class CardsDetailsActivity extends BasicActivity implements View.OnClickL
         String value = intent.getStringExtra("type");
         if (value.equals("HEART")) {
             URL = Const.SERVICE_URL + Const.HEARTCARD;
-            price = 99;
+            price = 999;
             totalPrices = price;
-            cardTypeTV.setText(HEART);
+            cardTypeTV.setText(BOSS);
             cardIV.setImageResource(R.mipmap.heartcard);
             pricesTV.setText(String.valueOf(price));
         } else if (value.equals("DRIVER")) {
@@ -139,7 +130,6 @@ public class CardsDetailsActivity extends BasicActivity implements View.OnClickL
                 break;
             case R.id.buy:
                 //确认购买卡片信息
-                if (verify())
                     dialog("showInfo");
                 break;
         }
@@ -210,94 +200,15 @@ public class CardsDetailsActivity extends BasicActivity implements View.OnClickL
      */
     private void pay() {
         dialog("pay");
-        //用户信息插入欲购买数据库
-//        intoInfo();
-    }
-
-    /**
-     * 写入数据库
-     */
-    private void intoInfo() {
-        String url = null;
-        try {
-            url = URL + "?userPhone=" + phoneET.getText().toString().trim() + "&userName=" +  URLEncoder.encode(nameET.getText().toString().trim(), "UTF-8") + "&buyTime=" + timeET.getText().toString().trim();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject jsonObject) {
-                try {
-                    if (jsonObject.get("CODE").toString().equals("200")) {
-                        toast(jsonObject.get("MESSAGE").toString());
-                        DATA = (JSONObject) jsonObject.get("DATA");
-                    } else if (jsonObject.get("CODE").toString().equals("100")) {
-                        toast(jsonObject.get("MESSAGE").toString());
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                if (volleyError instanceof NoConnectionError) {
-                    toast("网络异常，请检测网络连接。");
-                } else if (volleyError instanceof com.android.volley.TimeoutError) {
-                    toast("网络连接超时，请检测网络连接。");
-                } else {
-                    toast(volleyError.toString());
-                }
-            }
-        });
-        request.setTag(TAG);
-        MyApplication.getHttpQueues().add(request);
-    }
-
-    /**
-     * 用户信息检测
-     * 电话号码  phoneNum
-     */
-    private boolean verify() {
-        getInfo();
-        if (!isLegal(phoneNum)) {
-            toast("请输入正确的手机号");
-            SetFocusable(phoneET);
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * 正则检测
-     */
-    private boolean isLegal( String input) {
-                String regex = "1([\\d]{10})|((\\+[0-9]{2,4})?\\(?[0-9]+\\)?-?)?[0-9]{7,8}";
-                Pattern p = Pattern.compile(regex);
-                return p.matches(regex, input);
     }
 
     /**
      * 获取用户输入信息
      */
     private void getInfo() {
-        phoneNum = phoneET.getText().toString();
-        if (manRB.isChecked()) {
-            sex = "先生";
-        } else {
-            sex = "女士";
-        }
-        name = nameET.getText().toString();
         time = timeET.getText().toString();
     }
 
-    /**
-     * 清空信息并获取控件焦点
-     */
-    private void SetFocusable(EditText view) {
-        view.setText("");
-        view.requestFocus();
-        view.setFocusableInTouchMode(true);
-    }
+
 
 }
