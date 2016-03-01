@@ -61,7 +61,6 @@
             android:textColorHint="@color/chat_detail_item_content_color"
             android:singleLine="true"
             android:textSize="@dimen/text_medium_size"
-            android:numeric="integer"
             android:textColor="@color/black" >
 
             <requestFocus />

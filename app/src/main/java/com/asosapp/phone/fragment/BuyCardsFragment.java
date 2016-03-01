@@ -34,7 +34,7 @@ public class BuyCardsFragment extends Fragment implements View.OnClickListener {
 
     String TAG = "BuyCardsFragment";
     private View view;
-    private ImageView heartCard;
+    private ImageView bossCard;
     private ImageView driverCard;
     private TextView titleName;
 
@@ -49,20 +49,20 @@ public class BuyCardsFragment extends Fragment implements View.OnClickListener {
     private void init() {
         titleName = (TextView) view.findViewById(R.id.title_name);
         titleName.setText(R.string.cards);
-        heartCard = (ImageView) view.findViewById(R.id.iv_card1);
-        heartCard.setOnClickListener(this);
-        driverCard = (ImageView) view.findViewById(R.id.iv_card2);
+        driverCard = (ImageView) view.findViewById(R.id.iv_card1);
         driverCard.setOnClickListener(this);
+        bossCard = (ImageView) view.findViewById(R.id.iv_card2);
+        bossCard.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_card1:
-                intent("HEART");
+                intent("DRIVER");
                 break;
             case R.id.iv_card2:
-                intent("DRIVER");
+                intent("BOSS");
                 break;
         }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -11,147 +11,21 @@
         android:paddingTop="10dp"
         android:scrollbars="vertical">
 
-        <LinearLayout
+        <WebView
+            android:id="@+id/card_details_html"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/card_img"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:src="@mipmap/heartcard" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:text="@string/card_buy_title"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp">
-
-                <TableRow
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:text="卡片类型"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:id="@+id/card_type"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:text="暖心卡"
-                        android:textColor="@color/btn_color_login"
-                        android:textSize="16sp" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:text="请输入卡片张数"
-                        android:textColor="@color/black" />
-
-                    <EditText
-                        android:id="@+id/card_buy_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="4"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:maxLength="3"
-                        android:maxLines="1"
-                        android:text="1" />
-
-
-                </TableRow>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/card_buy_time_hint"
-                    android:textColor="@color/text_color_qianhui_a3a4a4"
-                    android:textSize="12sp" />
-
-                <TableRow
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:text="总价（人民币）"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:id="@+id/card_total_prices"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:text="0"
-                        android:textColor="@color/btn_color_login"
-                        android:textSize="18sp" />
-
-                </TableRow>
-            </TableLayout>
-
-            <LinearLayout
-                android:id="@+id/service_call"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/phone" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="400-608-6655"
-                    android:textColor="@color/btn_color_login"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/buy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/btn_color_login"
-                android:text="购买"
-                android:textColor="@color/white" />
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="60dp" />
-        </LinearLayout>
+            android:layout_height="match_parent"></WebView>
 
     </ScrollView>
-</LinearLayout>
+
+    <Button
+        android:id="@+id/buy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/btn_color_login"
+        android:text="购买"
+        android:textColor="@color/white" />
+</RelativeLayout>

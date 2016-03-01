@@ -35,11 +35,11 @@ public class Const {
 	// 获取版本信息
 	public static final String GETVERSION = "/General/getVersion";
 
-	//暖心卡购买预约信息录入接口
-	public static final String HEARTCARD = "/Card/addcard.php";
+	//BOSS卡购买信息录入接口
+	public static final String BOSSCARD = "/Card/addbosscard.php";
 
-	//司机卡购买预约信息录入接口
-	public static final String DRIVERCARD = "/Card/adddriver.php";
+	//司机卡购买信息录入接口
+	public static final String DRIVERCARD = "/Card/adddrivercard.php";
 
 	//查询是否购暖心卡接口
 	public static final String SEARCHCARD = "/Card/searchcard.php";

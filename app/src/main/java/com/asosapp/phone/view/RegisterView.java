@@ -18,6 +18,9 @@ import com.asosapp.phone.R;
 import com.asosapp.phone.activity.LoginNewActivity;
 import com.asosapp.phone.activity.RegisterNewActivity;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import cn.smssdk.SMSSDK;
 
 
@@ -129,7 +132,12 @@ public class RegisterView extends LinearLayout {
         return mSurePsw.getText().toString().trim();
     }
     public String getUserName() {
-        return mName.getText().toString().trim();
+        try {
+            return URLEncoder.encode(mName.getText().toString().trim(), "UTF-8") ;
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return "安邦医疗救援";
     }
     public String getUserAge() {
         return mAge.getText().toString().trim();
@@ -138,7 +146,12 @@ public class RegisterView extends LinearLayout {
         return mCode.getText().toString().trim();
     }
     public String getSexy() {
-        return mSexy.getText().toString().trim();
+        try {
+            return URLEncoder.encode(mSexy.getText().toString().trim(), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return "男";
     }
 
 
