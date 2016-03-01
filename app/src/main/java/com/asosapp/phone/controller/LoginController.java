@@ -84,7 +84,6 @@ public class LoginController implements LoginView.Listener, OnClickListener,
                             long userId = JMessageClient.getMyInfo().getUserID();
                             String name = JMessageClient.getMyInfo().getUserName();
                             volley_Get();
-                            mContext.startMainActivity();
                         } else {
                             Log.i("LoginController", "status = " + status);
                             HandleResponseCode.onHandle(mContext, status, false);
@@ -168,7 +167,7 @@ public class LoginController implements LoginView.Listener, OnClickListener,
                         editor.putBoolean("isLogin", true);
                         editor.putBoolean("is_push", true);
                         editor.commit();//提交修改
-                        Log.e("Leo",DATA.toString());
+                        mContext.startMainActivity();
                     } else if (jsonObject.get("CODE").toString().equals("100")) {
                         ToastView.toast(mContext, jsonObject.get("MESSAGE").toString());
                     }

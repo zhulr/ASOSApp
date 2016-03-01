@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -42,6 +45,7 @@ public class CardsDetailsActivity extends BasicActivity implements View.OnClickL
     String value = "";
     //布局控件
     private String servicePhoeNum = "4006086655";
+    private WebView cardDetailsHtml;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +59,18 @@ public class CardsDetailsActivity extends BasicActivity implements View.OnClickL
     private void init() {
         btnBuy = (Button) findViewById(R.id.buy);
         btnBuy.setOnClickListener(this);
-
+        cardDetailsHtml = (WebView) findViewById(R.id.card_details_html);
+        WebSettings webSettings = cardDetailsHtml.getSettings();
+        //设置WebView属性，能够执行Javascript脚本
+        webSettings.setJavaScriptEnabled(true);
+        //设置可以访问文件
+        webSettings.setAllowFileAccess(true);
+        //设置支持缩放
+        webSettings.setBuiltInZoomControls(true);
+        //设置Web视图
+        cardDetailsHtml.setWebViewClient(new webViewClient());
+        //获取url地址
+        cardDetailsHtml.loadUrl("http://www.baidu.com");
     }
 
 
@@ -118,13 +133,21 @@ public class CardsDetailsActivity extends BasicActivity implements View.OnClickL
     /**
      * 点击拨打客服电话
      */
-
     private void callServicePhone() {
         Intent intent = new Intent(Intent.ACTION_CALL);
         Uri data = Uri.parse("tel:" + servicePhoeNum);
         intent.setData(data);
         startActivity(intent);
     }
+
+    //Web视图
+    private class webViewClient extends WebViewClient {
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
+    }
+
 
     /**
      * 支付宝购买卡片

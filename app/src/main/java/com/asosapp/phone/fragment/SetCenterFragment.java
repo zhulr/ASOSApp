@@ -18,6 +18,7 @@ import com.asosapp.phone.R;
 import com.asosapp.phone.activity.CardsDetailsActivity;
 import com.asosapp.phone.activity.CouponActivity;
 import com.asosapp.phone.activity.LoginNewActivity;
+import com.asosapp.phone.activity.MainActivity;
 import com.asosapp.phone.activity.MyQRActivity;
 import com.asosapp.phone.activity.PersonInformationActivity;
 import com.asosapp.phone.activity.SetActivity;
@@ -59,6 +60,7 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
         is_push = sharedPreferences.getBoolean("is_push", true);
         view = inflater.inflate(R.layout.fragment_set_center, container, false);
         init();
+        initData();
         return view;
     }
 
@@ -79,9 +81,6 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
         setView = view.findViewById(R.id.view_set);
         outLogView = view.findViewById(R.id.view_out_login);
         isPush = (ToggleButton) view.findViewById(R.id.ispush);
-
-        titleName.setText(R.string.mine);
-
         userName.setOnClickListener(this);
         userHead.setOnClickListener(this);
         isVIP.setOnClickListener(this);
@@ -111,6 +110,12 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
         });
     }
 
+    private void initData() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserInfo", 1);
+        titleName.setText(R.string.mine);
+        userName.setText(sharedPreferences.getString("user_name","安邦医疗救援"));
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -127,7 +132,7 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
             case R.id.view_account:
                 break;
             case R.id.view_my_asos:
-                Toast.makeText(getActivity(), "测试版无法进入！请下载正式版", Toast.LENGTH_SHORT);
+                Toast.makeText(getActivity(), "测试版无法进入！请下载正式版", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.view_my_coupon:
                 intent(4);
@@ -143,6 +148,7 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
                 break;
             case R.id.view_out_login:
                 UserInfo.instance().logOut(getActivity());
+                intent(99);
                 Toast.makeText(getActivity(), "已退出登录", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.user_name:
@@ -180,6 +186,10 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
             case 5:
                 break;
             case 6:
+                break;
+            case 99:
+                intent.setClass(getActivity(), MainActivity.class);
+                startActivity(intent);
                 break;
         }
 

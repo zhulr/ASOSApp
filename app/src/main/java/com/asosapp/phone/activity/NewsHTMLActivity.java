@@ -65,7 +65,6 @@ public class NewsHTMLActivity extends BaseActivity implements View.OnClickListen
         newsHTML.setWebViewClient(new webViewClient());
         backBtn = (ImageView) findViewById(R.id.back);
         backBtn.setOnClickListener(this);
-        //获取url地址
     }
 
     @Override
