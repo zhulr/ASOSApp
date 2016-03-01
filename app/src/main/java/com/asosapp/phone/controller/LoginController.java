@@ -42,7 +42,6 @@ public class LoginController implements LoginView.Listener, OnClickListener,
     private LoginView mLoginView;
     private LoginNewActivity mContext;
 
-
     public LoginController(LoginView mLoginView, LoginNewActivity context) {
         this.mLoginView = mLoginView;
         this.mContext = context;
@@ -65,10 +64,8 @@ public class LoginController implements LoginView.Listener, OnClickListener,
                                 InputMethodManager.HIDE_NOT_ALWAYS);
                     }
                 }
-
                 final String userId = mLoginView.getUserId();
                 final String password = mLoginView.getPassword();
-
                 if (userId.equals("")) {
                     mLoginView.userNameError(mContext);
                     break;
@@ -86,15 +83,8 @@ public class LoginController implements LoginView.Listener, OnClickListener,
                         if (status == 0) {
                             long userId = JMessageClient.getMyInfo().getUserID();
                             String name = JMessageClient.getMyInfo().getUserName();
-//                            SharedPreferences sharedPreferences = mContext.getSharedPreferences("UserInfo", 1); //私有数据
-//                            SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
-//                            editor.putString("user_id", name);
-//                            editor.putBoolean("isLogin", true);
-//                            editor.commit();//提交修改
                             volley_Get();
                             mContext.startMainActivity();
-
-
                         } else {
                             Log.i("LoginController", "status = " + status);
                             HandleResponseCode.onHandle(mContext, status, false);
@@ -166,8 +156,6 @@ public class LoginController implements LoginView.Listener, OnClickListener,
             public void onResponse(JSONObject jsonObject) {
                 try {
                     if (jsonObject.get("CODE").toString().equals("200")) {
-
-
                         DATA=jsonObject.getJSONObject("DATA");
                         SharedPreferences sharedPreferences = mContext.getSharedPreferences("UserInfo", 1); //私有数据
                         SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器

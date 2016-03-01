@@ -3,6 +3,7 @@ package com.asosapp.phone.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -21,6 +22,7 @@ import com.asosapp.phone.R;
 import com.asosapp.phone.fragment.BuyCardsFragment;
 import com.asosapp.phone.fragment.NewsAllFragment;
 import com.asosapp.phone.fragment.OnlineConsultFragment;
+import com.asosapp.phone.fragment.OutLoginFragment;
 import com.asosapp.phone.fragment.SetCenterFragment;
 import com.asosapp.phone.view.NoScrollViewPager;
 
@@ -80,14 +82,20 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
 
     private void initDatas() {
+        SharedPreferences sharedPreferences = this.getSharedPreferences("UserInfo", 0);
         NewsAllFragment newsFragment = new NewsAllFragment();
         OnlineConsultFragment onlineConsultFragment = new OnlineConsultFragment();
         BuyCardsFragment buyCardsFragment = new BuyCardsFragment();
         SetCenterFragment setCenterFragment = new SetCenterFragment();
+        OutLoginFragment outLoginFragment = new OutLoginFragment();
         mDatas.add(newsFragment);
         mDatas.add(onlineConsultFragment);
         mDatas.add(buyCardsFragment);
-        mDatas.add(setCenterFragment);
+        if (sharedPreferences.getBoolean("isLogin", false)) {
+            mDatas.add(setCenterFragment);
+        } else {
+            mDatas.add(outLoginFragment);
+        }
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {

@@ -17,6 +17,7 @@ import android.widget.ToggleButton;
 import com.asosapp.phone.R;
 import com.asosapp.phone.activity.CardsDetailsActivity;
 import com.asosapp.phone.activity.CouponActivity;
+import com.asosapp.phone.activity.LoginNewActivity;
 import com.asosapp.phone.activity.MyQRActivity;
 import com.asosapp.phone.activity.PersonInformationActivity;
 import com.asosapp.phone.activity.SetActivity;
@@ -54,12 +55,13 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_set_center, container, false);
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userInfo", 0);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserInfo", 0);
         is_push = sharedPreferences.getBoolean("is_push", true);
+        view = inflater.inflate(R.layout.fragment_set_center, container, false);
         init();
         return view;
     }
+
 
     private void init() {
         titleName = (TextView) view.findViewById(R.id.title_name);
@@ -125,7 +127,7 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
             case R.id.view_account:
                 break;
             case R.id.view_my_asos:
-                Toast.makeText(getActivity(),"测试版无法进入！请下载正式版",Toast.LENGTH_SHORT);
+                Toast.makeText(getActivity(), "测试版无法进入！请下载正式版", Toast.LENGTH_SHORT);
                 break;
             case R.id.view_my_coupon:
                 intent(4);
