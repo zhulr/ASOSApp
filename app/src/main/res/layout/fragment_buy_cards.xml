@@ -21,12 +21,56 @@
                     android:id="@+id/iv_card1"
                     android:layout_width="200dp"
                     android:layout_height="120dp"
-                    android:background="@mipmap/heartcard" />
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/drivercard" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:text="安邦救援卡：司机-安心符\t\t价格：199元"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#d0d0d0"/>
                 <ImageView
                     android:id="@+id/iv_card2"
                     android:layout_width="200dp"
                     android:layout_height="120dp"
-                    android:src="@mipmap/drivercard" />
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/bosscard" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:text="安邦救援卡：Boss-护身符\t\t价格：999元"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#d0d0d0"/>
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/newcard" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:text="安邦救援卡：即将推出"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#d0d0d0"/>
         </LinearLayout>
     </ScrollView>
 

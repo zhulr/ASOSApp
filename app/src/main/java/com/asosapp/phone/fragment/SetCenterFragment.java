@@ -132,7 +132,7 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
             case R.id.view_account:
                 break;
             case R.id.view_my_asos:
-                Toast.makeText(getActivity(), "测试版无法进入！请下载正式版", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "功能临时关闭", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.view_my_coupon:
                 intent(4);
@@ -180,8 +180,9 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
                 startActivity(intent);
                 break;
             case 4:
-                intent.setClass(getActivity(), CouponActivity.class);
-                startActivity(intent);
+                Toast.makeText(getActivity(),"功能临时关闭请谅解！",Toast.LENGTH_SHORT).show();
+//                intent.setClass(getActivity(), CouponActivity.class);
+//                startActivity(intent);
                 break;
             case 5:
                 break;

@@ -61,10 +61,10 @@ public class PersonInformationActivity extends Activity implements View.OnClickL
     }
 
     private void onclickListen() {
-        back_btn.setOnClickListener(this);
-        sexy_layout.setOnClickListener(this);
-        age_layout.setOnClickListener(this);
-        name_layout.setOnClickListener(this);
+//        back_btn.setOnClickListener(this);
+//        sexy_layout.setOnClickListener(this);
+//        age_layout.setOnClickListener(this);
+//        name_layout.setOnClickListener(this);
     }
 
     @Override

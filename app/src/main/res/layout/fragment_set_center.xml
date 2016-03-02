@@ -191,6 +191,7 @@
                 android:paddingLeft="10dp">
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/view_my_asos"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -230,7 +231,7 @@
                         android:drawableLeft="@mipmap/personalicon_04"
                         android:drawablePadding="20dp"
                         android:gravity="center"
-                        android:text="我的优惠券"
+                        android:text="我的卡券"
                         android:textSize="16sp" />
 
                 </LinearLayout>

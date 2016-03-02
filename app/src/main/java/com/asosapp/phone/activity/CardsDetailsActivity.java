@@ -51,6 +51,8 @@ public class CardsDetailsActivity extends BasicActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_details);
+        Intent intent = getIntent();
+        value = intent.getStringExtra("type");
         init();
         loading();
     }
@@ -70,7 +72,12 @@ public class CardsDetailsActivity extends BasicActivity implements View.OnClickL
         //设置Web视图
         cardDetailsHtml.setWebViewClient(new webViewClient());
         //获取url地址
-        cardDetailsHtml.loadUrl("http://www.baidu.com");
+
+        if (value.equals("DRIVER")) {
+            cardDetailsHtml.loadUrl("http://223.68.152.158:65500/Home/Card/Home.html");
+        } else if (value.equals("BOSS")) {
+            cardDetailsHtml.loadUrl("http://223.68.152.158:65500/Home/Card/home-2.html");
+        }
     }
 
 
@@ -78,8 +85,6 @@ public class CardsDetailsActivity extends BasicActivity implements View.OnClickL
      * 数据载入
      */
     private void loading() {
-        Intent intent = getIntent();
-        value = intent.getStringExtra("type");
         if (value.equals("BOSS")) {
             cardName = "Boss-护身符";
             price = 999;

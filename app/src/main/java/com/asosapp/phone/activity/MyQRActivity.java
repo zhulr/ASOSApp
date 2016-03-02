@@ -36,7 +36,7 @@ public class MyQRActivity extends BasicActivity {
         myQR = (ImageView) findViewById(R.id.my_qr);
         myCode = (TextView) findViewById(R.id.my_code);
         titleName.setText(R.string.invite);
-        createQRImage("http://www.baidu.com");
+        createQRImage("http://223.68.152.158:65500/Home/APP/AsosAPP_V1.1.apk");
     }
 
     public void createQRImage(String url) {

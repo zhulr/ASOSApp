@@ -29,6 +29,7 @@ public class SetActivity extends BasicActivity implements View.OnClickListener {
     private TextView titleName;
     private View aboutView;
     private View cleanView;
+    private View updateView;
     private Intent intent;
     private TextView versionName;
     private TextView change_psw;
@@ -44,11 +45,13 @@ public class SetActivity extends BasicActivity implements View.OnClickListener {
     private void init() {
         aboutView = findViewById(R.id.aboutLL);
         cleanView = findViewById(R.id.clean);
+        updateView = findViewById(R.id.update);
         change_psw = (TextView) findViewById(R.id.change_psw);
         change_psw.setOnClickListener(this);
         versionName = (TextView) findViewById(R.id.version_name);
         aboutView.setOnClickListener(this);
         cleanView.setOnClickListener(this);
+        updateView.setOnClickListener(this);
         titleName = (TextView) findViewById(R.id.title_name);
         titleName.setText(R.string.set);
         versionName.setText(getVersionName());
@@ -70,10 +73,12 @@ public class SetActivity extends BasicActivity implements View.OnClickListener {
                 Dialog dialog =createResetPwdDialog();
                 dialog.show();
                 break;
+            case R.id.update:
+                toast("已经是最新版！");
+                break;
 
         }
     }
-
 
     private String getVersionName() {
         PackageManager manager = this.getPackageManager();
