@@ -37,6 +37,7 @@ public class SetActivity extends BasicActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set);
+        intent=new Intent();
         init();
     }
 
@@ -66,7 +67,6 @@ public class SetActivity extends BasicActivity implements View.OnClickListener {
                 toast("缓存已清理");
                 break;
             case R.id.change_psw:
-                ToastView.toast(this, "点击成功");
                 Dialog dialog =createResetPwdDialog();
                 dialog.show();
                 break;

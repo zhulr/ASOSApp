@@ -235,11 +235,11 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
     };
 
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-
-        return imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
-    }
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//
+////        return imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+//    }
 
 
     @Override

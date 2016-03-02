@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -54,6 +55,8 @@ public class PersonInformationActivity extends Activity implements View.OnClickL
         sexy.setText(sp.getString("user_sexy", null));
         age.setText(sp.getString("user_age", null));
         name.setText(sp.getString("user_name",null));
+        Log.e("Leo-->",sp.getString("user_name",null));
+        Log.e("Leo-->sexy",sp.getString("user_sexy",null));
         onclickListen();//点击事件
     }
 

@@ -42,7 +42,7 @@ public class NameChangeActivity extends Activity implements View.OnClickListener
     public void onClick(View v) {
         String result=name_edit.getText().toString();
         switch (v.getId()){
-            case R.id.keep:
+            case R.id.name_keep:
                 if (result.equals("")){
                     Toast.makeText(this, "请输入姓名", Toast.LENGTH_SHORT).show();
                 }else{

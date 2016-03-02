@@ -3,6 +3,8 @@ package com.asosapp.phone.controller;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,6 +32,8 @@ import com.asosapp.phone.view.ToastView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,6 +54,7 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
     private String userName;
     private String userAge;
     private String code;
+    private int i = 30;
     private String userSexy;
 
     public RegisterController(RegisterView registerView, RegisterNewActivity context) {
@@ -57,6 +62,7 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
         this.mContext = context;
 
     }
+
 
     @Override
     public void onClick(View v) {
@@ -66,63 +72,35 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                 Log.i("Tag", "[register]register event execute!");
                 userId = mRegisterView.getUserId();
                 password = mRegisterView.getPassword();
-                passwordsure=mRegisterView.getPasswordSure();
-                userName=mRegisterView.getUserName();
-                userAge=mRegisterView.getUserAge();
-                code=mRegisterView.getCode();
-                userSexy=mRegisterView.getSexy();
+                passwordsure = mRegisterView.getPasswordSure();
+                userName = mRegisterView.getUserName();
+                userAge = mRegisterView.getUserAge();
+                code = mRegisterView.getCode();
+                userSexy = mRegisterView.getSexy();
 
-                if (isMobileNO(userId)==false){
+                if (isMobileNO(userId) == false) {
                     mRegisterView.isMobileError(mContext);
                     break;
                 }
                 if (userId.equals("")) {
                     mRegisterView.userNameError(mContext);
                     break;
-                } else if (password.equals("")||passwordsure.equals("")) {
+                } else if (password.equals("") || passwordsure.equals("")) {
                     mRegisterView.passwordError(mContext);
                     break;
                 } else if (password.length() > 128 || password.length() < 4) {
                     mRegisterView.passwordLengthError(mContext);
                     break;
-                }else if(userName.equals("")||userAge.equals("")||userSexy.equals("")||code.equals("")){
+                } else if (userName.equals("") || userAge.equals("") || userSexy.equals("") || code.equals("")) {
                     mRegisterView.Error(mContext);
                     break;
-                }else if (!password.equals(passwordsure)) {
+                } else if (!password.equals(passwordsure)) {
                     mRegisterView.passwordSureError(mContext);
                     break;
                 }
+//                gethandler();
 
 
-                final Dialog dialog = DialogCreator.createLoadingDialog(mContext, mContext.getString(R.string.registering_hint));
-                dialog.show();
-                JMessageClient.register(userId, password, new BasicCallback() {
-                    @Override
-                    public void gotResult(final int status, final String desc) {
-                        dialog.dismiss();
-                        if (status == 0) {
-
-                            LoginDialog loginDialog = new LoginDialog();
-                            mLoginDialog = loginDialog.createLoadingDialog(mContext);
-                            mLoginDialog.show();
-                            JMessageClient.login(userId, password, new BasicCallback() {
-                                @Override
-                                public void gotResult(final int status, String desc) {
-                                    if (status == 0) {
-                                        volley_Get();//上传到本地数据库
-
-                                        mContext.onRegistSuccess();
-                                    } else {
-                                        mLoginDialog.dismiss();
-                                        HandleResponseCode.onHandle(mContext, status, false);
-                                    }
-                                }
-                            });
-                        } else {
-                            HandleResponseCode.onHandle(mContext, status, false);
-                        }
-                    }
-                });
                 break;
             case R.id.return_btn:
                 mContext.finish();
@@ -131,17 +109,97 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                 showSexDialog();
                 break;
             case R.id.code_button:
-                if (mRegisterView.getUserId().equals("")){
+                if (mRegisterView.getUserId().equals("")) {
                     mRegisterView.userNameError(mContext);
                     break;
-                }else {
-                    mRegisterView.smsCode();//获取验证码
+                } else {
+                    smsCode();//获取验证码
 
 
                 }
                 break;
         }
     }
+/**
+ * 短信验证
+ *
+ */
+    private void smsCode() {
+        SMSSDK.getVerificationCode("86", mRegisterView.getUserId());
+        Toast.makeText(mContext, "获取成功", Toast.LENGTH_SHORT).show();
+        mRegisterView.setcode_button().setClickable(false);
+        mRegisterView.setcode_button().setText("重新发送(" + i-- + ")");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 30; i > 0; i--) {
+                    handler.sendEmptyMessage(-9);
+                    if (i <= 0) {
+                        i = 30;
+                        break;
+                    }
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                i = 30;
+                handler.sendEmptyMessage(-8);
+            }
+        }).start();
+    }
+
+    /**
+     * 判断验证码
+     */
+    public void gethandler() {
+        EventHandler eh = new EventHandler() {
+            @Override
+            public void afterEvent(int event, int result, Object data) {
+                Message msg = new Message();
+                msg.arg1 = event;
+                msg.arg2 = result;
+                msg.obj = data;
+                handler.sendMessage(msg);
+            }
+
+        };
+        SMSSDK.registerEventHandler(eh);
+    }
+    Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            if (msg.what == -9) {
+                mRegisterView.setcode_button().setText("重新发送(" + i-- + ")");
+            } else if (msg.what == -8) {
+                mRegisterView.setcode_button().setText("获取验证码");
+                mRegisterView.setcode_button().setClickable(true);
+            } else {
+                int event = msg.arg1;
+                int result = msg.arg2;
+                Object data = msg.obj;
+                Log.e("event", "event=" + event);
+                if (result == SMSSDK.RESULT_COMPLETE) {
+                    // 短信注册成功后，返回MainActivity,然后提示新好友
+                    if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {// 提交验证码成功
+                        Toast.makeText(mContext, "提交验证码成功",
+                                Toast.LENGTH_SHORT).show();
+                        //调用极光验证，写入数据库
+                        successRegister();
+
+                    } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
+                        Toast.makeText(mContext, "验证码已经发送",
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        ((Throwable) data).printStackTrace();
+                    }
+                } else {
+                    ((Throwable) data).printStackTrace();
+                    Toast.makeText(mContext, "验证码错误", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    };
 
     /**
      * get请求
@@ -150,15 +208,16 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
      */
     JSONObject DATA = null;
 
-    private void volley_Get() {
-        String url = Const.SERVICE_URL + Const.REGISTER + "?userPhone=" + userId+"&userName="+userName+"&userPassword="+password+"&userAge="+userAge+"&userSex="+userSexy;
+    private void volley_Get() throws UnsupportedEncodingException {
+
+        String url = Const.SERVICE_URL + Const.REGISTER + "?userPhone=" + userId + "&userName=" + userName + "&userPassword=" + password + "&userAge=" + userAge + "&userSex=" + userSexy;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 try {
                     if (jsonObject.get("CODE").toString().equals("200")) {
                         DATA = (JSONObject) jsonObject.get("DATA");
-                        Log.e("Leo",DATA.toString());
+                        Log.e("Leo", DATA.toString());
                     } else if (jsonObject.get("CODE").toString().equals("100")) {
                         ToastView.toast(mContext, jsonObject.get("MESSAGE").toString());
                     }
@@ -181,7 +240,6 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
         request.setTag(TAG);
         MyApplication.getHttpQueues().add(request);
     }
-
 
 
     public void dismissDialog() {
@@ -215,6 +273,7 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
         if (TextUtils.isEmpty(mobiles)) return false;
         else return mobiles.matches(telRegex);
     }
+
     /**
      * 性别选择器
      */
@@ -255,5 +314,40 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
     }
 
 
+
+private void successRegister(){
+    final Dialog dialog = DialogCreator.createLoadingDialog(mContext, mContext.getString(R.string.registering_hint));
+    dialog.show();
+    JMessageClient.register(userId, password, new BasicCallback() {
+        @Override
+        public void gotResult(final int status, final String desc) {
+            dialog.dismiss();
+            if (status == 0) {
+
+                LoginDialog loginDialog = new LoginDialog();
+                mLoginDialog = loginDialog.createLoadingDialog(mContext);
+                mLoginDialog.show();
+                JMessageClient.login(userId, password, new BasicCallback() {
+                    @Override
+                    public void gotResult(final int status, String desc) {
+                        if (status == 0) {
+                            try {
+                                volley_Get();//上传到本地数据库
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
+                            mContext.onRegistSuccess();
+                        } else {
+                            mLoginDialog.dismiss();
+                            HandleResponseCode.onHandle(mContext, status, false);
+                        }
+                    }
+                });
+            } else {
+                HandleResponseCode.onHandle(mContext, status, false);
+            }
+        }
+    });
+}
 
 }

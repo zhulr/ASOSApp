@@ -38,7 +38,6 @@ public class RegisterView extends LinearLayout {
     private EditText mAge;
     private EditText mCode;
     private TextView code_button;
-    private int i=30;
 
 
     public RegisterView(Context context, AttributeSet attrs) {
@@ -62,65 +61,10 @@ public class RegisterView extends LinearLayout {
         mUserId.requestFocus();
     }
 
-    /**
-     * 短信验证码
-     */
-    public void smsCode() {
-        SMSSDK.getVerificationCode("86", mUserId.getText().toString());
-        Toast.makeText(mContext,"获取成功",Toast.LENGTH_SHORT).show();
-        code_button.setClickable(false);
-        code_button.setText("重新发送(" + i-- + ")");
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 30; i > 0; i--) {
-                    handler.sendEmptyMessage(-9);
-                    if (i <= 0) {
-                        i=30;
-                        break;
-                    }
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                handler.sendEmptyMessage(-8);
-            }
-        }).start();
-    }
 
-    Handler handler = new Handler() {
-        public void handleMessage(Message msg) {
-            if (msg.what == -9) {
-                code_button.setText("重新发送(" + i-- + ")");
-            } else if (msg.what == -8) {
-                code_button.setText("获取验证码");
-                code_button.setClickable(true);
-            } else {
-                int event = msg.arg1;
-                int result = msg.arg2;
-                Object data = msg.obj;
-                Log.e("event", "event=" + event);
-                if (result == SMSSDK.RESULT_COMPLETE) {
-                    // 短信注册成功后，返回MainActivity,然后提示新好友
-                    if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {// 提交验证码成功
-                        Toast.makeText(mContext, "提交验证码成功",
-                                Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(mContext,
-                                LoginNewActivity.class);
-                        mContext.startActivity(intent);
-                    } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
-                        Toast.makeText(mContext, "验证码已经发送",
-                                Toast.LENGTH_SHORT).show();
-                    } else {
-                        ((Throwable) data).printStackTrace();
-                    }
-                }
-            }
-        }
-    };
-
+public TextView setcode_button(){
+    return code_button;
+}
     public String getUserId() {
         return mUserId.getText().toString().trim();
     }
