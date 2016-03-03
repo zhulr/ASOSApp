@@ -7,6 +7,14 @@
         android:id="@+id/card_recyclerView"
         android:background="@color/white"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="match_parent" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="敬请期待"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:layout_gravity="center"/>
 
 </LinearLayout>
