@@ -37,7 +37,7 @@ public class CouponFragment extends Fragment {
         card_recyclerView= (RecyclerView) view.findViewById(R.id.card_recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         card_recyclerView.setLayoutManager(linearLayoutManager);
-        for (int i=0;i<10;i++){
+        for (int i=0;i<1;i++){
             mData.add(i+"");
         }
         mAdapter=new CouponAdapter(getActivity(),mData);

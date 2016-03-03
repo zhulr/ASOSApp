@@ -180,9 +180,9 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
                 startActivity(intent);
                 break;
             case 4:
-                Toast.makeText(getActivity(),"功能临时关闭请谅解！",Toast.LENGTH_SHORT).show();
-//                intent.setClass(getActivity(), CouponActivity.class);
-//                startActivity(intent);
+//                Toast.makeText(getActivity(),"功能临时关闭请谅解！",Toast.LENGTH_SHORT).show();
+                intent.setClass(getActivity(), CouponActivity.class);
+                startActivity(intent);
                 break;
             case 5:
                 break;

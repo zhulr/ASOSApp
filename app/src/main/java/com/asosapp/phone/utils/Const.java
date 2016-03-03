@@ -41,7 +41,7 @@ public class Const {
 	//司机卡购买信息录入接口
 	public static final String DRIVERCARD = "/Card/adddrivercard.php";
 
-	//查询是否购暖心卡接口
+	//查询是否购卡接口
 	public static final String SEARCHCARD = "/Card/searchcard.php";
 
 	//查询是否购司机卡接口
@@ -79,5 +79,6 @@ public class Const {
 
 	// 其他新闻详情接口
 	public static final String NEWSRESTHTML = "/News/newsresthtml.php";
+
 
 }

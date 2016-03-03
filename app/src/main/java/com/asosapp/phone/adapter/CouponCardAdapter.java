@@ -2,9 +2,11 @@ package com.asosapp.phone.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.asosapp.phone.R;
@@ -18,6 +20,8 @@ public class CouponCardAdapter extends RecyclerView.Adapter<ViewHolderc> {
     private LayoutInflater mInfalater;
     private Context context;
     private List<String> mDatas;
+    private String CARD_A="A";
+    private String CARD_B="B";
 
     public CouponCardAdapter(Context context,List<String> mDatas) {
         this.context = context;
@@ -33,7 +37,15 @@ public class CouponCardAdapter extends RecyclerView.Adapter<ViewHolderc> {
 
     @Override
     public void onBindViewHolder(ViewHolderc holder, int position) {
-//        holder.tv_card_name1.setText("");
+
+
+            if (mDatas.get(position).toString().equals(CARD_A)){
+                holder.tv_card1.setVisibility(View.VISIBLE);
+            }
+            if (mDatas.get(position).toString().equals(CARD_B)){
+                holder.tv_card2.setVisibility(View.VISIBLE);
+            }
+
     }
 
     @Override
@@ -42,10 +54,12 @@ public class CouponCardAdapter extends RecyclerView.Adapter<ViewHolderc> {
     }
 }
 class ViewHolderc extends RecyclerView.ViewHolder {
-    TextView tv_card_name1;
+    ImageView tv_card1;
+    ImageView tv_card2;
 
     public ViewHolderc (View itemView) {
         super(itemView);
-        tv_card_name1 = (TextView) itemView.findViewById(R.id.tv_card_name1);
+        tv_card1 = (ImageView) itemView.findViewById(R.id.card1);
+        tv_card2 = (ImageView) itemView.findViewById(R.id.card2);
     }
 }

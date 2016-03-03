@@ -70,7 +70,9 @@ public class NewsHTMLActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back:
-                onBackPressed();
+//                onBackPressed();
+                finish();
+                break;
         }
     }
 
