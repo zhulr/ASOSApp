@@ -150,46 +150,47 @@ public class LoginController implements LoginView.Listener, OnClickListener,
     JSONObject DATA = null;
 
     private void volley_Get() {
-        String url = Const.SERVICE_URL + Const.LOGIN + "?userPhone=" + mLoginView.getUserId();
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject jsonObject) {
-                try {
-                    if (jsonObject.get("CODE").toString().equals("200")) {
-                        DATA=jsonObject.getJSONObject("DATA");
-                        SharedPreferences sharedPreferences = mContext.getSharedPreferences("UserInfo", 1); //私有数据
-                        SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
-                        editor.putString("user_id", mLoginView.getUserId());
+
+            String url = Const.SERVICE_URL + Const.LOGIN + "?userPhone=" + mLoginView.getUserId();
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject jsonObject) {
+                    try {
+                        if (jsonObject.get("CODE").toString().equals("200")) {
+                            DATA = jsonObject.getJSONObject("DATA");
+                            SharedPreferences sharedPreferences = mContext.getSharedPreferences("UserInfo", 1); //私有数据
+                            SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
+                            editor.putString("user_id", mLoginView.getUserId());
 //                        editor.putString("user_psw", DATA.getString("USER_PASSWORD"));
-                        editor.putString("user_phone", DATA.getString("USER_PHONE"));
-                        editor.putString("user_name", DATA.getString("USER_NAME"));
-                        editor.putString("user_age", DATA.getString("USER_AGE"));
-                        editor.putString("user_sexy", DATA.getString("USER_SEX"));
-                        editor.putBoolean("isLogin", true);
-                        editor.putBoolean("is_push", true);
-                        editor.commit();//提交修改
-                        mContext.startMainActivity();
-                    } else if (jsonObject.get("CODE").toString().equals("100")) {
-                        ToastView.toast(mContext, jsonObject.get("MESSAGE").toString());
+                            editor.putString("user_phone", DATA.getString("USER_PHONE"));
+                            editor.putString("user_name", DATA.getString("USER_NAME"));
+                            editor.putString("user_age", DATA.getString("USER_AGE"));
+                            editor.putString("user_sexy", DATA.getString("USER_SEX"));
+                            editor.putBoolean("isLogin", true);
+                            editor.putBoolean("is_push", true);
+                            editor.commit();//提交修改
+                            mContext.startMainActivity();
+                        } else if (jsonObject.get("CODE").toString().equals("100")) {
+                            ToastView.toast(mContext, jsonObject.get("MESSAGE").toString());
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                if (volleyError instanceof NoConnectionError) {
-                    ToastView.NetError(mContext);
-                } else if (volleyError instanceof com.android.volley.TimeoutError) {
-                    ToastView.NetTimeOut(mContext);
-                } else {
-                    ToastView.toast(mContext, volleyError.toString());
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError volleyError) {
+                    if (volleyError instanceof NoConnectionError) {
+                        ToastView.NetError(mContext);
+                    } else if (volleyError instanceof com.android.volley.TimeoutError) {
+                        ToastView.NetTimeOut(mContext);
+                    } else {
+                        ToastView.toast(mContext, volleyError.toString());
+                    }
                 }
-            }
-        });
-        request.setTag(TAG);
-        MyApplication.getHttpQueues().add(request);
-    }
+            });
+            request.setTag(TAG);
+            MyApplication.getHttpQueues().add(request);
+        }
 
 }

@@ -4,10 +4,10 @@ package com.asosapp.phone.bean;
  * Created by Leo on 2016/1/28.
  */
 public class ServiceInfo {
-    private static String ServiceName_1="asos111";
-    private static String ServiceName_2="asos222";
-    private static String ServiceName_3="asos333";
-    private static String ServiceName_4="asos444";
+    private static String ServiceName_1="6086001";
+    private static String ServiceName_2="6086002";
+    private static String ServiceName_3="6086003";
+    private static String ServiceName_4="6086004";
 
     public static String getServiceName_1() {
         return ServiceName_1;

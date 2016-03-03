@@ -65,8 +65,7 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
 //            }
 //        }
         List<String> t=new ArrayList<String>();
-//        t.add("123456");
-        t.add("1111");
+//
             for (int i=0;i<1;i++){
 //                getUserInfo(t.get(i).toString());
             }
