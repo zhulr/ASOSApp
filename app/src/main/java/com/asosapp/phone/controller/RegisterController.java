@@ -217,7 +217,6 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                 try {
                     if (jsonObject.get("CODE").toString().equals("200")) {
                         DATA = (JSONObject) jsonObject.get("DATA");
-                        Log.e("Leo", DATA.toString());
                     } else if (jsonObject.get("CODE").toString().equals("100")) {
                         ToastView.toast(mContext, jsonObject.get("MESSAGE").toString());
                     }

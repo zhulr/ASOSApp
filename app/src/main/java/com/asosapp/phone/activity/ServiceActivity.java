@@ -192,7 +192,6 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
      * @param event 可以从event中得到targetID
      */
     public void onEventMainThread(Event.StringEvent event) {
-        Log.d("Leo--->", "StringEvent execute");
         String targetID = event.getTargetID();
         Conversation conv = JMessageClient.getSingleConversation(targetID);
         if (conv != null) {

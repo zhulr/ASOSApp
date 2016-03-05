@@ -30,6 +30,5 @@ public class BitmapCache implements ImageCache {
 	@Override
 	public void putBitmap(String url, Bitmap bitmap) {
 		mCache.put(url, bitmap);
-		Log.d("Leo--->", "cacheSize/maxSize:" + mCache.size() + "/" + mCache.maxSize());
 	}
 }

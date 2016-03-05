@@ -1,14 +1,17 @@
 package com.asosapp.phone.adapter;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.asosapp.phone.R;
+import com.asosapp.phone.view.ToastView;
 
 import java.util.List;
 
@@ -34,10 +37,18 @@ public class CouponAdapter extends RecyclerView.Adapter<ViewHolders> {
         return viewHolder;
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
-    public void onBindViewHolder(ViewHolders holder, int position) {
-//        holder.title_text.setText("安邦");
-
+    public void onBindViewHolder(ViewHolders holder, final int position) {
+//    holder.spare_time.setVisibility(View.VISIBLE);
+//        holder.use_changecolor.setBackgroundColor(R.color.gray);
+//        holder.use_click.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ToastView.toast(context,"点击成功"+position);
+//
+//            }
+//        });
     }
 
     @Override
@@ -48,11 +59,16 @@ public class CouponAdapter extends RecyclerView.Adapter<ViewHolders> {
 }
 
 class ViewHolders extends RecyclerView.ViewHolder {
-    TextView title_text;
+    TextView spare_time;
+    LinearLayout use_changecolor;
+    LinearLayout use_click;
 
     public ViewHolders(View itemView) {
         super(itemView);
-        title_text = (TextView) itemView.findViewById(R.id.title_text);
+        spare_time= (TextView) itemView.findViewById(R.id.spare_time);
+        use_changecolor= (LinearLayout) itemView.findViewById(R.id.use_after);
+        use_click= (LinearLayout) itemView.findViewById(R.id.use_click);
+
     }
 }
 

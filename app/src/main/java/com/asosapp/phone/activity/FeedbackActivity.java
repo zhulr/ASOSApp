@@ -107,8 +107,6 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
         nameID=intent.getStringExtra("nameID");
         serviceTargetId = intent.getStringExtra("service");
         mTargetId = intent.getStringExtra("myID");
-        Log.e("Leo--->",serviceTargetId+"="+mTargetId);
-//        }
 
 
         mListView = (DropDownListView) findViewById(R.id.listview);
@@ -673,7 +671,6 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
      */
     private void handleImgRefresh(Intent data) {
         String targetId = data.getStringExtra(MyApplication.TARGET_ID);
-        Log.e("LEO--", targetId);
         //判断是否在当前会话中发图片
         if (targetId != null) {
             if (targetId.equals(serviceTargetId)) {
