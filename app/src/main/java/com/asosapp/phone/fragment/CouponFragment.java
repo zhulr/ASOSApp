@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,8 @@ public class CouponFragment extends Fragment {
      */
     private void json() {
         SharedPreferences sp = getActivity().getSharedPreferences("UserInfo", 1); //Ë½ÓÐÊý¾Ý
-        String url = Const.SERVICE_URL + Const.SEARCHCARD + "?userPhone=" + sp.getString("user_phone",null);
+//        String url = Const.SERVICE_URL + Const.SEARCHCOUPON + "?userPhone=" + sp.getString("user_phone",null);
+        String url = Const.SERVICE_URL + Const.SEARCHCOUPON +  "?userPhone=" +"18550260241";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
@@ -62,6 +64,9 @@ public class CouponFragment extends Fragment {
                         JSONArray array = jsonObject.getJSONArray("DATA");
                         for (int i =0; i < array.length(); i++) {
                             JSONObject object = array.getJSONObject(i);
+                            mData.add(object.getString("BUYDATE"));
+                            mAdapter=new CouponAdapter(getActivity(),mData);
+                            card_recyclerView.setAdapter(mAdapter);
                         }
 
 
@@ -94,11 +99,8 @@ public class CouponFragment extends Fragment {
         card_recyclerView= (RecyclerView) view.findViewById(R.id.card_recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         card_recyclerView.setLayoutManager(linearLayoutManager);
-        for (int i=0;i<4;i++){
-            mData.add(i+"");
-        }
-        mAdapter=new CouponAdapter(getActivity(),mData);
-        card_recyclerView.setAdapter(mAdapter);
+
+
     }
 
     private void dialog(){
