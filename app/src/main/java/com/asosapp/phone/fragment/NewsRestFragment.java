@@ -85,7 +85,6 @@ public class NewsRestFragment extends Fragment implements View.OnClickListener, 
             switch (msg.what) {
                 case 0:
                     mSwipeRefreshWidget.setRefreshing(false);
-                    ToastView.toast(getActivity(), "刷新成功");
                     mAdapter.getList().clear();
                     jsonData();
                     break;

@@ -156,7 +156,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:text="2次"/>
+                    android:text="4次"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -166,7 +166,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:text="2次"/>
+                    android:text="1次"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -176,7 +176,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:text="2次"/>
+                    android:text="1次"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -245,7 +245,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:text="2次"/>
+                    android:text="4次"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -392,7 +392,7 @@
                     android:textSize="14sp"
                     android:gravity="center"
                     android:layout_weight="1"
-                    android:text="2次"/>
+                    android:text="不限服务次数"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -401,12 +401,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:text="2次"/>
+                    android:text="1次"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:text="2次"/>
+                    android:text="1次"/>
             </LinearLayout>
         </LinearLayout>
 <View
@@ -550,7 +550,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
-                        android:text="1次"/>
+                        android:text="2次"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
