@@ -180,6 +180,7 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
         startActivity(intent);
     }
 
+
     private boolean isService() {
         String userName = JMessageClient.getMyInfo().getUserName();
         if (userName.equals(ServiceInfo.getServiceName_1())
