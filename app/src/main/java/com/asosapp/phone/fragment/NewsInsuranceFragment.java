@@ -78,7 +78,6 @@ public class NewsInsuranceFragment extends Fragment implements View.OnClickListe
             switch (msg.what) {
                 case 0:
                     mSwipeRefreshWidget.setRefreshing(false);
-                    ToastView.toast(getActivity(), "刷新成功");
                     mAdapter.getList().clear();
                     jsonData();
                     break;

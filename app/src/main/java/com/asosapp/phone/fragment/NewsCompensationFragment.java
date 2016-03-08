@@ -78,7 +78,6 @@ public class NewsCompensationFragment extends Fragment implements View.OnClickLi
             switch (msg.what) {
                 case 0:
                     mSwipeRefreshWidget.setRefreshing(false);
-                    ToastView.toast(getActivity(), "刷新成功");
                     mAdapter.getList().clear();
                     jsonData();
                     break;
@@ -257,7 +256,7 @@ public class NewsCompensationFragment extends Fragment implements View.OnClickLi
     private void initView() {
 
         mSwipeRefreshWidget = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
-        mSwipeRefreshWidget.setColorScheme(R.color.color1, R.color.color2, R.color.color3, R.color.color4);
+        mSwipeRefreshWidget.setColorSchemeResources(R.color.color1, R.color.color2, R.color.color3, R.color.color4);
         mSwipeRefreshWidget.setOnRefreshListener(this);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         slideshowView = (SlideShowView) view.findViewById(R.id.slideshowView);

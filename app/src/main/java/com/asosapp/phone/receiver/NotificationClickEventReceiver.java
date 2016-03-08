@@ -43,7 +43,7 @@ public class NotificationClickEventReceiver {
             Intent notificationIntent = new Intent(mContext, FeedbackActivity.class);
 //        notificationIntent.setAction(Intent.ACTION_MAIN);
 
-            notificationIntent.putExtra("targetID", targetID);
+            notificationIntent.putExtra("service", targetID);
             if (ConversationType.group == type) {
                 notificationIntent.putExtra("isGroup", true);
             } else {

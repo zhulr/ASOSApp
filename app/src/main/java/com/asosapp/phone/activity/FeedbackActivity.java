@@ -375,8 +375,25 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
 
     @Override
     protected void onStop() {
-        // TODO Auto-generated method stub
+        if (mConv != null)
+            mConv.resetUnreadCount();
         super.onStop();
+    }
+
+    @Override
+    protected void onPause() {
+        JMessageClient.exitConversaion();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        String targetID = getIntent().getStringExtra("myID");
+
+        if (null != targetID) {
+            JMessageClient.enterSingleConversaion(targetID);
+        }
+        super.onResume();
     }
 
     @Override
@@ -527,24 +544,16 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
         });
     }
 
-    @Override
-    protected void onResume() {
-        String targetID = getIntent().getStringExtra("myID");
 
-        if (null != targetID) {
-            JMessageClient.enterSingleConversaion(targetID);
-        }
-        super.onResume();
-    }
 
     private void setTitle(){
-        if (serviceTargetId.equals("asos111"))
+        if (serviceTargetId.equals("6086001"))
             titleTV.setText("医疗康复在线客服");
-        else if (serviceTargetId.equals("asos222"))
+        else if (serviceTargetId.equals("6086002"))
             titleTV.setText("法律服务问答客服");
-        else if (serviceTargetId.equals("asos333"))
+        else if (serviceTargetId.equals("6086003"))
             titleTV.setText("伤残鉴定咨询客服");
-        else if (serviceTargetId.equals("asos444"))
+        else if (serviceTargetId.equals("6086004"))
             titleTV.setText("损伤赔偿问答客服");
     }
 

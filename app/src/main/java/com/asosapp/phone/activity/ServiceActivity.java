@@ -64,11 +64,11 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
 //                chat_title.setText(userInfo.getNickname());
 //            }
 //        }
-        List<String> t=new ArrayList<String>();
+//        List<String> t=new ArrayList<String>();
 //
-            for (int i=0;i<1;i++){
+//            for (int i=0;i<1;i++){
 //                getUserInfo(t.get(i).toString());
-            }
+//            }
 
 
     }
@@ -146,7 +146,7 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void onResume() {
-        mListAdapter.notifyDataSetChanged();
+//        mListAdapter.notifyDataSetChanged();
         super.onResume();
     }
 
@@ -161,6 +161,7 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
         Log.d("JMessage", "收到消息：msg = " + msg.toString());
             final UserInfo userInfo = (UserInfo) msg.getTargetInfo();
             final String targetID = userInfo.getUserName();
+            Log.e("Leo",targetID);
             final Conversation conv = JMessageClient.getSingleConversation(targetID);
             if (conv != null) {
                 this.runOnUiThread(new Runnable() {

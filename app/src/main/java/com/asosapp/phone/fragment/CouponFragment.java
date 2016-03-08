@@ -50,12 +50,12 @@ public class CouponFragment extends Fragment {
     }
 
     /**
-     * »ñÈ¡ºóÌ¨Êı¾İ
+     * è·å–åå°æ•°æ®
      */
     private void json() {
-        SharedPreferences sp = getActivity().getSharedPreferences("UserInfo", 1); //Ë½ÓĞÊı¾İ
-//        String url = Const.SERVICE_URL + Const.SEARCHCOUPON + "?userPhone=" + sp.getString("user_phone",null);
-        String url = Const.SERVICE_URL + Const.SEARCHCOUPON +  "?userPhone=" +"18550260241";
+        SharedPreferences sp = getActivity().getSharedPreferences("UserInfo", 1); //ç§æœ‰æ•°æ®
+        String url = Const.SERVICE_URL + Const.SEARCHCOUPON + "?userPhone=" + sp.getString("user_phone",null);
+//        String url = Const.SERVICE_URL + Const.SEARCHCOUPON +  "?userPhone=" +"18550260241";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
@@ -102,10 +102,10 @@ public class CouponFragment extends Fragment {
 
     private void dialog(){
         AlertDialog dialog = new AlertDialog.Builder(getActivity()).create();
-        // ÉèÖÃ¶Ô»°¿ò±êÌâ
-        dialog.setTitle("ÏµÍ³ÌáÊ¾");
-        // ÉèÖÃ¶Ô»°¿òÏûÏ¢
-        dialog.setMessage("¹§Ï²Äã³É¹¦ÁìÈ¡µ½4ÕÅÓÅ»İÈ¯£¡");
-        // Ìí¼ÓÑ¡Ôñ°´Å¥²¢×¢²á¼àÌı
+        // è®¾ç½®å¯¹è¯æ¡†æ ‡é¢˜
+        dialog.setTitle("ç³»ç»Ÿæç¤º");
+        // è®¾ç½®å¯¹è¯æ¡†æ¶ˆæ¯
+        dialog.setMessage("æ­å–œä½ æˆåŠŸé¢†å–åˆ°4å¼ ä¼˜æƒ åˆ¸ï¼");
+        // æ·»åŠ é€‰æ‹©æŒ‰é’®å¹¶æ³¨å†Œç›‘å¬
     }
 }

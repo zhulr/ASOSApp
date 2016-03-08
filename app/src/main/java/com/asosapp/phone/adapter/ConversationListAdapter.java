@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.asosapp.phone.R;
 import com.asosapp.phone.activity.FeedbackActivity;
+import com.asosapp.phone.bean.ServiceInfo;
 import com.asosapp.phone.utils.HandleResponseCode;
 import com.asosapp.phone.utils.SortConvList;
 import com.asosapp.phone.utils.TimeFormat;
@@ -173,7 +174,10 @@ public class ConversationListAdapter extends BaseAdapter{
         }
         // 如果是单聊
         if (convItem.getType().equals(ConversationType.single)) {
-            viewHolder.convName.setText( ((UserInfo) mDatas.get(position).getTargetInfo()).getUserName());
+
+                viewHolder.convName.setText( ((UserInfo) mDatas.get(position).getTargetInfo()).getUserName());
+
+
             UserInfo userInfo = (UserInfo) convItem.getTargetInfo();
             if (userInfo != null && !TextUtils.isEmpty(userInfo.getAvatar())) {
                 userInfo.getAvatarBitmap(new GetAvatarBitmapCallback() {
@@ -219,6 +223,8 @@ public class ConversationListAdapter extends BaseAdapter{
                 Intent intent=new Intent(mContext, FeedbackActivity.class);
                 intent.putExtra("myID", JMessageClient.getMyInfo().getUserName());
                 intent.putExtra("service", targetId);
+//                intent.putExtra("service", JMessageClient.getMyInfo().getUserName());
+//                intent.putExtra("myID", targetId);
                 intent.putExtra("nameID","1");
                 mContext.startActivity(intent);
             }
@@ -236,5 +242,7 @@ public class ConversationListAdapter extends BaseAdapter{
         LinearLayout msg_item_ll;
 
     }
+
+
 
 }
