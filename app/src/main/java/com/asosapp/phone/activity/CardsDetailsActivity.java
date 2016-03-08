@@ -90,7 +90,7 @@ public class CardsDetailsActivity extends BasicActivity implements View.OnClickL
             price = 999;
         } else if (value.equals("DRIVER")) {
             cardName = "司机-安心符";
-            price = 299;
+            price = 199;
         }
     }
 
