@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
-                android:text="安邦救援卡：司机-安心符\t\t价格：199元"/>
+                android:text="安邦救援卡：司机-安心符\t\t价格：299元"/>
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

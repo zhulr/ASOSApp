@@ -69,7 +69,6 @@ public class CouponFragment extends Fragment {
                             card_recyclerView.setAdapter(mAdapter);
                         }
 
-
                     } else if (jsonObject.get("CODE").toString().equals("100")) {
 
                     }
@@ -95,11 +94,9 @@ public class CouponFragment extends Fragment {
 
     private void init() {
         mData=new ArrayList<String>();
-
         card_recyclerView= (RecyclerView) view.findViewById(R.id.card_recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         card_recyclerView.setLayoutManager(linearLayoutManager);
-
 
     }
 
