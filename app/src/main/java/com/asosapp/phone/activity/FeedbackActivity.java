@@ -388,7 +388,7 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
 
     @Override
     protected void onResume() {
-        String targetID = getIntent().getStringExtra("myID");
+        String targetID = getIntent().getStringExtra("service");
 
         if (null != targetID) {
             JMessageClient.enterSingleConversaion(targetID);

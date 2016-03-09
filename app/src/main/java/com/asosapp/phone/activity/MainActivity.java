@@ -29,6 +29,8 @@ import com.asosapp.phone.view.NoScrollViewPager;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by ASOS_zhulr on 2015/11/20.
  * 主界面
@@ -244,5 +246,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     public interface MyOnTouchListener {
         public boolean onTouch(MotionEvent ev);
+    }
+
+    @Override
+    protected void onPause() {
+        JPushInterface.onPause(this);
+        super.onPause();
     }
 }
