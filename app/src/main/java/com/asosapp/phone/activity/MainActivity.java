@@ -90,9 +90,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         BuyCardsFragment buyCardsFragment = new BuyCardsFragment();
         SetCenterFragment setCenterFragment = new SetCenterFragment();
         OutLoginFragment outLoginFragment = new OutLoginFragment();
-        mDatas.add(newsFragment);
+
         mDatas.add(onlineConsultFragment);
         mDatas.add(buyCardsFragment);
+        mDatas.add(newsFragment);
         if (sharedPreferences.getBoolean("isLogin", false)) {
             mDatas.add(setCenterFragment);
         } else {
@@ -122,16 +123,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 resetImageView();
                 switch (position) {
                     case 0:
-                        newsImageView.setImageResource(R.mipmap.documents_64px_color);
-                        newsTextView.setTextColor(getResources().getColorStateList(R.color.white));
-                        break;
-                    case 1:
                         onlineConsultImageView.setImageResource(R.mipmap.chat_64px_color);
                         onlineConsultTextView.setTextColor(getResources().getColorStateList(R.color.white));
                         break;
-                    case 2:
+                    case 1:
                         buyCardsImageView.setImageResource(R.mipmap.commerce_64px_color);
                         buyCardsTextView.setTextColor(getResources().getColorStateList(R.color.white));
+                        break;
+                    case 2:
+                        newsImageView.setImageResource(R.mipmap.documents_64px_color);
+                        newsTextView.setTextColor(getResources().getColorStateList(R.color.white));
                         break;
                     case 3:
                         setCenterImageView.setImageResource(R.mipmap.gears_64px_color);
@@ -148,13 +149,15 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
 
     private void resetImageView() {
-        newsImageView.setImageResource(R.mipmap.documents_64px_line);
+
         onlineConsultImageView.setImageResource(R.mipmap.chat_64px_line);
         buyCardsImageView.setImageResource(R.mipmap.commerce_64px_line);
+        newsImageView.setImageResource(R.mipmap.documents_64px_line);
         setCenterImageView.setImageResource(R.mipmap.gears_64px_line);
-        newsTextView.setTextColor(getResources().getColorStateList(R.color.text_color_heise_504f4f));
+
         onlineConsultTextView.setTextColor(getResources().getColorStateList(R.color.text_color_heise_504f4f));
         buyCardsTextView.setTextColor(getResources().getColorStateList(R.color.text_color_heise_504f4f));
+        newsTextView.setTextColor(getResources().getColorStateList(R.color.text_color_heise_504f4f));
         setCenterTextView.setTextColor(getResources().getColorStateList(R.color.text_color_heise_504f4f));
     }
 
@@ -162,13 +165,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.layout_news:
+            case R.id.layout_online_consult:
                 mViewPager.setCurrentItem(0, false);
                 break;
-            case R.id.layout_online_consult:
+            case R.id.layout_buy_cards:
                 mViewPager.setCurrentItem(1, false);
                 break;
-            case R.id.layout_buy_cards:
+            case R.id.layout_news:
                 mViewPager.setCurrentItem(2, false);
                 break;
             case R.id.layout_set_center:
