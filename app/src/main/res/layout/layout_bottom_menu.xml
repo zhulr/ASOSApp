@@ -6,30 +6,7 @@
     android:orientation="horizontal"
     android:paddingTop="5dp">
 
-    <LinearLayout
-        android:id="@+id/layout_news"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv_news"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:src="@mipmap/documents_64px_color" />
-
-        <TextView
-            android:id="@+id/tv_news"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/news_fragment_buttom_name"
-            android:textColor="@color/text_color_heise_504f4f"
-            android:textSize="12sp" />
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layout_online_consult"
@@ -77,6 +54,31 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/buy_cards_fragment_buttom_name"
+            android:textColor="@color/text_color_heise_504f4f"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:src="@mipmap/documents_64px_color" />
+
+        <TextView
+            android:id="@+id/tv_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/news_fragment_buttom_name"
             android:textColor="@color/text_color_heise_504f4f"
             android:textSize="12sp" />
     </LinearLayout>

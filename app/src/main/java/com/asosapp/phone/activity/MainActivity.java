@@ -253,4 +253,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         JPushInterface.onPause(this);
         super.onPause();
     }
+
+    @Override
+    protected void onResume() {
+        JPushInterface.onResume(this);
+        super.onResume();
+    }
 }

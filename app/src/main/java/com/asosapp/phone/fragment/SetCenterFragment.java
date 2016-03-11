@@ -1,5 +1,7 @@
 package com.asosapp.phone.fragment;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -147,6 +149,9 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
                 intent(1);
                 break;
             case R.id.view_out_login:
+                NotificationManager manager = (NotificationManager) this.getActivity().getApplicationContext()
+                        .getSystemService(Context.NOTIFICATION_SERVICE);
+                manager.cancelAll();
                 UserInfo.instance().logOut(getActivity());
                 intent(99);
                 Toast.makeText(getActivity(), "已退出登录", Toast.LENGTH_SHORT).show();

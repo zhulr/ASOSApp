@@ -44,6 +44,7 @@
     <application
         android:name=".initprogram.MyApplication"
         android:allowBackup="true"
+        android:persistent="true"
         android:icon="@mipmap/asos_round_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">

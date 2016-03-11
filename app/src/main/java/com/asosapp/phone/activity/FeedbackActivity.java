@@ -28,6 +28,7 @@ import android.widget.EditText;
 import com.asosapp.phone.R;
 import com.asosapp.phone.adapter.MsgListAdapter;
 import com.asosapp.phone.initprogram.MyApplication;
+import com.asosapp.phone.receiver.NotificationClickEventReceiver;
 import com.asosapp.phone.utils.BitmapLoader;
 import com.asosapp.phone.utils.FileHelper;
 import com.asosapp.phone.utils.HandleResponseCode;
@@ -400,6 +401,8 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
     public void onDestroy() {
         JMessageClient.unRegisterEventReceiver(this);
         EventBus.getDefault().unregister(this);
+//        JMessageClient.setNotificationMode(JMessageClient.NOTI_MODE_DEFAULT);
+//        new NotificationClickEventReceiver(getApplicationContext());
         super.onDestroy();
     }
 

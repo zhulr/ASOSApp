@@ -39,6 +39,7 @@ import java.util.List;
 
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.model.Conversation;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by ASOS_zhulr on 2015/12/7.
@@ -194,6 +195,5 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
     @Override
     public void onDestroy() {
         super.onDestroy();
-        JMessageClient.unRegisterEventReceiver(this);
     }
 }

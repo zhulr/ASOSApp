@@ -51,6 +51,18 @@ public class UpstartActivity extends BasicActivity {
         };
     }
 
+    @Override
+    protected void onResume() {
+        JPushInterface.onResume(this);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        JPushInterface.onPause(this);
+        super.onPause();
+    }
+
     private void intent() {
         startActivity(new Intent(UpstartActivity.this, MainActivity.class));
     }
