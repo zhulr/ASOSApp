@@ -55,7 +55,6 @@ public class CouponFragment extends Fragment {
     private void json() {
         SharedPreferences sp = getActivity().getSharedPreferences("UserInfo", 1); //私有数据
         String url = Const.SERVICE_URL + Const.SEARCHCOUPON + "?userPhone=" + sp.getString("user_phone",null);
-//        String url = Const.SERVICE_URL + Const.SEARCHCOUPON +  "?userPhone=" +"18550260241";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
