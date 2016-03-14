@@ -254,7 +254,6 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
      * *
      */
     private void code_Get() throws UnsupportedEncodingException {
-
         String url = Const.SERVICE_URL + Const.INCODE +"?userPhone=" + userId + "&supCode=" + supCode ;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -262,12 +261,6 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                 try {
                     if (jsonObject.get("CODE").toString().equals("200")) {
                         DATA = (JSONObject) jsonObject.get("DATA");
-//                        incode=DATA.getString("INCODE");
-//                        Log.e("Leo-->",incode);
-                        SharedPreferences sharedPreferences = mContext.getSharedPreferences("UserInfo", 1); //私有数据
-                        SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
-                        editor.putString("incode", DATA.getString("INCODE"));
-                        editor.commit();//提交修改
                     } else if (jsonObject.get("CODE").toString().equals("100")) {
                         ToastView.toast(mContext, jsonObject.get("MESSAGE").toString());
                     }

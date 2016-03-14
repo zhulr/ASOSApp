@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <LinearLayout
-        android:visibility="invisible"
         android:layout_marginTop="20sp"
         android:layout_width="match_parent"
         android:orientation="horizontal"
@@ -24,10 +23,10 @@
             android:textSize="24sp"
             android:textColor="@color/black"/>
         <TextView
-            android:id="@+id/my_code"
+            android:id="@+id/my_invite_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="JIA5M2"
+            android:text="000000"
             android:textSize="28sp"
             android:textColor="@color/btn_color_login"/>
     </LinearLayout>

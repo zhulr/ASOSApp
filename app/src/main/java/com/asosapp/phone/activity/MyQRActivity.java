@@ -1,5 +1,6 @@
 package com.asosapp.phone.activity;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -23,6 +24,7 @@ public class MyQRActivity extends BasicActivity {
     private TextView titleName;
     private ImageView myQR;
     private TextView myCode;
+    private String inCode="00000000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,9 @@ public class MyQRActivity extends BasicActivity {
         titleName = (TextView) findViewById(R.id.title_name);
         myQR = (ImageView) findViewById(R.id.my_qr);
         myCode = (TextView) findViewById(R.id.my_code);
+        SharedPreferences sp = getSharedPreferences("UserInfo", 1);
+        inCode = sp.getString("incode","00000000");
+        myCode.setText(inCode);
         titleName.setText(R.string.invite);
         createQRImage("http://223.68.152.158:65500/Home/APP/AsosAPP_V1.1.apk");
     }
