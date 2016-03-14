@@ -67,6 +67,7 @@
     <string name="register">注册</string>
     <string name="password_length_illegal">密码长度要在4-128个字节之间</string>
     <string name="error_null">姓名、性别、验证码或者年龄不能为空</string>
+    <string name="inviteCode_null">请输入正确的邀请码</string>
     <string name="register_username_hit">用户名(手机号码)</string>
     <string name="loading">正在加载</string>
     <string name="login_hint">登录中</string>

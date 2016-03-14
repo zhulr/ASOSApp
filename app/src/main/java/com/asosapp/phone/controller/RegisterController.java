@@ -54,8 +54,11 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
     private String userName;
     private String userAge;
     private String code;
+    private String supCode;
     private int i = 30;
     private String userSexy;
+    private boolean iscode=false;
+//    private String incode;
 
     public RegisterController(RegisterView registerView, RegisterNewActivity context) {
         this.mRegisterView = registerView;
@@ -77,6 +80,16 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                 userAge = mRegisterView.getUserAge();
                 code = mRegisterView.getCode();
                 userSexy = mRegisterView.getSexy();
+                if (mRegisterView.getinviteCode().equals("")){
+                    supCode="00000000";
+                }else{
+                    supCode=mRegisterView.getinviteCode();
+                }
+//                if (iscode==false){
+////                    mRegisterView.inviteCodeError(mContext);
+//                    Log.e("Leo",iscode+"");
+//                }
+
                 if (isMobileNO(userId) == false) {
                     mRegisterView.isMobileError(mContext);
                     break;
@@ -97,7 +110,6 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                     mRegisterView.passwordSureError(mContext);
                     break;
                 }
-//                gethandler();
                 break;
             case R.id.return_btn:
                 mContext.finish();
@@ -111,8 +123,6 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                     break;
                 } else {
                     smsCode();//获取验证码
-
-
                 }
                 break;
         }
@@ -238,6 +248,92 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
     }
 
 
+    /**
+     * 邀请码get请求
+     *
+     * *
+     */
+    private void code_Get() throws UnsupportedEncodingException {
+
+        String url = Const.SERVICE_URL + Const.INCODE +"?userPhone=" + userId + "&supCode=" + supCode ;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                try {
+                    if (jsonObject.get("CODE").toString().equals("200")) {
+                        DATA = (JSONObject) jsonObject.get("DATA");
+//                        incode=DATA.getString("INCODE");
+//                        Log.e("Leo-->",incode);
+                        SharedPreferences sharedPreferences = mContext.getSharedPreferences("UserInfo", 1); //私有数据
+                        SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
+                        editor.putString("incode", DATA.getString("INCODE"));
+                        editor.commit();//提交修改
+                    } else if (jsonObject.get("CODE").toString().equals("100")) {
+                        ToastView.toast(mContext, jsonObject.get("MESSAGE").toString());
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                if (volleyError instanceof NoConnectionError) {
+                    ToastView.NetError(mContext);
+                } else if (volleyError instanceof com.android.volley.TimeoutError) {
+                    ToastView.NetTimeOut(mContext);
+                } else {
+                    ToastView.toast(mContext, volleyError.toString());
+                }
+            }
+        });
+        request.setTag(TAG);
+        MyApplication.getHttpQueues().add(request);
+    }
+
+    /**
+     * 邀请码判断get请求
+     *
+     * *
+     */
+//    private void incode_Get() throws UnsupportedEncodingException {
+//
+//        String url = Const.SERVICE_URL + Const.SEARCHSUPCODE +"?inCode=" + incode;
+//        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+//            @Override
+//            public void onResponse(JSONObject jsonObject) {
+//                try {
+//                    if (jsonObject.get("CODE").toString().equals("200")) {
+//                        iscode=true;
+//
+//                    } else if (jsonObject.get("CODE").toString().equals("100")) {
+//                        iscode=false;
+//                        ToastView.toast(mContext, jsonObject.get("MESSAGE").toString());
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError volleyError) {
+//                if (volleyError instanceof NoConnectionError) {
+//                    ToastView.NetError(mContext);
+//                } else if (volleyError instanceof com.android.volley.TimeoutError) {
+//                    ToastView.NetTimeOut(mContext);
+//                } else {
+//                    ToastView.toast(mContext, volleyError.toString());
+//                }
+//            }
+//        });
+//        request.setTag(TAG);
+//        MyApplication.getHttpQueues().add(request);
+//    }
+
+
+
+
+
     public void dismissDialog() {
         if (mLoginDialog != null)
             mLoginDialog.dismiss();
@@ -288,18 +384,10 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                 switch (v.getId()) {
                     case R.id.man_rl:
                         mRegisterView.setGender(true);
-//                        SharedPreferences sharedPreferences = mContext.getSharedPreferences("UserInfo", 1); //私有数据
-//                        SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
-//                        editor.putString("user_sexy", "男");
-//                        editor.commit();//提交修改
                         dialog.cancel();
                         break;
                     case R.id.woman_rl:
                         mRegisterView.setGender(false);
-//                        SharedPreferences sp = mContext.getSharedPreferences("UserInfo", 1); //私有数据
-//                        SharedPreferences.Editor et = sp.edit();//获取编辑器
-//                        et.putString("user_sexy", "女");
-//                        et.commit();//提交修改
                         dialog.cancel();
                         break;
                 }
@@ -329,6 +417,8 @@ private void successRegister(){
                         if (status == 0) {
                             try {
                                 volley_Get();//上传到本地数据库
+                                code_Get();//邀请码接口调用
+//                                incode_Get();//判断邀请码是否正确
                             } catch (UnsupportedEncodingException e) {
                                 e.printStackTrace();
                             }

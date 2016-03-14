@@ -9,6 +9,8 @@ import com.asosapp.phone.R;
 
 /**
  * Created by ASOS_zhulr on 2016/2/24.
+ *
+ *
  */
 public class AboutAppActivity extends BasicActivity {
     private WebView about;

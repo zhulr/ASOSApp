@@ -38,6 +38,7 @@ public class RegisterView extends LinearLayout {
     private EditText mAge;
     private EditText mCode;
     private TextView code_button;
+    private EditText invite_code;
 
 
     public RegisterView(Context context, AttributeSet attrs) {
@@ -58,17 +59,20 @@ public class RegisterView extends LinearLayout {
         mCode= (EditText) findViewById(R.id.code);
         mSexy= (TextView) findViewById(R.id.sexy);
         code_button= (TextView) findViewById(R.id.code_button);
+        invite_code= (EditText) findViewById(R.id.invite_code);
         mUserId.requestFocus();
     }
 
 
-public TextView setcode_button(){
-    return code_button;
-}
+    public TextView setcode_button(){
+        return code_button;
+    }
     public String getUserId() {
         return mUserId.getText().toString().trim();
     }
-
+    public String getinviteCode(){
+        return invite_code.getText().toString().trim();
+    }
     public String getPassword() {
         return mPassword.getText().toString().trim();
     }
@@ -127,6 +131,9 @@ public TextView setcode_button(){
     }
     public void Error(RegisterNewActivity context) {
         Toast.makeText(context, context.getString(R.string.error_null), Toast.LENGTH_SHORT).show();
+    }
+    public void inviteCodeError(RegisterNewActivity context){
+        Toast.makeText(context, context.getString(R.string.inviteCode_null), Toast.LENGTH_SHORT).show();
     }
     public void setGender(boolean isMan) {
         if (isMan) {
