@@ -250,7 +250,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="11dp"
                 android:background="@null"
-                android:hint="请再输入您的姓名"
+                android:hint="请输入您的姓名"
                 android:textColorHint="@color/chat_detail_item_content_color"
                 android:singleLine="true"
                 android:textSize="18sp"
@@ -336,7 +336,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="11dp"
                 android:background="@null"
-                android:hint="请再输入您的年龄"
+                android:hint="请输入您的年龄"
                 android:textColorHint="@color/chat_detail_item_content_color"
                 android:singleLine="true"
                 android:textSize="18sp"
@@ -349,7 +349,48 @@
                 android:background="@color/btn_color_login" />
         </RelativeLayout>
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="10dp" >
 
+        <TextView
+            android:id="@+id/iv_invite_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="邀请码:"
+            android:textSize="18sp"
+            />
+
+        <RelativeLayout
+            android:layout_toRightOf="@id/iv_invite_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/invite_code"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cursorVisible="true"
+                android:textCursorDrawable="@drawable/text_cursor_bg"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="11dp"
+                android:background="@null"
+                android:hint="请输入邀请码"
+                android:textColorHint="@color/chat_detail_item_content_color"
+                android:singleLine="true"
+                android:textSize="18sp"
+                android:textColor="@color/black" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/btn_color_login" />
+        </RelativeLayout>
+    </RelativeLayout>
     <Button
         android:id="@+id/regist_btn"
         android:layout_width="match_parent"

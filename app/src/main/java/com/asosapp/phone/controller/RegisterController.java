@@ -77,7 +77,6 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                 userAge = mRegisterView.getUserAge();
                 code = mRegisterView.getCode();
                 userSexy = mRegisterView.getSexy();
-
                 if (isMobileNO(userId) == false) {
                     mRegisterView.isMobileError(mContext);
                     break;
@@ -99,8 +98,6 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                     break;
                 }
 //                gethandler();
-
-
                 break;
             case R.id.return_btn:
                 mContext.finish();
