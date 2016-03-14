@@ -51,7 +51,4 @@ public class RegisterNewActivity extends BaseActivity {
         SMSSDK.unregisterAllEventHandler();
         super.onDestroy();
     }
-
-
-
 }
