@@ -85,6 +85,7 @@ public class LoginController implements LoginView.Listener, OnClickListener,
                             long userId = JMessageClient.getMyInfo().getUserID();
                             String name = JMessageClient.getMyInfo().getUserName();
                             volley_Get();
+                            search_Get();
                         } else {
                             Log.i("LoginController", "status = " + status);
                             HandleResponseCode.onHandle(mContext, status, false);
@@ -192,5 +193,50 @@ public class LoginController implements LoginView.Listener, OnClickListener,
             request.setTag(TAG);
             MyApplication.getHttpQueues().add(request);
         }
+
+    /**
+     * get请求
+     * <p/>
+     * *
+     */
+    JSONObject DATAs = null;
+
+    private void search_Get() {
+        String url = Const.SERVICE_URL + Const.SEARCHCODE + "?userPhone=" + mLoginView.getUserId();
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                try {
+                    if (jsonObject.get("CODE").toString().equals("200")) {
+                        DATAs = jsonObject.getJSONObject("DATA");
+                        SharedPreferences sharedPreferences = mContext.getSharedPreferences("UserInfo", 1); //私有数据
+                        SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
+                        editor.putString("invite_code", DATAs.getString("INCODE"));
+                        editor.commit();//提交修改
+                        Log.e("Leo",DATAs.getString("INCODE"));
+                        mContext.startMainActivity();
+                    } else if (jsonObject.get("CODE").toString().equals("100")) {
+                        ToastView.toast(mContext, jsonObject.get("MESSAGE").toString());
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                if (volleyError instanceof NoConnectionError) {
+                    ToastView.NetError(mContext);
+                } else if (volleyError instanceof com.android.volley.TimeoutError) {
+                    ToastView.NetTimeOut(mContext);
+                } else {
+                    ToastView.toast(mContext, volleyError.toString());
+                }
+            }
+        });
+        request.setTag(TAG);
+        MyApplication.getHttpQueues().add(request);
+    }
+
 
 }
