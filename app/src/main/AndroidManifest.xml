@@ -233,6 +233,9 @@
             android:exported="false"
             android:screenOrientation="behind"></activity>
 
+
+        <activity android:name=".aa.MainaActivity"/>
+
     </application>
 
 </manifest>

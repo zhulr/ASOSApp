@@ -36,7 +36,7 @@ public class MyQRActivity extends BasicActivity {
     private void init() {
         titleName = (TextView) findViewById(R.id.title_name);
         myQR = (ImageView) findViewById(R.id.my_qr);
-        myCode = (TextView) findViewById(R.id.my_code);
+        myCode = (TextView) findViewById(R.id.my_invite_code);
         SharedPreferences sp = getSharedPreferences("UserInfo", 1);
         inCode = sp.getString("incode","00000000");
         myCode.setText(inCode);

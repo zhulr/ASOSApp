@@ -57,7 +57,7 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
     private String supCode;
     private int i = 30;
     private String userSexy;
-    private boolean iscode=false;
+//    private boolean iscode=false;
 //    private String incode;
 
     public RegisterController(RegisterView registerView, RegisterNewActivity context) {
@@ -89,6 +89,7 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
 ////                    mRegisterView.inviteCodeError(mContext);
 //                    Log.e("Leo",iscode+"");
 //                }
+//                Log.e("Leo",iscode+"");
 
                 if (isMobileNO(userId) == false) {
                     mRegisterView.isMobileError(mContext);
@@ -253,6 +254,8 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
      *
      * *
      */
+    JSONObject DATAs = null;
+
     private void code_Get() throws UnsupportedEncodingException {
         String url = Const.SERVICE_URL + Const.INCODE +"?userPhone=" + userId + "&supCode=" + supCode ;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -260,7 +263,8 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
             public void onResponse(JSONObject jsonObject) {
                 try {
                     if (jsonObject.get("CODE").toString().equals("200")) {
-                        DATA = (JSONObject) jsonObject.get("DATA");
+                        DATAs = (JSONObject) jsonObject.get("DATA");
+//                        incode=DATAs.getString("INCODE");
                     } else if (jsonObject.get("CODE").toString().equals("100")) {
                         ToastView.toast(mContext, jsonObject.get("MESSAGE").toString());
                     }

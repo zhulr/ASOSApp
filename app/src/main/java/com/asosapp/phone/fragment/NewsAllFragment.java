@@ -1,6 +1,7 @@
 package com.asosapp.phone.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,8 +10,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.asosapp.phone.R;
+import com.asosapp.phone.utils.RotateDownTransformer;
+import com.asosapp.phone.utils.ZoomOutPageTransformer;
 import com.viewpagerindicator.TabPageIndicator;
 
 /**
@@ -32,15 +36,16 @@ public class NewsAllFragment extends Fragment{
 
         // ViewPager结合Indicator
         FragmentPagerAdapter adapter = new TabPageIndicatorAdapter(getChildFragmentManager());
-        ViewPager pager = (ViewPager) view.findViewById(R.id.pager);
+        final ViewPager pager = (ViewPager) view.findViewById(R.id.pager);
         pager.setAdapter(adapter);
+        pager.setPageTransformer(true, new ZoomOutPageTransformer());
         TabPageIndicator indicator = (TabPageIndicator) view.findViewById(R.id.indicator);
         indicator.setViewPager(pager);
         indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
             public void onPageSelected(int arg0) {
-//                Toast.makeText(getActivity(), TITLE[arg0], Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

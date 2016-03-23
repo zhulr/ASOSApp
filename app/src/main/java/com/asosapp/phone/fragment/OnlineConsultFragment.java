@@ -103,19 +103,19 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
         isLogin = sharedPreferences.getBoolean("isLogin", false);
         switch (v.getId()) {
             case R.id.asos111:
-                serviceID = ServiceInfo.getServiceName_1();
+                serviceID = ServiceInfo.getServiceName_5();
                 isSelfLogin();
                 break;
             case R.id.asos222:
-                serviceID = ServiceInfo.getServiceName_2();
+                serviceID = ServiceInfo.getServiceName_5();
                 isSelfLogin();
                 break;
             case R.id.asos333:
-                serviceID = ServiceInfo.getServiceName_3();
+                serviceID = ServiceInfo.getServiceName_5();
                 isSelfLogin();
                 break;
             case R.id.asos444:
-                serviceID = ServiceInfo.getServiceName_4();
+                serviceID = ServiceInfo.getServiceName_5();
                 isSelfLogin();
                 break;
 
@@ -130,7 +130,6 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
         Dialog alertDialog = new AlertDialog.Builder(getActivity()).
                 setTitle("提示").
                 setMessage("您还没有登录，请登录！").
-//                setIcon(R.drawable.ic_launcher).
         setPositiveButton("确定", new DialogInterface.OnClickListener() {
 
     @Override
@@ -175,7 +174,6 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
             intent.putExtra("nameID", "0");
             intent.setClass(getActivity(), FeedbackActivity.class);
         } else {
-
             intent.setClass(getActivity(), ServiceActivity.class);
         }
         startActivity(intent);
@@ -187,7 +185,8 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
         if (userName.equals(ServiceInfo.getServiceName_1())
                 || userName.equals(ServiceInfo.getServiceName_2())
                 || userName.equals(ServiceInfo.getServiceName_3())
-                || userName.equals(ServiceInfo.getServiceName_4()))
+                || userName.equals(ServiceInfo.getServiceName_4())
+                || userName.equals(ServiceInfo.getServiceName_5()))
             return false;
         return true;
     }

@@ -8,6 +8,11 @@ public class ServiceInfo {
     private static String ServiceName_2="6086002";
     private static String ServiceName_3="6086003";
     private static String ServiceName_4="6086004";
+    private static String ServiceName_5="6086005";
+
+    public static String getServiceName_5(){
+        return ServiceName_5;
+    }
 
     public static String getServiceName_1() {
         return ServiceName_1;

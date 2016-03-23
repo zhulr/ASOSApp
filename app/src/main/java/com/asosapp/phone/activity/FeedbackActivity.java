@@ -558,6 +558,8 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
             titleTV.setText("伤残鉴定咨询客服");
         else if (serviceTargetId.equals("6086004"))
             titleTV.setText("损伤赔偿问答客服");
+        else if (serviceTargetId.equals("6086005"))
+            titleTV.setText("客服");
     }
 
     /**
