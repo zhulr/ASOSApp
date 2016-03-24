@@ -38,6 +38,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.model.UserInfo;
 import cn.jpush.im.api.BasicCallback;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
@@ -419,6 +420,24 @@ private void successRegister(){
                             } catch (UnsupportedEncodingException e) {
                                 e.printStackTrace();
                             }
+                            //保存昵称
+                            UserInfo myUserInfo = JMessageClient.getMyInfo();
+                            myUserInfo.setNickname(userName);
+                            JMessageClient.updateMyInfo(UserInfo.Field.nickname, myUserInfo, new BasicCallback() {
+                                @Override
+                                public void gotResult(final int status, String desc) {
+                                    //更新跳转标志
+                                    SharePreferenceManager.setCachedFixProfileFlag(false);
+                                    if (dialog.isShowing()) {
+                                        dialog.dismiss();
+                                    }
+                                    if (status != 0) {
+                                        Toast.makeText(mContext, "昵称保存失败",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                            //跳转到成功注册页面
                             mContext.onRegistSuccess();
                         } else {
                             mLoginDialog.dismiss();

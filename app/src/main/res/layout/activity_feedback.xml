@@ -30,18 +30,43 @@
             android:text="客户服务"
             android:textColor="#ffffff"
             android:textSize="20sp" />
-    </RelativeLayout>
 
+        <ImageButton
+            android:id="@+id/right_btn"
+            android:layout_width="@dimen/title_bar_height"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/chat_detail"
+            android:background="@drawable/back_btn_bg" />
+    </RelativeLayout>
+m
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@+id/rl_bottom"
+    android:layout_below="@id/rl_layout">
     <com.asosapp.phone.view.DropDownListView
         android:id="@+id/listview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/rl_bottom"
-        android:layout_below="@id/rl_layout"
         android:cacheColorHint="#0000"
         android:divider="@null"
         android:dividerHeight="5dp"
         android:scrollbarStyle="outsideOverlay" />
+
+    <ImageView
+        android:id="@+id/click"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"
+        android:src="@drawable/click"/>
+
+</FrameLayout>
+
 
     <LinearLayout
         android:id="@+id/rl_bottom"

@@ -5,6 +5,7 @@ import java.lang.ref.WeakReference;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ import com.asosapp.phone.view.DropDownListView;
 import com.asosapp.phone.view.ToastView;
 
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
@@ -84,7 +86,8 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
     private String mPhotoPath = null;
     private ImageButton mPickPictureIb;
     private ImageButton mTakePhotoIb;
-
+    private ImageView right_btn;
+    private ImageView click;
 
 
 
@@ -102,12 +105,20 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
 
 
     private void initView() {
+        click= (ImageView) findViewById(R.id.click);
+        click.setOnClickListener(this);
 
         mMoreMenuTl = (TableLayout) findViewById(R.id.more_menu_tl);
         Intent intent = this.getIntent();
         nameID=intent.getStringExtra("nameID");
         serviceTargetId = intent.getStringExtra("service");
         mTargetId = intent.getStringExtra("myID");
+        SharedPreferences sp = this.getSharedPreferences("UserInfo", 1); //私有数据
+        if (sp.getString("user_id", null).equals("6086005")){
+            click.setVisibility(View.VISIBLE);
+        }else{
+            click.setVisibility(View.GONE);
+        }
 
 
         mListView = (DropDownListView) findViewById(R.id.listview);
@@ -126,6 +137,8 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
 
             }
         });
+        right_btn= (ImageView) findViewById(R.id.right_btn);
+        right_btn.setOnClickListener(this);
         titleTV = (TextView) findViewById(R.id.chat_title_type);
         mBtnBack = (Button) findViewById(R.id.btn_back);
         mBtnBack.setOnClickListener(this);
@@ -251,6 +264,7 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
             case R.id.btn_back:
                 mConv.resetUnreadCount();
                 JMessageClient.exitConversaion();
+                mConv.resetUnreadCount();
                 FeedbackActivity.this.finish();
                 break;
             //图片发送点击事件
@@ -284,8 +298,16 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
                     mMoreMenuTl.setVisibility(View.GONE);
                 }
                 Intent intent = new Intent();
-                    intent.putExtra(MyApplication.TARGET_ID, serviceTargetId);
+                intent.putExtra(MyApplication.TARGET_ID, serviceTargetId);
                 startPickPictureTotalActivity(intent);
+                break;
+            case R.id.right_btn:
+                Intent intents=new Intent(FeedbackActivity.this,ChatDetailActivity.class);
+                intents.putExtra(MyApplication.TARGET_ID,serviceTargetId);
+                startActivity(intents);
+                break;
+            case R.id.click:
+                ToastView.toast(FeedbackActivity.this,"点击成功，扣除一次免费咨询机会");
                 break;
         }
     }
@@ -335,6 +357,7 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
 
 
     private void sendMessage() {
+        setToBottom();
         String editTextContent = mEditTextContent.getText().toString();
         mEditTextContent.setText("");
         if (editTextContent.equals("")) {
@@ -361,8 +384,6 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
         });
         mChatAdapter.addMsgToList(msg);
         JMessageClient.sendMessage(msg);
-        // 滑动到底部
-        setToBottom();
         imm.hideSoftInputFromWindow(mEditTextContent.getWindowToken(), 0); //强制隐藏键盘
     }
 

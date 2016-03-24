@@ -146,7 +146,7 @@
     <string name="group_name_hit">群聊名称</string>
     <string name="group_people_num_hit">群人数上限</string>
     <string name="group_my_name_hit">我在本群昵称</string>
-    <string name="group_chat_history_hit">查找聊天内容</string>
+    <string name="group_chat_history_hit">查看聊天记录</string>
     <string name="group_clear_history_hit">清空聊天记录</string>
     <string name="group_exit_btn">删除并退出</string>
     <string name="resend_commit">重发</string>

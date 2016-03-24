@@ -232,9 +232,10 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind"></activity>
+        <activity android:name=".activity.ChatDetailActivity"/>
+        <activity android:name=".activity.ChatNewActivity"/>
 
 
-        <activity android:name=".aa.MainaActivity"/>
 
     </application>
 

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -175,7 +176,7 @@ public class ConversationListAdapter extends BaseAdapter{
         // 如果是单聊
         if (convItem.getType().equals(ConversationType.single)) {
 
-                viewHolder.convName.setText( ((UserInfo) mDatas.get(position).getTargetInfo()).getUserName());
+                viewHolder.convName.setText( ((UserInfo) mDatas.get(position).getTargetInfo()).getNickname());
 
 
             UserInfo userInfo = (UserInfo) convItem.getTargetInfo();
@@ -218,13 +219,11 @@ public class ConversationListAdapter extends BaseAdapter{
         viewHolder.msg_item_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                viewHolder.newMsgNumber.setVisibility(View.GONE);
+                viewHolder.newMsgNumber.setVisibility(View.GONE);
                 String targetId = ((UserInfo) mDatas.get(position).getTargetInfo()).getUserName();
                 Intent intent=new Intent(mContext, FeedbackActivity.class);
                 intent.putExtra("myID", JMessageClient.getMyInfo().getUserName());
                 intent.putExtra("service", targetId);
-//                intent.putExtra("service", JMessageClient.getMyInfo().getUserName());
-//                intent.putExtra("myID", targetId);
                 intent.putExtra("nameID","1");
                 mContext.startActivity(intent);
             }
