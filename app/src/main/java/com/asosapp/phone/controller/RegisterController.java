@@ -81,10 +81,10 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                 userAge = mRegisterView.getUserAge();
                 code = mRegisterView.getCode();
                 userSexy = mRegisterView.getSexy();
-                if (mRegisterView.getinviteCode().equals("")){
-                    supCode="00000000";
-                }else{
-                    supCode=mRegisterView.getinviteCode();
+                if (mRegisterView.getinviteCode().equals("")) {
+                    supCode = "00000000";
+                } else {
+                    supCode = mRegisterView.getinviteCode();
                 }
 //                if (iscode==false){
 ////                    mRegisterView.inviteCodeError(mContext);
@@ -129,10 +129,10 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                 break;
         }
     }
-/**
- * 短信验证
- *
- */
+
+    /**
+     * 短信验证
+     */
     private void smsCode() {
         SMSSDK.getVerificationCode("86", mRegisterView.getUserId());
         Toast.makeText(mContext, "获取成功", Toast.LENGTH_SHORT).show();
@@ -176,6 +176,7 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
         };
         SMSSDK.registerEventHandler(eh);
     }
+
     Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             if (msg.what == -9) {
@@ -252,13 +253,13 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
 
     /**
      * 邀请码get请求
-     *
+     * <p/>
      * *
      */
     JSONObject DATAs = null;
 
     private void code_Get() throws UnsupportedEncodingException {
-        String url = Const.SERVICE_URL + Const.INCODE +"?userPhone=" + userId + "&supCode=" + supCode ;
+        String url = Const.SERVICE_URL + Const.INCODE + "?userPhone=" + userId + "&supCode=" + supCode;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
@@ -291,7 +292,7 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
 
     /**
      * 邀请码判断get请求
-     *
+     * <p/>
      * *
      */
 //    private void incode_Get() throws UnsupportedEncodingException {
@@ -327,11 +328,6 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
 //        request.setTag(TAG);
 //        MyApplication.getHttpQueues().add(request);
 //    }
-
-
-
-
-
     public void dismissDialog() {
         if (mLoginDialog != null)
             mLoginDialog.dismiss();
@@ -396,60 +392,59 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
     }
 
 
+    private void successRegister() {
+        final Dialog dialog = DialogCreator.createLoadingDialog(mContext, mContext.getString(R.string.registering_hint));
+        dialog.show();
+        JMessageClient.register(userId, password, new BasicCallback() {
+            @Override
+            public void gotResult(final int status, final String desc) {
+                dialog.dismiss();
+                if (status == 0) {
 
-private void successRegister(){
-    final Dialog dialog = DialogCreator.createLoadingDialog(mContext, mContext.getString(R.string.registering_hint));
-    dialog.show();
-    JMessageClient.register(userId, password, new BasicCallback() {
-        @Override
-        public void gotResult(final int status, final String desc) {
-            dialog.dismiss();
-            if (status == 0) {
-
-                LoginDialog loginDialog = new LoginDialog();
-                mLoginDialog = loginDialog.createLoadingDialog(mContext);
-                mLoginDialog.show();
-                JMessageClient.login(userId, password, new BasicCallback() {
-                    @Override
-                    public void gotResult(final int status, String desc) {
-                        if (status == 0) {
-                            try {
-                                volley_Get();//上传到本地数据库
-                                code_Get();//邀请码接口调用
+                    LoginDialog loginDialog = new LoginDialog();
+                    mLoginDialog = loginDialog.createLoadingDialog(mContext);
+                    mLoginDialog.show();
+                    JMessageClient.login(userId, password, new BasicCallback() {
+                        @Override
+                        public void gotResult(final int status, String desc) {
+                            if (status == 0) {
+                                try {
+                                    volley_Get();//上传到本地数据库
+                                    code_Get();//邀请码接口调用
 //                                incode_Get();//判断邀请码是否正确
-                            } catch (UnsupportedEncodingException e) {
-                                e.printStackTrace();
-                            }
-                            //保存昵称
-                            UserInfo myUserInfo = JMessageClient.getMyInfo();
-                            myUserInfo.setNickname(userName);
-                            JMessageClient.updateMyInfo(UserInfo.Field.nickname, myUserInfo, new BasicCallback() {
-                                @Override
-                                public void gotResult(final int status, String desc) {
-                                    //更新跳转标志
-                                    SharePreferenceManager.setCachedFixProfileFlag(false);
-                                    if (dialog.isShowing()) {
-                                        dialog.dismiss();
-                                    }
-                                    if (status != 0) {
-                                        Toast.makeText(mContext, "昵称保存失败",
-                                                Toast.LENGTH_SHORT).show();
-                                    }
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
                                 }
-                            });
-                            //跳转到成功注册页面
-                            mContext.onRegistSuccess();
-                        } else {
-                            mLoginDialog.dismiss();
-                            HandleResponseCode.onHandle(mContext, status, false);
+                                //保存昵称
+                                UserInfo myUserInfo = JMessageClient.getMyInfo();
+                                myUserInfo.setNickname(userName);
+                                JMessageClient.updateMyInfo(UserInfo.Field.nickname, myUserInfo, new BasicCallback() {
+                                    @Override
+                                    public void gotResult(final int status, String desc) {
+                                        //更新跳转标志
+                                        SharePreferenceManager.setCachedFixProfileFlag(false);
+                                        if (dialog.isShowing()) {
+                                            dialog.dismiss();
+                                        }
+                                        if (status != 0) {
+                                            Toast.makeText(mContext, "昵称保存失败",
+                                                    Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                                //跳转到成功注册页面
+                                mContext.onRegistSuccess();
+                            } else {
+                                mLoginDialog.dismiss();
+                                HandleResponseCode.onHandle(mContext, status, false);
+                            }
                         }
-                    }
-                });
-            } else {
-                HandleResponseCode.onHandle(mContext, status, false);
+                    });
+                } else {
+                    HandleResponseCode.onHandle(mContext, status, false);
+                }
             }
-        }
-    });
-}
+        });
+    }
 
 }

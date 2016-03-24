@@ -1,11 +1,13 @@
 package com.asosapp.phone.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.asosapp.phone.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -24,6 +26,7 @@ public class MyQRActivity extends BasicActivity {
     private TextView titleName;
     private ImageView myQR;
     private TextView myCode;
+    private Button lifeCode;
     private String inCode="00000000";
 
     @Override
@@ -37,11 +40,20 @@ public class MyQRActivity extends BasicActivity {
         titleName = (TextView) findViewById(R.id.title_name);
         myQR = (ImageView) findViewById(R.id.my_qr);
         myCode = (TextView) findViewById(R.id.my_invite_code);
+        lifeCode = (Button) findViewById(R.id.life_code);
         SharedPreferences sp = getSharedPreferences("UserInfo", 1);
-        inCode = sp.getString("incode","00000000");
+        inCode = sp.getString("invite_code","00000000");
         myCode.setText(inCode);
         titleName.setText(R.string.invite);
         createQRImage("http://223.68.152.158:65500/Home/APP/AsosAPP_V1.1.apk");
+        lifeCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getApplication(),LifeCodeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void createQRImage(String url) {

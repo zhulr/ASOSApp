@@ -83,13 +83,18 @@ public class Const {
     //优惠券列表接口
     public static final String SEARCHCOUPON = "/Card/searchcoupon.php";
 
-    //邀请码插入接口
-    public static final String INCODE = "/Code/adduser.php";
+	//邀请码插入接口
+	public static final String INCODE = "/Code/adduser.php";
 
-    //邀请码查询接口
-    public static final String SEARCHSUPCODE = "/Code/search.php";
+	//邀请码查询接口
+	public static final String SEARCHSUPCODE = "/Code/search.php";
 
-    //查询本人邀请码接口
-    public static final String SEARCHCODE = "/Code/searchcode.php";
+	//查询本人邀请码接口
+	public static final String SEARCHCODE = "/Code/searchcode.php";
 
+    //申请终身码
+    public static final String APPLYLIFECODE = "/Code/addlifecode.php";
+
+    //查询终身码
+    public static final String SEARCHLIFECODE = "/Code/searchlifecode.php";
 }
