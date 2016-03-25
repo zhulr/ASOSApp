@@ -40,10 +40,13 @@ public class CouponFragment extends Fragment {
     private RecyclerView card_recyclerView;
     private List<String> mData;
     private String TAG="CouponFragment";
+    private boolean iscode=false;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view  = inflater.inflate(R.layout.fragment_coupon,null);
+        SharedPreferences sp = getActivity().getSharedPreferences("UserInfo", 1); //私有数据
+        iscode=sp.getBoolean("iscode", true);
         init();
         json();
         return view;

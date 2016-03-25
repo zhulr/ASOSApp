@@ -213,7 +213,6 @@ public class LoginController implements LoginView.Listener, OnClickListener,
                         SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
                         editor.putString("invite_code", DATAs.getString("INCODE"));
                         editor.commit();//提交修改
-                        Log.e("Leo",DATAs.getString("INCODE"));
                         mContext.startMainActivity();
                     } else if (jsonObject.get("CODE").toString().equals("100")) {
                         ToastView.toast(mContext, jsonObject.get("MESSAGE").toString());

@@ -81,7 +81,12 @@ public class RegisterView extends LinearLayout {
     }
     public String getUserNickName(){return mName.getText().toString().trim();}
     public String getUserName() {
-            return mName.getText().toString().trim();
+        try {
+            return URLEncoder.encode(mName.getText().toString().trim(), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return "安邦医疗救援";
 
     }
     public String getUserAge() {

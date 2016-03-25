@@ -58,7 +58,7 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserInfo", 0);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserInfo", 1);
         is_push = sharedPreferences.getBoolean("is_push", true);
         view = inflater.inflate(R.layout.fragment_set_center, container, false);
         init();

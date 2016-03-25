@@ -2,7 +2,6 @@ package com.asosapp.phone.controller;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -58,8 +57,7 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
     private String supCode;
     private int i = 30;
     private String userSexy;
-//    private boolean iscode=false;
-//    private String incode;
+//  private String incode;
 
     public RegisterController(RegisterView registerView, RegisterNewActivity context) {
         this.mRegisterView = registerView;
@@ -81,16 +79,12 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                 userAge = mRegisterView.getUserAge();
                 code = mRegisterView.getCode();
                 userSexy = mRegisterView.getSexy();
-                if (mRegisterView.getinviteCode().equals("")) {
-                    supCode = "00000000";
-                } else {
-                    supCode = mRegisterView.getinviteCode();
+                if (mRegisterView.getinviteCode().equals("")){
+                    supCode="00000000";
+                }else{
+                    supCode=mRegisterView.getinviteCode();
                 }
-//                if (iscode==false){
-////                    mRegisterView.inviteCodeError(mContext);
-//                    Log.e("Leo",iscode+"");
-//                }
-//                Log.e("Leo",iscode+"");
+
 
                 if (isMobileNO(userId) == false) {
                     mRegisterView.isMobileError(mContext);
@@ -129,10 +123,10 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
                 break;
         }
     }
-
-    /**
-     * 短信验证
-     */
+/**
+ * 短信验证
+ *
+ */
     private void smsCode() {
         SMSSDK.getVerificationCode("86", mRegisterView.getUserId());
         Toast.makeText(mContext, "获取成功", Toast.LENGTH_SHORT).show();
@@ -176,7 +170,6 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
         };
         SMSSDK.registerEventHandler(eh);
     }
-
     Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             if (msg.what == -9) {
@@ -253,20 +246,19 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
 
     /**
      * 邀请码get请求
-     * <p/>
+     *
      * *
      */
     JSONObject DATAs = null;
 
     private void code_Get() throws UnsupportedEncodingException {
-        String url = Const.SERVICE_URL + Const.INCODE + "?userPhone=" + userId + "&supCode=" + supCode;
+        String url = Const.SERVICE_URL + Const.INCODE +"?userPhone=" + userId + "&supCode=" + supCode ;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 try {
                     if (jsonObject.get("CODE").toString().equals("200")) {
                         DATAs = (JSONObject) jsonObject.get("DATA");
-//                        incode=DATAs.getString("INCODE");
                     } else if (jsonObject.get("CODE").toString().equals("100")) {
                         ToastView.toast(mContext, jsonObject.get("MESSAGE").toString());
                     }
@@ -292,42 +284,86 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
 
     /**
      * 邀请码判断get请求
-     * <p/>
+     *
      * *
      */
-//    private void incode_Get() throws UnsupportedEncodingException {
-//
-//        String url = Const.SERVICE_URL + Const.SEARCHSUPCODE +"?inCode=" + incode;
-//        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject jsonObject) {
-//                try {
-//                    if (jsonObject.get("CODE").toString().equals("200")) {
-//                        iscode=true;
-//
-//                    } else if (jsonObject.get("CODE").toString().equals("100")) {
-//                        iscode=false;
-//                        ToastView.toast(mContext, jsonObject.get("MESSAGE").toString());
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError volleyError) {
-//                if (volleyError instanceof NoConnectionError) {
-//                    ToastView.NetError(mContext);
-//                } else if (volleyError instanceof com.android.volley.TimeoutError) {
-//                    ToastView.NetTimeOut(mContext);
-//                } else {
-//                    ToastView.toast(mContext, volleyError.toString());
-//                }
-//            }
-//        });
-//        request.setTag(TAG);
-//        MyApplication.getHttpQueues().add(request);
-//    }
+    private void incode_Get() throws UnsupportedEncodingException {
+
+        String url = Const.SERVICE_URL + Const.SEARCHSUPCODE +"?inCode=" + supCode;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                try {
+                    if (jsonObject.get("CODE").toString().equals("200")) {
+                        try {
+                            couPon_get();
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+
+                    } else if (jsonObject.get("CODE").toString().equals("100")) {
+                        ToastView.toast(mContext, jsonObject.get("MESSAGE").toString());
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                if (volleyError instanceof NoConnectionError) {
+                    ToastView.NetError(mContext);
+                } else if (volleyError instanceof com.android.volley.TimeoutError) {
+                    ToastView.NetTimeOut(mContext);
+                } else {
+                    ToastView.toast(mContext, volleyError.toString());
+                }
+            }
+        });
+        request.setTag(TAG);
+        MyApplication.getHttpQueues().add(request);
+    }
+    /**
+     * 优惠券插入接口
+     *
+     * *
+     */
+
+    private void couPon_get() throws UnsupportedEncodingException {
+        String url = Const.SERVICE_URL + Const.ADDCOUPON +"?userPhone=" + userId;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                try {
+                    if (jsonObject.get("CODE").toString().equals("200")) {
+                        ToastView.toast(mContext, "添加成功");
+
+                    } else if (jsonObject.get("CODE").toString().equals("100")) {
+                        ToastView.toast(mContext, jsonObject.get("MESSAGE").toString());
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                if (volleyError instanceof NoConnectionError) {
+                    ToastView.NetError(mContext);
+                } else if (volleyError instanceof com.android.volley.TimeoutError) {
+                    ToastView.NetTimeOut(mContext);
+                } else {
+                    ToastView.toast(mContext, volleyError.toString());
+                }
+            }
+        });
+        request.setTag(TAG);
+        MyApplication.getHttpQueues().add(request);
+    }
+
+
+
+
     public void dismissDialog() {
         if (mLoginDialog != null)
             mLoginDialog.dismiss();
@@ -392,59 +428,60 @@ public class RegisterController implements RegisterView.Listener, OnClickListene
     }
 
 
-    private void successRegister() {
-        final Dialog dialog = DialogCreator.createLoadingDialog(mContext, mContext.getString(R.string.registering_hint));
-        dialog.show();
-        JMessageClient.register(userId, password, new BasicCallback() {
-            @Override
-            public void gotResult(final int status, final String desc) {
-                dialog.dismiss();
-                if (status == 0) {
 
-                    LoginDialog loginDialog = new LoginDialog();
-                    mLoginDialog = loginDialog.createLoadingDialog(mContext);
-                    mLoginDialog.show();
-                    JMessageClient.login(userId, password, new BasicCallback() {
-                        @Override
-                        public void gotResult(final int status, String desc) {
-                            if (status == 0) {
-                                try {
-                                    volley_Get();//上传到本地数据库
-                                    code_Get();//邀请码接口调用
-//                                incode_Get();//判断邀请码是否正确
-                                } catch (UnsupportedEncodingException e) {
-                                    e.printStackTrace();
-                                }
-                                //保存昵称
-                                UserInfo myUserInfo = JMessageClient.getMyInfo();
-                                myUserInfo.setNickname(userName);
-                                JMessageClient.updateMyInfo(UserInfo.Field.nickname, myUserInfo, new BasicCallback() {
-                                    @Override
-                                    public void gotResult(final int status, String desc) {
-                                        //更新跳转标志
-                                        SharePreferenceManager.setCachedFixProfileFlag(false);
-                                        if (dialog.isShowing()) {
-                                            dialog.dismiss();
-                                        }
-                                        if (status != 0) {
-                                            Toast.makeText(mContext, "昵称保存失败",
-                                                    Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                                //跳转到成功注册页面
-                                mContext.onRegistSuccess();
-                            } else {
-                                mLoginDialog.dismiss();
-                                HandleResponseCode.onHandle(mContext, status, false);
+private void successRegister(){
+    final Dialog dialog = DialogCreator.createLoadingDialog(mContext, mContext.getString(R.string.registering_hint));
+    dialog.show();
+    JMessageClient.register(userId, password, new BasicCallback() {
+        @Override
+        public void gotResult(final int status, final String desc) {
+            dialog.dismiss();
+            if (status == 0) {
+
+                LoginDialog loginDialog = new LoginDialog();
+                mLoginDialog = loginDialog.createLoadingDialog(mContext);
+                mLoginDialog.show();
+                JMessageClient.login(userId, password, new BasicCallback() {
+                    @Override
+                    public void gotResult(final int status, String desc) {
+                        if (status == 0) {
+                            try {
+                                volley_Get();//上传到本地数据库
+                                code_Get();//邀请码接口调用
+                                incode_Get();//判断邀请码是否正确
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
                             }
+                            //保存昵称
+                            UserInfo myUserInfo = JMessageClient.getMyInfo();
+                            myUserInfo.setNickname(mRegisterView.getUserNickName());
+                            JMessageClient.updateMyInfo(UserInfo.Field.nickname, myUserInfo, new BasicCallback() {
+                                @Override
+                                public void gotResult(final int status, String desc) {
+                                    //更新跳转标志
+                                    SharePreferenceManager.setCachedFixProfileFlag(false);
+                                    if (dialog.isShowing()) {
+                                        dialog.dismiss();
+                                    }
+                                    if (status != 0) {
+                                        Toast.makeText(mContext, "昵称保存失败",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                            //跳转到成功注册页面
+                            mContext.onRegistSuccess();
+                        } else {
+                            mLoginDialog.dismiss();
+                            HandleResponseCode.onHandle(mContext, status, false);
                         }
-                    });
-                } else {
-                    HandleResponseCode.onHandle(mContext, status, false);
-                }
+                    }
+                });
+            } else {
+                HandleResponseCode.onHandle(mContext, status, false);
             }
-        });
-    }
+        }
+    });
+}
 
 }

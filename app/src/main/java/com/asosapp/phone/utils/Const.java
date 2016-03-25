@@ -83,6 +83,9 @@ public class Const {
     //优惠券列表接口
     public static final String SEARCHCOUPON = "/Card/searchcoupon.php";
 
+    //添加优惠券列表接口
+    public static final String ADDCOUPON = "/Card/addcoupon.php";
+
 	//邀请码插入接口
 	public static final String INCODE = "/Code/adduser.php";
 
