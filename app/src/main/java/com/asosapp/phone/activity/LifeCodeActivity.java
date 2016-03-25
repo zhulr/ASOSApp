@@ -15,12 +15,14 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.asosapp.phone.R;
 import com.asosapp.phone.initprogram.MyApplication;
 import com.asosapp.phone.utils.Const;
+import com.asosapp.phone.utils.StringUtils;
 import com.asosapp.phone.view.ToastView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
 
 /**
  * Created by ASOS_zhulr on 2016/3/24.
@@ -65,7 +67,11 @@ public class LifeCodeActivity extends BasicActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    applyLifeCode();
+                    if (StringUtils.IDCardValidate(myLifeID.getText().toString().trim(),getApplication())) {
+                        applyLifeCode();
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }

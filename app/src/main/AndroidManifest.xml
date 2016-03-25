@@ -237,8 +237,5 @@
         <activity android:name=".activity.ChatDetailActivity" />
         <activity android:name=".activity.ChatNewActivity" />
         <activity android:name=".activity.LifeCodeActivity" />
-
-
     </application>
-
 </manifest>
