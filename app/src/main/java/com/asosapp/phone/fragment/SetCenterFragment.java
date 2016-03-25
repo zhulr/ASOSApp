@@ -62,6 +62,7 @@ public class SetCenterFragment extends Fragment implements View.OnClickListener 
         is_push = sharedPreferences.getBoolean("is_push", true);
         view = inflater.inflate(R.layout.fragment_set_center, container, false);
         init();
+
         initData();
         return view;
     }

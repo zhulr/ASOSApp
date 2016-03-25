@@ -454,7 +454,7 @@ private void successRegister(){
                             }
                             //保存昵称
                             UserInfo myUserInfo = JMessageClient.getMyInfo();
-                            myUserInfo.setNickname(mRegisterView.getUserNickName());
+                            myUserInfo.setNickname(mRegisterView.getUserName());
                             JMessageClient.updateMyInfo(UserInfo.Field.nickname, myUserInfo, new BasicCallback() {
                                 @Override
                                 public void gotResult(final int status, String desc) {

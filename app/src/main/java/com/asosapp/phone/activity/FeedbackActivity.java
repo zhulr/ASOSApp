@@ -88,6 +88,7 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
     private ImageButton mTakePhotoIb;
     private ImageView right_btn;
     private ImageView click;
+    private TextView hinttext;
 
 
 
@@ -105,6 +106,8 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
 
 
     private void initView() {
+        hinttext= (TextView) findViewById(R.id.hinttext);
+
         click= (ImageView) findViewById(R.id.click);
         click.setOnClickListener(this);
 
@@ -116,8 +119,11 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
         SharedPreferences sp = this.getSharedPreferences("UserInfo", 1); //私有数据
         if (sp.getString("user_id", null).equals("6086005")){
             click.setVisibility(View.VISIBLE);
+            hinttext.setVisibility(View.GONE);
         }else{
             click.setVisibility(View.GONE);
+            hinttext.setVisibility(View.VISIBLE);
+
         }
 
 
