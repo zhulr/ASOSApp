@@ -49,7 +49,7 @@
         android:id="@+id/hinttext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="欢迎进入聊天界面"
+        android:hint="欢迎您，我们的客服会尽快为您服务，请稍等！"
         android:visibility="gone"
         android:layout_gravity="center_horizontal"/>
 

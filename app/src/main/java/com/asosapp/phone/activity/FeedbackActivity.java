@@ -117,14 +117,14 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
         serviceTargetId = intent.getStringExtra("service");
         mTargetId = intent.getStringExtra("myID");
         SharedPreferences sp = this.getSharedPreferences("UserInfo", 1); //私有数据
-        if (sp.getString("user_id", null).equals("6086005")){
-            click.setVisibility(View.VISIBLE);
-            hinttext.setVisibility(View.GONE);
-        }else{
-            click.setVisibility(View.GONE);
-            hinttext.setVisibility(View.VISIBLE);
-
-        }
+//        if (sp.getString("user_id", null).equals("6086005")){
+//            click.setVisibility(View.VISIBLE);
+//            hinttext.setVisibility(View.GONE);
+//        }else{
+//            click.setVisibility(View.GONE);
+//            hinttext.setVisibility(View.VISIBLE);
+//
+//        }
 
 
         mListView = (DropDownListView) findViewById(R.id.listview);
@@ -204,6 +204,7 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
         setMoreMenuHeight();
         // 滑动到底部
         setToBottom();
+
     }
     /**
      * 发送按钮的显示和隐藏

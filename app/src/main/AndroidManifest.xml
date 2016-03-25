@@ -173,59 +173,82 @@
         <activity
             android:name=".activity.MainActivity"
             android:theme="@style/StyledIndicators"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.UpstartActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppUpstart">
+            android:theme="@style/AppUpstart"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.DoctorInfoActivity" />
-        <activity android:name=".activity.CardsDetailsActivity" />
+        <activity android:name=".activity.DoctorInfoActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.CardsDetailsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.FeedbackActivity"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".activity.SQLiteActivity" />
-        <activity android:name=".activity.LoginNewActivity" />
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.SQLiteActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.LoginNewActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.RegisterNewActivity"
-            android:windowSoftInputMode="adjustPan|stateVisible" />
-        <activity android:name=".activity.ServiceActivity" />
-        <activity android:name=".activity.NewsHTMLActivity" />
+            android:windowSoftInputMode="adjustPan|stateVisible"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ServiceActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.NewsHTMLActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.UserFeedbackActivity"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity android:name=".activity.MyQRActivity" />
-        <activity android:name=".activity.CouponActivity" />
-        <activity android:name=".activity.SetActivity" />
-        <activity android:name=".activity.AboutAppActivity" />
-        <activity android:name=".activity.BrowserViewPagerActivity" />
-        <activity android:name=".activity.PickPictureTotalActivity" />
-        <activity android:name=".activity.PickPictureActivity" />
-        <activity android:name=".activity.PersonInformationActivity" />
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.MyQRActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.CouponActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.SetActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.AboutAppActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.BrowserViewPagerActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.PickPictureTotalActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.PickPictureActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.PersonInformationActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.AgeChangeActivity"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.NameChangeActivity"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity android:name=".activity.ChangePasswordActivity" />
-        <activity android:name=".activity.PayActivity" />
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ChangePasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.PayActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind" />
+            android:screenOrientation="portrait" />
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:exported="false"
-            android:screenOrientation="behind"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
 
         <!-- alipay sdk end -->
@@ -233,9 +256,12 @@
             android:name="com.alipay.sdk.auth.AuthActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind"></activity>
-        <activity android:name=".activity.ChatDetailActivity" />
-        <activity android:name=".activity.ChatNewActivity" />
-        <activity android:name=".activity.LifeCodeActivity" />
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.ChatDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ChatNewActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.LifeCodeActivity"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>
