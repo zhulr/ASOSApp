@@ -116,7 +116,7 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener,Vi
         nameID=intent.getStringExtra("nameID");
         serviceTargetId = intent.getStringExtra("service");
         mTargetId = intent.getStringExtra("myID");
-        SharedPreferences sp = this.getSharedPreferences("UserInfo", 1); //私有数据
+//        SharedPreferences sp = this.getSharedPreferences("UserInfo", 1); //私有数据
 //        if (sp.getString("user_id", null).equals("6086005")){
 //            click.setVisibility(View.VISIBLE);
 //            hinttext.setVisibility(View.GONE);
