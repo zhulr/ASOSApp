@@ -2,15 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="一经申请，终身受益"
+        android:textColor="@color/btn_color_login"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
+        android:text="终身码是安邦医疗救援独有的体系。邀请好友及分享安邦服务都可以获得受益，及时您本人不是安邦的员工，及时您未曾和安邦有过相关协议，都可以从终身码中获取您分享过后的酬劳" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="16sp"
-        android:text="您的终身码为：" />
+        android:text="您的终身码为："
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/my_life_code"
@@ -22,33 +39,35 @@
 
     <Button
         android:id="@+id/show_my_earnings"
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/roundbtn"
         android:text="查看我的终身码"
         android:textColor="@color/white"
         android:textSize="14sp" />
+
     <EditText
         android:id="@+id/user_life_id_et"
-        android:layout_marginTop="20dp"
-        android:hint="请输入身份证号码"
-        android:gravity="center"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_height="wrap_content" />
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:hint="请输入身份证号码" />
+
     <Button
         android:id="@+id/apply_life_code"
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/roundbtn"
         android:text="申请终身码"
         android:textColor="@color/white"
