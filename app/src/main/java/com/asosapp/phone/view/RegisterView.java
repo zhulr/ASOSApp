@@ -53,40 +53,33 @@ public class RegisterView extends LinearLayout {
         mPassword = (EditText) findViewById(R.id.password);
         mRegistBtn = (Button) findViewById(R.id.regist_btn);
         mReturnBtn = (ImageButton) findViewById(R.id.return_btn);
-        mSurePsw = (EditText) findViewById(R.id.passwordsure);
-        mName = (EditText) findViewById(R.id.name);
-        mAge = (EditText) findViewById(R.id.age);
-        mCode = (EditText) findViewById(R.id.code);
-        mSexy = (TextView) findViewById(R.id.sexy);
-        code_button = (TextView) findViewById(R.id.code_button);
-        invite_code = (EditText) findViewById(R.id.invite_code);
+        mSurePsw= (EditText) findViewById(R.id.passwordsure);
+        mName= (EditText) findViewById(R.id.name);
+        mAge= (EditText) findViewById(R.id.age);
+        mCode= (EditText) findViewById(R.id.code);
+        mSexy= (TextView) findViewById(R.id.sexy);
+        code_button= (TextView) findViewById(R.id.code_button);
+        invite_code= (EditText) findViewById(R.id.invite_code);
         mUserId.requestFocus();
     }
 
 
-    public TextView setcode_button() {
+    public TextView setcode_button(){
         return code_button;
     }
-
     public String getUserId() {
         return mUserId.getText().toString().trim();
     }
-
-    public String getinviteCode() {
+    public String getinviteCode(){
         return invite_code.getText().toString().trim();
     }
-
     public String getPassword() {
         return mPassword.getText().toString().trim();
     }
-
     public String getPasswordSure() {
         return mSurePsw.getText().toString().trim();
     }
-
-    public String getUserNickName() {
-        return mName.getText().toString().trim();
-    }
+    public String getUserNickName(){return mName.getText().toString().trim();}
 
     public String getUserName() {
         try {
@@ -96,15 +89,12 @@ public class RegisterView extends LinearLayout {
         }
         return "ASOS";
     }
-
     public String getUserAge() {
         return mAge.getText().toString().trim();
     }
-
     public String getCode() {
         return mCode.getText().toString().trim();
     }
-
     public String getSexy() {
         try {
             return URLEncoder.encode(mSexy.getText().toString().trim(), "UTF-8");
@@ -113,6 +103,7 @@ public class RegisterView extends LinearLayout {
         }
         return "男";
     }
+
 
 
     public void setListeners(OnClickListener onclickListener) {
@@ -133,7 +124,6 @@ public class RegisterView extends LinearLayout {
     public void passwordError(Context context) {
         Toast.makeText(context, context.getString(R.string.password_not_null_toast), Toast.LENGTH_SHORT).show();
     }
-
     public void passwordSureError(Context context) {
         Toast.makeText(context, context.getString(R.string.passwordsure_not_null_toast), Toast.LENGTH_SHORT).show();
     }
@@ -141,15 +131,12 @@ public class RegisterView extends LinearLayout {
     public void passwordLengthError(RegisterNewActivity context) {
         Toast.makeText(context, context.getString(R.string.password_length_illegal), Toast.LENGTH_SHORT).show();
     }
-
     public void Error(RegisterNewActivity context) {
         Toast.makeText(context, context.getString(R.string.error_null), Toast.LENGTH_SHORT).show();
     }
-
-    public void inviteCodeError(RegisterNewActivity context) {
+    public void inviteCodeError(RegisterNewActivity context){
         Toast.makeText(context, context.getString(R.string.inviteCode_null), Toast.LENGTH_SHORT).show();
     }
-
     public void setGender(boolean isMan) {
         if (isMan) {
             mSexy.setText("男");
