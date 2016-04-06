@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">安邦医疗救援</string>
+    <string name="app_name">邦到</string>
 
     <string name="file_not_found_toast">文件丢失</string>
     <string name="voice_length">10"</string>
@@ -23,6 +23,7 @@
     <string name="online_law_chat">法律服务问答</string>
     <string name="online_medical_rehabilitation_chat">伤残鉴定咨询</string>
     <string name="online_damage_compensation_chat">损伤赔偿问答</string>
+    <string name="online_calculator">自查计算器</string>
     <string name="login">登录</string>
     <string name="login_have_problems">遇到问题？</string>
     <string name="login_new_user_register">新用户</string>

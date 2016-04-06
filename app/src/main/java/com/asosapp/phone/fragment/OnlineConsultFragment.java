@@ -49,6 +49,7 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
     private static final Object TAG = "OnlineConsultFragment";
     private View view;
     private View online_1, online_2, online_3, online_4;
+    private View calculator_1;
     private boolean isLogin = false;
     private TextView titleName;
     private ImageView asos111_pic, asos222_pic, asos333_pic, asos444_pic;
@@ -82,6 +83,7 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
         online_2 = view.findViewById(R.id.asos222);
         online_3 = view.findViewById(R.id.asos333);
         online_4 = view.findViewById(R.id.asos444);
+        calculator_1 = view.findViewById(R.id.asos555);
         asos111_pic = (ImageView) view.findViewById(R.id.asos111_pic);
         asos222_pic = (ImageView) view.findViewById(R.id.asos222_pic);
         asos333_pic = (ImageView) view.findViewById(R.id.asos333_pic);
@@ -93,6 +95,7 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
         online_2.setOnClickListener(this);
         online_3.setOnClickListener(this);
         online_4.setOnClickListener(this);
+        calculator_1.setOnClickListener(this);
 
     }
 
@@ -118,11 +121,11 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
                 serviceID = ServiceInfo.getServiceName_5();
                 isSelfLogin();
                 break;
+            case R.id.asos555:
 
-
+                break;
         }
     }
-
 
 
     //提示框
@@ -130,15 +133,15 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
         Dialog alertDialog = new AlertDialog.Builder(getActivity()).
                 setTitle("提示").
                 setMessage("您还没有登录，请登录！").
-        setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                setPositiveButton("确定", new DialogInterface.OnClickListener() {
 
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-        Intent intent = new Intent(getActivity(), LoginNewActivity.class);
-        intent.putExtra("service", serviceID);
-        startActivity(intent);
-    }
-}).
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getActivity(), LoginNewActivity.class);
+                        intent.putExtra("service", serviceID);
+                        startActivity(intent);
+                    }
+                }).
                 setNegativeButton("取消", new DialogInterface.OnClickListener() {
 
                     @Override
