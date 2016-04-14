@@ -21,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.asosapp.phone.R;
+import com.asosapp.phone.activity.CalculatorsActivity;
 import com.asosapp.phone.activity.FeedbackActivity;
 import com.asosapp.phone.activity.LoginNewActivity;
 import com.asosapp.phone.activity.ServiceActivity;
@@ -122,7 +123,7 @@ public class OnlineConsultFragment extends BaseFragment implements View.OnClickL
                 isSelfLogin();
                 break;
             case R.id.asos555:
-
+                startActivity(new Intent(getActivity(),CalculatorsActivity.class));
                 break;
         }
     }

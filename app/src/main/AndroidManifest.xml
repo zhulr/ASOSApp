@@ -263,5 +263,10 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.LifeCodeActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.CalculatorsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ResultActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 </manifest>
